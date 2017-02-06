@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        <meta name="author" content="Rene Schulte, Torsten Bär" />
+        <meta name="copyright" content="Rene Schulte, Torsten Bär" />
+        <!--
+        Der Inhalt dieser Seite ist geistiges Eigentum der Autoren!
+        Dieser möchten nicht, dass der Quellcode ohne seine ausdrückliche Erlaubnis kopiert,
+        anderweitig verwendet oder weitergegeben wird.
+        Danke!
+        The content of this site is property of the authors!
+        They doesn´t want, that the source code is copied, used or published without their
+        explicid permission.
+        Thank you!
+        -->
+        <meta name="description" content="MuLaPeGASim Homepage, Simulation von MLP mit OCR Preprocessing" />
+        <meta name="keywords" content="Studium, Medieninformatik, HTW Dresden, Dresden, Künstliche Intelligenz, Neuronale Netze, Genetische Algorithmen, Backpropagation, OCR, Optische Zeichenerkennung, Bildfilter, Momentum, Flat Spot Elimination, Aktivierungsfunktion" lang="de" />
+        <meta name="keywords" content="studies, media informatics, university of applied sciences Dresden, Dresden, artifical intelligence, neural networks, genetic algorithms, backpropagation, ocr, optical character recongnition, imagefilter, momentum, Flat Spot Elimination, activation function" lang="en" />
+        <meta name="robots" content="index, follow" />
+        <meta name="revisit-after" content="30 days" />
+        <meta http-equiv="cache-control" content="public" />
+
+        <meta name="DC.Title" content="Backpropagation" />
+        <meta name="DC.Creator" content="Torsten Bär, Rene Schulte" />
+        <meta name="DC.Subject" content="MuLaPeGASim Homepage" />
+        <meta name="DC.Description" content="Homepage des MuLaPeGASim Projektes von Rene Schulte und Torsten Bär an der HTW Dresden" />
+        <meta name="DC.Publisher" content="Torsten Bär, Rene Schulte" />
+        <meta name="DC.Date" content="2004-11-10" />
+        <meta name="DC.Type" content="Text" />
+        <meta name="DC.Format" content="text/html" />
+        <meta name="DC.Source" content="MuLaPeGASim Homepage" />
+        <meta name="DC.Language" content="de" />
+        <meta name="DC.Coverage" content="Dresden" />
+        <meta name="DC.Rights" content="Alle Rechte liegen bei den Autoren" />
+
+        <link rel="stylesheet" type="text/css" href="style.css" />
+		<script type="text/javascript" language="javascript" src="scripts.js"></script>
+		<script type="text/javascript" language="javascript">
+		<!--
+			window.onLoad = checkTop(this);
+		//-->
+		</script>
+        <title>Backpropagation</title>
+	</head>
+	<body>
+		<div class="head">MLP Lernverfahren - Backpropagation</div>
+		<br />
+		<div>
+			<p>Auf eine ausführliche Beschreibung und Herleitung soll an dieser Stelle verzichtet werden, da sich in der Literatur und im WWW
+			sehr gute Dokumentation dazu finden.
+			</p><p>
+			MLP Netze gehören zu der Kategorie der Netze mit überwachten Lernverfahren, was nichts anderes bedeutet, als dass ein Netz zu
+			einer Eingabe eine Ausgabe lernt. Die Eingabe-Sollausgabe-Paare werden auch als Muster bezeichnet. Für die meisten Probleme
+			werden natürlich mehrere Muster benötigt &rarr; Mustermenge.
+			</p><p>
+			Das Lernen erfolgt indem die Gewichtsvektoren und Schwellwerte (Bias-Gewicht) angepasst werden, bis die zu trainierende Ausgabe
+			von dem Netz für das jeweilige Muster erzeugt wird.
+			</p><p>
+			Dazu muss in der ersten Phase die Netzeingabe propagiert werden.
+			</p><p>
+			Danach wird der globale Fehler berechnet den das Netz erzeugt:
+			</p>
+				<p style="text-indent:80px" >Differenz der IST-Netzausgabe zu der Sollausgabe.
+			</p><p>
+			Dieser Fehler muss "gerecht" zurückverfolgt werden, damit der Fehler jedes Neurons korrigiert werden kann. Der
+			Netzfehler entspricht somit dem Fehler der Ausgabeneuronen &rarr; zu jedem Ausgabeneuron wird der Fehler berechnet
+			&rarr; jedes Ausgabeneuron verteilt den Fehler an die eingehenden Neuronen der darunter liegenden verdeckten Schicht
+			&rarr; jedes Neuron der verdeckten Schicht verteilt den Fehler an die eingehenden Neuronen der darunter liegenden Schicht
+			(verdeckte oder Eingabeschicht) ... &rarr; somit wird der Fehler eines jeden Neurons berechnet, den dieses zu dem Netzfehler
+			beiträgt, daher der Name "Backpropagation".
+			</p><p>
+			In dem letzten Schritt werden nun die Gewichte der einzelnen Neuronen entsprechend des von ihm erzeugten Fehlers angepasst.
+			</p><p>
+			Diese drei Schritte werden solange wiederholt, bis der globale Netzfehler für das Muster entweder nahe 0  ist oder man die
+			maximale Anzahl an Iterationen erreicht hat.
+			</p><p>
+			Die Geschwindigkeit des Lernens wird durch eine Lernrate beeinflusst. Des weiteren wurden von uns zwei Modifikationen von
+			Backpropagation implementiert: Das Momentumverfahren, welches die Gewichtanpassung der letzten Iteration mit betrachtet. Es
+			wird somit ein schnelleres Lernen in flachen Ebenen der Fehlerkurve erreicht und ein langsameres in steilen Regionen um ein
+			oszillieren zu verhindern. Flat-Spot-Elimination ist die zweite Modifikation. Dazu wird zu der Ableitung der
+			Aktivierungsfunktion ein konstanter Faktor addiert, um das stagnieren des Lernens im Sättigungsbereich der Aktivierungsfunktion
+			zu verhindern. Es sei aber erwähnt, dass Flat-Spot-Elimination mitunter zu schlechteren Ergebnisse führen kann.
+			</p>
+			<div class="description">
+				<img width="413" height="513" src="images/backprop_deltarule.gif" alt="Deltaregel" />
+				Abb. 1: Deltaregel
+			</div>
+			<p>
+			Weiterhin wurden zwei Varianten von Backpropagation implementiert. Das online-Training, bei dem die Gewichtsanpassung nach
+			der Präsentation eines einzelnen Musters geschieht und das offline-Training (batch) bei dem die Gewichtsanpassung erst
+			nach der Präsentation aller Muster erfolgt.
+			</p><p>
+			Um ein optimales Lernen zu erzielen, ist es nötig alle Gewichte und Schwellwerte zu Beginn mit einem zufälligen Wert zu
+			initialisieren. Die Werte der zufälligen Initialisierung sollten dabei in einem optimalen Bereich für die jeweilig gewählte
+			Aktivierungsfunktion liegen. Für die logistische Aktivierungsfunktion werden die Gewichte/Schwellen z.B. zwischen 0,25 und 0,75
+			initialisiert, somit liegen die Werte in einem optimalen Bereich der Funktion und nicht im Sättigungsbereich dieser.
+			</p>
+		</div>
+		<div class="lastChange">
+			<script type="text/javascript" language="javascript">
+			<!--
+				docChanged("Letzte Änderung<br />");
+			//-->
+			</script>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        <meta name="author" content="Rene Schulte, Torsten Bär" />
+        <meta name="copyright" content="Rene Schulte, Torsten Bär" />
+        <!--
+        Der Inhalt dieser Seite ist geistiges Eigentum der Autoren!
+        Dieser möchten nicht, dass der Quellcode ohne seine ausdrückliche Erlaubnis kopiert,
+        anderweitig verwendet oder weitergegeben wird.
+        Danke!
+        The content of this site is property of the authors!
+        They doesn't want, that the source code is copied, used or published without their
+        explicid permission.
+        Thank you!
+        -->
+        <meta name="description" content="MuLaPeGASim Homepage, Simulation von MLP mit OCR Preprocessing" />
+        <meta name="keywords" content="Studium, Medieninformatik, HTW Dresden, Dresden, Künstliche Intelligenz, Neuronale Netze, Genetische Algorithmen, Backpropagation, OCR, Optische Zeichenerkennung, Bildfilter, Momentum, Flat Spot Elimination, Aktivierungsfunktion" lang="de" />
+        <meta name="keywords" content="studies, media informatics, university of applied sciences Dresden, Dresden, artifical intelligence, neural networks, genetic algorithms, backpropagation, ocr, optical character recongnition, imagefilter, momentum, Flat Spot Elimination, activation function" lang="en" />
+        <meta name="robots" content="index, follow" />
+        <meta name="revisit-after" content="30 days" />
+        <meta http-equiv="cache-control" content="public" />
+
+        <meta name="DC.Title" content="Genetischer Algorithmus" />
+        <meta name="DC.Creator" content="Torsten Bär, Rene Schulte" />
+        <meta name="DC.Subject" content="MuLaPeGASim Homepage" />
+        <meta name="DC.Description" content="Homepage des MuLaPeGASim Projektes von Rene Schulte und Torsten Bär an der HTW Dresden" />
+        <meta name="DC.Publisher" content="Torsten Bär, Rene Schulte" />
+        <meta name="DC.Date" content="2004-11-10" />
+        <meta name="DC.Type" content="Text" />
+        <meta name="DC.Format" content="text/html" />
+        <meta name="DC.Source" content="MuLaPeGASim Homepage" />
+        <meta name="DC.Language" content="de" />
+        <meta name="DC.Coverage" content="Dresden" />
+        <meta name="DC.Rights" content="Alle Rechte liegen bei den Autoren" />
+
+        <link rel="stylesheet" type="text/css" href="style.css" />
+		<script type="text/javascript" language="javascript" src="scripts.js"></script>
+		<script type="text/javascript" language="javascript">
+		<!--
+			window.onLoad = checkTop(this);
+		//-->
+		</script>
+        <title>Genetischer Algorithmus</title>
+	</head>
+	<body>
+		<div class="head">Neuronales Netz</div>
+		<br />
+		<div>
+			<p>
+			An dieser Stelle soll auf eine detaillierte Beschreibung von neuronalen Netzen verzichtet werden, da sich in der Literatur und
+			im WWW weitaus bessere :o) Dokumentation finden.
+			</p>
+			<div class="description">
+				<img width="250" height="270" src="images/nn.jpg" alt="Neuronales Netz" /><br />
+				Abb. 1: Neuronales Netz
+			</div>
+			<p>
+			Ein MLP besteht aus mehreren Neuronen, wobei jedes Neuron mehrere Eingaben hat und nur eine Ausgabe. Diese Ein-/Ausgaben
+			lassen sich mathematisch als Vektoren darstellen.
+			</p><p>
+			Die Neuronen sind in einem Feed-Forward Netz (MLP) folgendermaßen verknüpft/angeordnet:<br />
+			Eine Eingabeschicht (<span style="font-family:'Courier New', Courier, mono;"><b>x</b></span>) mit
+			<span style="font-family:'Courier New', Courier, mono;"><b>n</b></span> Eingabeneuronen, welche mit einer verdeckten Schicht
+			(<span style="font-family:'Courier New', Courier, mono;"><b>h</b></span>) verbunden ist &rarr; die Ausgaben aller
+			Eingabeneuronen dienen jedem Neuron der verdeckten Schicht als Eingabevektor. Es kann mehrere verdeckte Schichten in einem MLP
+			geben, wobei diese untereinander ebenso verbunden sind wie oben beschrieben. An die letzte verdeckte Schicht schließt sich
+			eine Ausgabeschicht (<span style="font-family:'Courier New', Courier, mono;"><b>o</b></span>) an.
+			</p><p>
+			Jede dieser Verbindungen (Kanten) ist gewichtet, somit besitzt ein Neuron einen Eingabevektor mit
+			<span style="font-family:'Courier New', Courier, mono;"><b>n</b></span> Elementen und einen Gewichtsvektor
+			(<span style="font-family:'Courier New', Courier, mono;"><b>wi</b></span>) mit ebenfalls
+			<span style="font-family:'Courier New', Courier, mono;"><b>n</b></span> Elementen.
+			</p>
+			<div class="description">
+				<img width="462" height="278" src="images/nn_neuron.jpg" alt="Formales Neuron" /><br />
+				Abb. 2: Neuron
+			</div>
+			<p>
+			Eingabe &rarr; Nettoinput &rarr; Aktivierungsfunktion &rarr; Ausgabefunktion &rarr; Ausgabe
+			</p><p>
+			Das von uns implementierte MLP arbeitet aus Effizienzgründen mit einem sog. Biasneuron (On-Neuron). Das Biasneuron stellt den
+			Schwellwert (&Theta;) eines Neurons dar. Jedes Neuron ist mit dem Biasneuron verbunden. Die Ausgabe des Biasneurons ist immer 1
+			und das Gewicht der Verbindung von Biasneuron zu einem Neuron ist der negative Schwellwert &rarr; wi0 = - &Theta;i.
+			</p><p>
+			Außerdem besitzt jedes Neuron eine Aktivierungsfunktion und eine Ausgabefunktion. Die Ausgabefunktion kann meist
+			vernachlÃ¤ssigt werden und wird durch die Identität angegeben &rarr; Ausgabefunktion == Aktivierungsfunktion.
+			</p><p>
+			In der von uns entwickelten Klassenbibliothek wurde die logistische (f<span style="font-size:9px ">log</span>), der tangens hyperbolicus (f<span style="font-size:9px ">tanh</span>) und die binäre
+			Schwellwertfunktion (f<span style="font-size:9px ">bin</span>) als Aktivierungsfunktionen implementiert.
+			</p>
+			<div class="description">
+				<img width="253" height="153" src="images/nn_actfunc.gif" alt="Aktivierungsfunktionen" /><br />
+				Abb. 3: Aktivierungsfunktionen
+			</div>
+			<p>
+			Wie oben beschrieben, sind die Neuronen in Schichten angeordnet und die Schichten sind miteinander über die Verbindungen der
+			Neuronen verbunden. Somit wird die Netzeingabe über die Neuronen propagiert und eine Netzausgabe erzeugt.
+			</p>
+		</div>
+		<div class="lastChange">
+			<script type="text/javascript" language="javascript">
+			<!--
+				docChanged("Letzte Änderung<br />");
+			//-->
+			</script>
+		</div>
+	</body>
+</html>

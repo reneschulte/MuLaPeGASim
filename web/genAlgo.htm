@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        <meta name="author" content="Rene Schulte, Torsten Bär" />
+        <meta name="copyright" content="Rene Schulte, Torsten Bär" />
+        <!--
+        Der Inhalt dieser Seite ist geistiges Eigentum der Autoren!
+        Dieser möchten nicht, dass der Quellcode ohne seine ausdrückliche Erlaubnis kopiert,
+        anderweitig verwendet oder weitergegeben wird.
+        Danke!
+        The content of this site is property of the authors!
+        They doesn't want, that the source code is copied, used or published without their
+        explicid permission.
+        Thank you!
+        -->
+        <meta name="description" content="MuLaPeGASim Homepage, Simulation von MLP mit OCR Preprocessing" />
+        <meta name="keywords" content="Studium, Medieninformatik, HTW Dresden, Dresden, Künstliche Intelligenz, Neuronale Netze, Genetische Algorithmen, Backpropagation, OCR, Optische Zeichenerkennung, Bildfilter, Momentum, Flat Spot Elimination, Aktivierungsfunktion" lang="de" />
+        <meta name="keywords" content="studies, media informatics, university of applied sciences Dresden, Dresden, artifical intelligence, neural networks, genetic algorithms, backpropagation, ocr, optical character recongnition, imagefilter, momentum, Flat Spot Elimination, activation function" lang="en" />
+        <meta name="robots" content="index, follow" />
+        <meta name="revisit-after" content="30 days" />
+        <meta http-equiv="cache-control" content="public" />
+
+        <meta name="DC.Title" content="Genetischer Algorithmus" />
+        <meta name="DC.Creator" content="Torsten Bär, Rene Schulte" />
+        <meta name="DC.Subject" content="MuLaPeGASim Homepage" />
+        <meta name="DC.Description" content="Homepage des MuLaPeGASim Projektes von Rene Schulte und Torsten Bär an der HTW Dresden" />
+        <meta name="DC.Publisher" content="Torsten Bär, Rene Schulte" />
+        <meta name="DC.Date" content="2004-11-10" />
+        <meta name="DC.Type" content="Text" />
+        <meta name="DC.Format" content="text/html" />
+        <meta name="DC.Source" content="MuLaPeGASim Homepage" />
+        <meta name="DC.Language" content="de" />
+        <meta name="DC.Coverage" content="Dresden" />
+        <meta name="DC.Rights" content="Alle Rechte liegen bei den Autoren" />
+
+        <link rel="stylesheet" type="text/css" href="style.css" />
+		<script type="text/javascript" language="javascript" src="scripts.js"></script>
+		<script type="text/javascript" language="javascript">
+		<!--
+			window.onLoad = checkTop(this);
+		//-->
+		</script>
+        <title>Genetischer Algorithmus</title>
+	</head>
+	<body>
+		<div class="head">MLP Lernverfahren - genetischer Algorithmus</div>
+		<br />
+		<div>
+			Auf eine ausführliche Beschreibung und Herleitung soll an dieser Stelle verzichtet werden, da sich in der Literatur und im
+			Skript von Prof. Dr. Heino Iwe sehr gute Erläuterungen dazu finden.
+			<p>
+			MLP Netze gehören zu der Kategorie der Netze mit Überwachten Lernverfahren, was nichts anderes bedeutet, als dass ein Netz
+			zu einer Eingabe eine Ausgabe lernt. Die Eingabe-Sollausgabe-Paare werden auch als Muster bezeichnet. Für die meisten
+			Probleme werden natürlich mehrere Muster bentigt &rarr; Mustermenge.
+			</p><p>
+			Der genetische Algorithmus (genAlg) versucht nun für die gegebenen Muster das globale Minimum der Fehlerfunktion im Suchraum
+			ausfindig zu machen. Dazu werden die verschiedenen Individuen des Algorithmus bezüglich ihres globalen Netzfehlers für jedes
+			Muster bewertet.
+			</p><p>
+			Der globale Netzfehler ergibt sich wie folgt:
+			</p>
+			<div class="description">
+				<img width="350" height="120" src="images/genAlg_globalError.gif" alt="Musterfehler" /><br />
+				Abb. 1: Berechnung des Musterfehlers
+			</div>
+			<p>
+			Dies beinhaltet somit die Propagation jedes einzelnen Musters für jedes einzelne Individuum. Daraus ergibt sich im Vergleich
+			zum Backpropagation - Algorithmus eine, von der Menge der Individuen abhängige, erheblich längere Laufzeit für eine Iteration,
+			also einen "Lernschritt".
+			</p><p>
+			Eine Iteration eines genAlg ist aber nicht in diesem Sinne mit einem Lernschritt eines Backpropagation - Algorithmus vergleichbar,
+			da der genAlg in einer Iteration, entsprechend der Individuenanzahl, viele Netze bewertet.
+			</p><p>
+			Nach der Bewertung der Individuen wird entsprechend der Fitness des Einzelnen, welche wiederum vom globalen Netzfehler abhängt,
+			eine Selektion für die Kreuzung der Individuen getroffen. Die verwendete Fitness ist hierbei die Normierte Fitness, welche sich
+			über eine Berechnungskette aus dem Netzfehler ableiten lsst.
+			</p>
+			<div class="description">
+				<img width="300" height="210" src="images/genAlg_fitness.gif" alt="Fitness des Individuums" /><br />
+				Abb. 2: Berechnung der Fitness
+			</div>
+			Als effektivster Selektionsmechanismus hat sich bei uns hierbei die nichtlineare rangbasierende Selektion herauskristallisiert.
+			<div class="description">
+				<img width="300" height="60" src="images/genAlg_indDistr.gif" alt="Wahrscheinlichkeitsverteilung bei der Rangbasierenden Selektion" />
+				Abb. 3: Wahrscheinlichkeitsverteilung zur rankbasierenden Selektion
+			</div>
+			<p>
+			Nach der Selektion werden die ausgewählten Individuen entsprechend der Kreuzungswahrscheinlichkeit miteinander gekreuzt.
+			</p>
+			<div class="description">
+				<img width="230" height="210" src="images/genAlg_marry.gif" alt="Heiratsalgorithmus" /><br />
+				Abb. 4: Heiratsoperator
+			</div>
+			<p>
+			Bei der Kreuzung werden die Elternteile, vielmehr ihre Parameter, in dem Sinne miteinander kombiniert, dass vollkommen neue,
+			den Eltern ähnliche Individuen entstehen. Die entstandenen Individuen, in unserem Falle 2, unterscheiden sich in ihren
+			einzelnen Parametern selbst noch geringfügig voneinander. Nach der Kreuzung werden die entstanden Individuen noch dem
+			Mutationsoperator unterworfen, welcher entsprechend der Mutationswahrscheinlichkeit die Individuen in einem zufälligen
+			Parameter verändert.
+			</p>
+			<div class="description">
+				<img width="280" height="200" src="images/genAlg_mutate.gif" alt="Mutationsalgorithmus" /><br />
+				Abb. 5: Mutationsoperator
+			</div>
+			<p>
+			Um wertvolle Individuen nicht durch die Kreuzung zu verlieren, wurde von uns zusätzlich noch der Elitismus eingeführt.
+			Dieser entnimmt <span style="font-family:'Courier New', Courier, mono"><b>n</b></span> Individuen der Elterngeneration und
+			überträgt diese in die nachfolgende Generation, wobei der vor dem Einfügen in die neue Generation noch der
+			Mutationsoperator zu Anwendung kommt.
+            </p><p>
+			Die ganze Zeit ber war von Individuen die Rede. Doch was ist nun ein Individuum?
+			</p>
+			<div class="description">
+				<img width="140" height="80" src="images/genAlg_ind.gif" alt="Individuum" /><br />
+				Abb. 6: Individuum
+			</div>
+			<p>
+			Ein einzelnes Individuum des genAlg repräsentiert hier ein komplettes MLP Netz. Das heißt, nicht das gesamte Netz im eigentlichen
+			Sinne, sondern nur die Elemente, welche maßgeblich für das Ergebnis der Verarbeitung des Inputs verantwortlich sind, die
+			Gewichtsvektoren. Zu Beginn des genetischen Algorithmus wird ein Individuum aus dem vorgegebenen Netz erzeugt. Somit bleibt
+			das Netz in jedem Falle erhalten. Alle weiteren Individuen werden mit zufälligen Werten in der Gewichtsmatrix mit den durch
+			das Netz gegebenen Dimensionen initialisiert.
+			</p><p>
+			Der genAlg durchläuft somit die gleiche Schleife bis zum Erreichen der maximalen Iterationszahl oder dem unterschreiten
+			des maximal tolerierbaren Netzfehlers.
+			</p>
+			<div class="description">
+				<img width="470" height="300" src="images/genAlg_lifecycle.jpg" alt="Zylus des genetischen Algorithmus" /><br />
+				Abb. 7: Kreislauf des genetischen Algorithmus
+			</div>
+		</div>
+		<div class="lastChange">
+			<script type="text/javascript" language="javascript">
+			<!--
+				docChanged("Letzte Änderung<br />");
+			//-->
+			</script>
+		</div>
+	</body>
+</html>

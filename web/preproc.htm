@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        <meta name="author" content="Rene Schulte, Torsten Bär" />
+        <meta name="copyright" content="Rene Schulte, Torsten Bär" />
+        <!--
+        Der Inhalt dieser Seite ist geistiges Eigentum der Autoren!
+        Dieser möchten nicht, dass der Quellcode ohne seine ausdrückliche Erlaubnis kopiert,
+        anderweitig verwendet oder weitergegeben wird.
+        Danke!
+        The content of this site is property of the authors!
+        They doesnÂ´t want, that the source code is copied, used or published without their
+        explicid permission.
+        Thank you!
+        -->
+        <meta name="description" content="MuLaPeGASim Homepage, Simulation von MLP mit OCR Preprocessing" />
+        <meta name="keywords" content="Studium, Medieninformatik, HTW Dresden, Dresden, Künstliche Intelligenz, Neuronale Netze, Genetische Algorithmen, Backpropagation, OCR, Optische Zeichenerkennung, Bildfilter, Momentum, Flat Spot Elimination, Aktivierungsfunktion" lang="de" />
+        <meta name="keywords" content="studies, media informatics, university of applied sciences Dresden, Dresden, artifical intelligence, neural networks, genetic algorithms, backpropagation, ocr, optical character recongnition, imagefilter, momentum, Flat Spot Elimination, activation function" lang="en" />
+        <meta name="robots" content="index, follow" />
+        <meta name="revisit-after" content="30 days" />
+        <meta http-equiv="cache-control" content="public" />
+
+        <meta name="DC.Title" content="Eingabevorverarbeitung" />
+        <meta name="DC.Creator" content="Torsten Bär, Rene Schulte" />
+        <meta name="DC.Subject" content="MuLaPeGASim Homepage" />
+        <meta name="DC.Description" content="Homepage des MuLaPeGASim Projektes von Rene Schulte und Torsten Bär an der HTW Dresden" />
+        <meta name="DC.Publisher" content="Torsten Bär, Rene Schulte" />
+        <meta name="DC.Date" content="2004-11-10" />
+        <meta name="DC.Type" content="Text" />
+        <meta name="DC.Format" content="text/html" />
+        <meta name="DC.Source" content="MuLaPeGASim Homepage" />
+        <meta name="DC.Language" content="de" />
+        <meta name="DC.Coverage" content="Dresden" />
+        <meta name="DC.Rights" content="Alle Rechte liegen bei den Autoren" />
+
+        <link rel="stylesheet" type="text/css" href="style.css" />
+		<script type="text/javascript" language="javascript" src="scripts.js"></script>
+		<script type="text/javascript" language="javascript">
+		<!--
+			window.onLoad = checkTop(this);
+		//-->
+		</script>
+		<style type="text/css">
+			td.right { text-align:right;
+						width:100px; }
+		</style>
+        <title>Eingabevorverarbeitung</title>
+	</head>
+	<body>
+		<div class="head">Vorverarbeitung der Eingabedaten</div>
+		<br />
+		<div>
+			<p>
+			Es gibt verschiedene Möglichkeiten um die Bilddaten in Eingabedaten (Eingabevektor) für das neuronale Netz zu überführen.
+			Die Rohdaten bezeichnet man üblicherweise als pattern-Vektor, wobei man diesen direkt nutzen kann oder weiterverarbeiten um
+			die wichtigsten Informationen zu extrahieren ;&rarr; feature-Vektor.
+			</p><p>
+			Zu diesem Zweck haben wir mehrere Algorithmen implementiert, welche im folgenden einzeln vorgestellt werden.
+			</p>
+			<div class="description">
+				<img width="220" height="170" src="images/preproc_clear.jpg" alt="Buchstabe 'W'" /><br />
+				Abb. 1: Eingabebild "W" 9x7 Pixel
+			</div>
+			<br />
+			<div class="subhead">Rohdaten</div>
+			<p>
+			Dies ist sicherlich die einfachste Möglichkeit. Hierfür wird das Bild zeilenweise durchlaufen und falls die Helligkeit des
+			Pixels größer als ein Schwellwert ist, wird 0 als Vektorelement in den feature-Vektor geschrieben, andernfalls<br />
+			1 &rarr; Schwarz == 1, Weiß == 0. Es gilt somit: feature-Vektor == pattern-Vektor.
+			</p><p>
+			Beispiel:
+			</p><p>
+			Für das "W" in Abb. 1 hat der Vektor die Länge 9*7 = 63 &rarr; 63 Dimensionen, mit folgenden Vektorelementen:
+			</p>
+			<table class="relative">
+				<tr><td class="right">Elemente 0-8:</td><td><span class="formula"><b>1</b>000<b>1</b>000<b>1</b></span></td></tr>
+				<tr><td class="right">Elemente 9-17:</td><td><span class="formula"><b>1</b>000<b>1</b>000<b>1</b></span></td></tr>
+				<tr><td class="right">...</td><td><span class="formula">0<b>1</b>0<b>1</b>0<b>1</b>0<b>1</b>0</span></td></tr>
+				<tr><td class="right">&nbsp;</td><td><span class="formula">0<b>1</b>0<b>1</b>0<b>1</b>0<b>1</b>0</span></td></tr>
+				<tr><td class="right">&nbsp;</td><td><span class="formula">00<b>1</b>000<b>1</b>00</span></td></tr>
+				<tr><td class="right">&nbsp;</td><td><span class="formula">00<b>1</b>000<b>1</b>00</span></td></tr>
+				<tr><td class="right">&nbsp;</td><td><span class="formula">00<b>1</b>000<b>1</b>00</span></td></tr>
+			</table>
+			<p>
+			Der Nachteil dieser Methode ist die enorme Hochdimensionalität des Eingabevektors, was dazu führen kann, dass ein
+			Netz entweder gar nicht trainiert werden kann oder eine große Anzahl an Hiddenneuronen benötigt, um das Problem zu
+			erlernen. Das trägt allerdings wiederrum dazu bei, dass das Training viel Speicher und Zeit beansprucht. Aus diesem Grund
+			ist diese Methode weniger gut geeignet.
+			</p><br />
+			<div class="subhead">"Auszählen" der schwarzen Pixel</div>
+			<p>
+			Bei dieser Methode wird das Bild zuerst zeilenweise durchlaufen und die Anzahl der schwarzen Pixel aufsummiert, diese Summe pro
+			Zeile bildet ein Element in dem Eingabevektor. Um "netzfreundliche" ;-) Eingabedaten zu erzeugen wird die Summe der
+			schwarzen Pixel durch die Breite des Bildes dividiert &rarr; Normierung.
+			</p><p>
+			Anschließend wird das Bild spaltenweise durchlaufen und die Anzahl der schwarzen Pixel aufsummiert, diese normierte Summe
+			<br /> (pro Spalte) bildet ebenfalls ein Element in dem Eingabevektor.
+			</p><p>
+			Es ist außerdem möglich die "Zeilen-/Spaltensprünge" einzustellen. Beispielsweise wird bei einem
+			"Zeilensprungfaktor" (dy) von 2, nur jede zweite Zeile ausgelesen. Dadurch ist eine noch größere Reduzierung
+			der Dimensionen des Eingabevektors möglich ist.
+			</p><p>
+			Beispiel:
+			</p><p>
+			Für das "W" in Abb. 1 hat der Vektor die Länge 9+7 = 16 &rarr; 16 Dimensionen, falls jede Zeile ausgelesen
+			wird (dx=1, dy=1).
+			<br />
+			Die Vektorelemente haben dabei folgende Werte:<br />
+			</p><table class="relative">
+				<tr><td class="right">Element 0:</td><td>~0.3333 &rarr; 3 schwarze Pixel in der ersten Zeile</td></tr>
+				<tr><td class="right">Element 1:</td><td>~0.4444 &rarr; 4 schwarze Pixel in der dritten Zeile</td></tr>
+				<tr><td class="right">...</td><td></td></tr>
+				<tr><td class="right">Element 7:</td><td>~0.2857 &rarr; 2 schwarze Pixel in der ersten Spalte</td></tr>
+				<tr><td class="right">...</td><td></td></tr>
+			</table>
+			<p>
+			Der Vorteil dieser Methode ist die verringerte Anzahl der Dimensionen im Eingabevektor, was eine verringerte Anzahl
+			an Neuronen bedeutet und somit ein schnelleres Trainieren möglich macht.
+			</p><p>
+			Doch der Vorteil wiedderrum ist gleichzeitig der Nachteil, denn durch eine zu starke Verringerung der extrahierten Eigenschaften
+			kann es vorkommen, dass die Muster nicht mehr deutlich genug voneinander zu unterscheiden sind.
+			</p>
+			<div class="subhead">"Auszählen" der Schwarz-/Weiß-Übergänge</div>
+			<br />
+			<p>
+			Diese Methode ähnelt der oben beschriebenen. Hier wird jedoch nicht die Anzahl der schwarzen Pixel gezählt, sondern die
+			Schwarz-/Weiß-Übergänge zwischen den Pixeln.
+			</p><p>
+			Das Bild wird zuerst wieder zeilenweise durchlaufen und die Anzahl der Übergänge aufsummiert und normiert, diese Summe
+			pro Zeile bildet ein Element in dem Eingabevektor.
+			</p><p>
+			Anschließend wird das Bild wieder spaltenweise durchlaufen und die Anzahl der Schwarzweißübergänge
+			aufsummiert, diese normierte Summe (pro Spalte) bildet ebenfalls ein Element in dem Eingabevektor.
+			</p><p>
+			Es ist hier ebenfalls möglich die "Zeilen-/Spaltensprünge" einzustellen.
+			</p><p>
+			Beispiel:
+			</p><p>
+			Für das "W" in Abb. 1 hat der Vektor die Länge 9+7 = 16, falls jede Zeile ausgelesen wird.<br />
+			Die Vektorelemente haben dabei folgende Werte:
+			</p>
+			<table class="relative">
+				<tr><td class="right">Element 0:</td><td>~0.4444 &rarr; 4 Übergänge in der ersten Zeile</td></tr>
+				<tr><td class="right">Element 1:</td><td>~0.8888 &rarr; 8 Übergänge in der dritten Zeile</td></tr>
+				<tr><td class="right">...</td><td></td></tr>
+				<tr><td class="right">Element 7:</td><td>~0.1428 &rarr; 1 Übergänge in der ersten Spalte</td></tr>
+				<tr><td class="right">...</td><td></td></tr>
+			</table>
+			<p>
+			Der Vorteil dieser Methode ist die verringerte Anzahl der Dimensionen in dem Eingabevektor, so dass eine verringerte Anzahl
+			an Neuronen benötigt wird und somit ein schnelleres Trainieren möglich ist.
+			</p><p>
+			Der Nachteil ist auch hier, dass es durch eine zu starke Verringerung der extrahierten Eigenschaften vorkommen kann, dass die
+			Muster nicht mehr deutlich genug voneinander zu unterscheiden sind.
+			</p>
+			<br />
+			<div class="subhead"> Segmentdurchschnitt</div>
+			<br />
+			<p>
+			Bei dieser Methode wird das Bild in Segmente unterteilt, wobei die Anzahl von Segmenten in den Zeilen gleich der Anzahl von
+			Segmenten in den Spalten ist. Jedes Segment steht genau für ein Vektorelement, wobei der Wert des Elements der normierten,
+			durchschnittlichen Anzahl der schwarzen Pixel innerhalb des Segmentes entspricht.
+			</p><p>
+			Die Berechnung der Segmentanzahl wird wie folgt durchgeführt:
+			</p>
+			<div class="formula">
+				sh = b/sn<br />
+				wenn (b mod sn != 0) dann sh++<br />
+				sv = h/sn<br />
+				wenn (h mod sn != 0) dann sv++<br />
+				s = sv + sh
+			</div>
+			wobei:<br />
+			<div class="formula">
+				sn ... wählbarer Paramter: Anzahl der zu erzeugenden Segmente vertikal+horizontal<br />
+				sh ... Anzahl der Segmente horizontal<br />
+				sv ... Anzahl der Segmente vertikal<br />
+				&nbsp;s ... Anzahl der Segmente insgesamt<br />
+				&nbsp;b ... Breite des Bildes/Fensters<br />
+				&nbsp;h ... Höhe des Bildes/Fensters<br />
+			</div>
+			<p>
+			Beispiel:
+			</p><p>
+			Für das "W" in Abb. 1 hat der Vektor die Länge 9, falls 2 Segmente (sn) gewählt werden. Da die Breite 9
+			beträgt und<br />9/2 = 4, Rest 1 &rarr; 2 Segmente a 4 Pixel + 1 Segment mit einem Pixel Breite = 3 Segmente horizontal.
+			Ähnlich verhält es sich mit der Segmentanzahl vertikal.
+			</p>
+			<div class="description">
+				<img width="220" height="170" src="images/preproc_segment.gif" alt="Segmente" /><br />
+				Abb. 2: Segmentierung des Bildes
+			</div>
+			<p>
+			Die Vektorelemente haben dabei folgende Werte:
+			</p>
+			<table class="relative">
+				<tr><td class="right">Element 0:</td><td>~0.3333 &rarr; 4 von 12 Pixel == schwarz</td></tr>
+				<tr><td class="right">Element 2:</td><td>Element 2:~0.6666 &rarr; 2 von 3 Pixel == schwarz</td></tr>
+				<tr><td class="right">...</td><td></td></tr>
+			</table>
+			<p>Der Vorteil dieser Methode ist die verringerte Anzahl der Dimensionen in dem Eingabevektor, so dass eine verringerte Anzahl
+			an Neuronen benötigt wird und somit ein schnelleres Trainieren möglich ist.
+			</p><p>
+			Der Nachteil ist auch hier, dass durch eine zu starke Verringerung der extrahierten Eigenschaften es vorkommen kann, dass die
+			Muster nicht mehr deutlich genug voneinander zu unterscheiden sind.
+			</p>
+		</div>
+		<div class="lastChange">
+			<script type="text/javascript" language="javascript">
+			<!--
+				docChanged("Letzte Änderung<br />");
+			//-->
+			</script>
+		</div>
+	</body>
+</html>

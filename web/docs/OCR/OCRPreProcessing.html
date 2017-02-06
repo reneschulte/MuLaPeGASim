@@ -1,0 +1,183 @@
+<html dir="LTR">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252" />
+    <meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5" />
+    <title>OCRPreProcessing</title>
+    <xml>
+    </xml>
+    <link rel="stylesheet" type="text/css" href="MSDN.css" />
+  </head>
+  <body id="bodyID" class="dtBODY">
+    <div id="nsbanner">
+      <div id="bannerrow1">
+        <table class="bannerparthead" cellspacing="0">
+          <tr id="hdr">
+            <td class="runninghead">OCR PreProcessing Imagefilters, Imagesegmentation, OCR Image Creation and Feature Extraction</td>
+            <td class="product">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="TitleRow">
+        <h1 class="dtH1">OCRPreProcessing Namespace</h1>
+      </div>
+    </div>
+    <div id="nstext">
+      <p>
+        <a href="OCRPreProcessingHierarchy.html">Namespace hierarchy</a>
+      </p>
+      <h3 class="dtH3">Classes</h3>
+      <div class="tablediv">
+        <table class="dtTABLE" cellspacing="0">
+          <tr valign="top">
+            <th width="50%">Class</th>
+            <th width="50%">Description</th>
+          </tr>
+          <tr valign="top">
+            <td width="50%">
+              <a href="OCRPreProcessing.BinarizeFilter.html">BinarizeFilter</a>
+            </td>
+            <td width="50%"> Description: Converts an image into a binary black/white image <p>Author: Rene Schulte</p><p>Version: 1.0</p><p>Last recent Update: 11-04-2004</p></td>
+          </tr>
+          <tr valign="top">
+            <td width="50%">
+              <a href="OCRPreProcessing.BlackPxAddRowAndColCounter.html">BlackPxAddRowAndColCounter</a>
+            </td>
+            <td width="50%"> Description: Counts the black pixel in each row and each column and adds them to compute the feature vector <p>Author: Rene Schulte</p><p>Version: 1.0</p><p>Last recent Update: 10-30-2004</p></td>
+          </tr>
+          <tr valign="top">
+            <td width="50%">
+              <a href="OCRPreProcessing.BlackPxCounter.html">BlackPxCounter</a>
+            </td>
+            <td width="50%"> Description: Counts the black pixel in each row and each column to compute the feature vector <p>Author: Rene Schulte</p><p>Version: 1.0</p><p>Last recent Update: 10-30-2004</p></td>
+          </tr>
+          <tr valign="top">
+            <td width="50%">
+              <a href="OCRPreProcessing.BlackPxWhitePxChangesCounter.html">BlackPxWhitePxChangesCounter</a>
+            </td>
+            <td width="50%"> Description: Counts the black and white pixel changes in each row and each column <p>Author: Rene Schulte</p><p>Version: 1.0</p><p>Last recent Update: 10-30-2004</p></td>
+          </tr>
+          <tr valign="top">
+            <td width="50%">
+              <a href="OCRPreProcessing.BrightnNormalizer.html">BrightnNormalizer</a>
+            </td>
+            <td width="50%"> Description: Normalizes the brightness of a image using a best fit linear filter <p>Author: Rene Schulte</p>/// <p>Version: 1.0</p><p>Last recent Update: 10-24-2004</p></td>
+          </tr>
+          <tr valign="top">
+            <td width="50%">
+              <a href="OCRPreProcessing.CannyFilter.html">CannyFilter</a>
+            </td>
+            <td width="50%"> Description: Detects the edges of an image using the Canny-Algorithm <p>Author: Rene Schulte</p><p>Version: 1.0</p><p>Last recent Update: 10-24-2004</p></td>
+          </tr>
+          <tr valign="top">
+            <td width="50%">
+              <a href="OCRPreProcessing.GaussFilter.html">GaussFilter</a>
+            </td>
+            <td width="50%"> Description: Smooths the image using a gaussian 5x5 convolution matrix <p>Author: Rene Schulte</p><p>Version: 1.0</p><p>Last recent Update: 10-24-2004</p></td>
+          </tr>
+          <tr valign="top">
+            <td width="50%">
+              <a href="OCRPreProcessing.GrayFilter.html">GrayFilter</a>
+            </td>
+            <td width="50%"> Description: Converts a RGB color image into a gray image <p>Author: Rene Schulte</p><p>Version: 1.0</p><p>Last recent Update: 10-24-2004</p></td>
+          </tr>
+          <tr valign="top">
+            <td width="50%">
+              <a href="OCRPreProcessing.HistEqualizer.html">HistEqualizer</a>
+            </td>
+            <td width="50%"> Description: Equalizes the histogram of an image <p>Author: Rene Schulte</p><p>Version: 1.0</p><p>Last recent Update: 10-24-2004</p></td>
+          </tr>
+          <tr valign="top">
+            <td width="50%">
+              <a href="OCRPreProcessing.HistogramSeparator.html">HistogramSeparator</a>
+            </td>
+            <td width="50%"> Description: Separates an image into n images using the horizontal and vertical histograms of a Bitmap <p>Author: Torsten Baer</p><p>Version: 1.0</p><p>Last recent Update: 10-27-2004</p></td>
+          </tr>
+          <tr valign="top">
+            <td width="50%">
+              <a href="OCRPreProcessing.ImgSegmenter.html">ImgSegmenter</a>
+            </td>
+            <td width="50%"> Description: Segments the image in nSegments rows and nSegments columns. Counts the black pixels in each segment, the sum of each segment is normalized. One item of the the feature vector == normalized sum of black pixels in a segement <p>Author: Rene Schulte</p><p>Version: 1.0</p><p>Last recent Update: 10-30-2004</p></td>
+          </tr>
+          <tr valign="top">
+            <td width="50%">
+              <a href="OCRPreProcessing.OCRImageCreator.html">OCRImageCreator</a>
+            </td>
+            <td width="50%"> Description: Class for creating an image which contains a character <p>Author: Rene Schulte</p><p>Version: 1.0</p><p>Last recent Update: 10-24-2004</p></td>
+          </tr>
+          <tr valign="top">
+            <td width="50%">
+              <a href="OCRPreProcessing.OCRImageExtractor.html">OCRImageExtractor</a>
+            </td>
+            <td width="50%"> Description: Abstract class for various algorithms to extract the necessary features for a Neural Network, from an image containing a character <p>Author: Rene Schulte</p><p>Version: 1.0</p><p>Last recent Update: 10-30-2004</p></td>
+          </tr>
+          <tr valign="top">
+            <td width="50%">
+              <a href="OCRPreProcessing.OCRImgExtCounter.html">OCRImgExtCounter</a>
+            </td>
+            <td width="50%"> Description: abstract class for various counting methods <p>Author: Rene Schulte</p><p>Version: 1.0</p><p>Last recent Update: 10-30-2004</p></td>
+          </tr>
+          <tr valign="top">
+            <td width="50%">
+              <a href="OCRPreProcessing.RawExtractor.html">RawExtractor</a>
+            </td>
+            <td width="50%"> Description: Just the raw negative brightness data.featureVector == patternVector, each element of the vector is the negative brightness of one pixel <p>Author: Rene Schulte</p><p>Version: 1.0</p><p>Last recent Update: 10-30-2004</p></td>
+          </tr>
+          <tr valign="top">
+            <td width="50%">
+              <a href="OCRPreProcessing.SobelFilter.html">SobelFilter</a>
+            </td>
+            <td width="50%"> Description: Filters the image for edge detection using the Sobel operator (two 3x3 convolution matrix) <p>Author: Rene Schulte</p><p>Version: 1.0</p><p>Last recent Update: 10-24-2004</p></td>
+          </tr>
+        </table>
+      </div>
+      <h3 class="dtH3">Interfaces</h3>
+      <div class="tablediv">
+        <table class="dtTABLE" cellspacing="0">
+          <tr valign="top">
+            <th width="50%">Interface</th>
+            <th width="50%">Description</th>
+          </tr>
+          <tr valign="top">
+            <td width="50%">
+              <a href="OCRPreProcessing.IImageFilter.html">IImageFilter</a>
+            </td>
+            <td width="50%"> Description: The interface of an Image Filter <p>Author: Rene Schulte</p><p>Version: 1.0</p><p>Last recent Update: 10-24-2004</p></td>
+          </tr>
+          <tr valign="top">
+            <td width="50%">
+              <a href="OCRPreProcessing.IImageSeparator.html">IImageSeparator</a>
+            </td>
+            <td width="50%"> Description: The interface for an Image Segmenter/Separator <p>Author: Torsten Baer</p><p>Version: 1.0</p><p>Last recent Update: 11-03-2004</p></td>
+          </tr>
+        </table>
+      </div>
+      <h3 class="dtH3">Delegates</h3>
+      <div class="tablediv">
+        <table class="dtTABLE" cellspacing="0">
+          <tr valign="top">
+            <th width="50%">Delegate</th>
+            <th width="50%">Description</th>
+          </tr>
+          <tr valign="top">
+            <td width="50%">
+              <a href="OCRPreProcessing.progressHandler.html">progressHandler</a>
+            </td>
+            <td width="50%"> Delegate for the progress of the image filter computing </td>
+          </tr>
+        </table>
+      </div>
+      <hr />
+      <div id="footer">
+        <p>
+          <a href="mailto:ocrPreProc@rene-schulte.info?subject=OCR%20PreProcessing%20Imagefilters,%20Imagesegmentation,%20OCR%20Image%20Creation%20and%20Feature%20Extraction%20Documentation%20Feedback:%20OCRPreProcessing%20Namespace">Send comments on this topic.</a>
+        </p>
+        <p>
+          <a>(c) 2004 Rene Schulte and Torsten Baer</a>
+        </p>
+        <p>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

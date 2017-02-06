@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<meta name="author" content="Rene Schulte, Torsten Bär" />
+		<meta name="copyright" content="Rene Schulte, Torsten Bär" />
+		<!--
+		Der Inhalt dieser Seite ist geistiges Eigentum der Autoren!
+		Dieser möchten nicht, dass der Quellcode ohne seine ausdrückliche Erlaubnis kopiert,
+		anderweitig verwendet oder weitergegeben wird.
+		Danke!
+		The content of this site is property of the authors!
+		They doesn't want, that the source code is copied, used or published without their
+		explicid permission.
+		Thank you!
+		-->
+		<meta name="description" content="MuLaPeGASim Homepage, Simulation von MLP mit OCR Preprocessing" />
+		<meta name="keywords" content="Studium, Medieninformatik, HTW Dresden, Dresden, Künstliche Intelligenz, Neuronale Netze, Genetische Algorithmen, Backpropagation, OCR, Optische Zeichenerkennung, Bildfilter, Momentum, Flat Spot Elimination, Aktivierungsfunktion" lang="de" />
+		<meta name="keywords" content="studies, media informatics, university of applied sciences Dresden, Dresden, artifical intelligence, neural networks, genetic algorithms, backpropagation, ocr, optical character recongnition, imagefilter, momentum, Flat Spot Elimination, activation function" lang="en" />
+		<meta name="robots" content="index, follow" />
+		<meta name="revisit-after" content="30 days" />
+		<meta http-equiv="cache-control" content="public" />
+		
+		<meta name="DC.Title" content="Einführung" />
+		<meta name="DC.Creator" content="Torsten Bär, Rene Schulte" />
+		<meta name="DC.Subject" content="MuLaPeGASim Homepage" />
+		<meta name="DC.Description" content="Homepage des MuLaPeGASim Projektes von Rene Schulte und Torsten Bär an der HTW Dresden" />
+		<meta name="DC.Publisher" content="Torsten Bär, Rene Schulte" />
+		<meta name="DC.Date" content="2004-11-10" />
+		<meta name="DC.Type" content="Text" />
+		<meta name="DC.Format" content="text/html" />
+		<meta name="DC.Source" content="MuLaPeGASim Homepage" />
+		<meta name="DC.Language" content="de" />
+		<meta name="DC.Coverage" content="Dresden" />
+		<meta name="DC.Rights" content="Alle Rechte liegen bei den Autoren" />
+		
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<script type="text/javascript" language="javascript" src="scripts.js"></script>
+		<script type="text/javascript" language="javascript">
+		<!--
+			window.onLoad = checkTop(this);
+		//-->
+		</script>
+		<title>Intro</title>
+	</head>
+	<body>
+		<div class="head">Einführung</div>
+		<br />
+		<div>
+			Diese Projektarbeit ist im Rahmen der Lehrveranstaltungen<b>
+			&quot;Künstliche Intelligenz&quot;</b> und <b>&quot;Genetische Algorithmen&quot;</b> entstanden,
+			welche im 4.Semester von Hr. Prof. Dr. H. Iwe an der HTW Dresden gehalten werden.
+		</div>
+		<br />
+		<div>
+			Ziel dieser Projektarbeit war es, ein mehrschichtiges neuronales Feed-Forward Netz (Multilayer Perceptron &rarr; MLP) zu erstellen,
+			welches für die optische Zeichenerkennung (OCR) eingesetzt werden kann.
+			Hierfür wurde der beliebte MLP Lernalgorithmus Backpropagation mit Momentum und Flat-Spot-Elimination implementiert.
+			Weiterhin wurde ein Genetischer Lernalgorithmus entwickelt, welcher den Gewichtsvektor durch einen Genetischen Algorithmus optimiert.
+		</div>
+		<br />
+		<div>
+			Zur Realisierung wurde die Programmiersprache C# gewählt, welche sich durch die exzellente und einfache Handhabung sehr gut für die
+			Lösung komplexer Probleme eignet.
+		</div>
+		<br />
+	<div>
+			Im Verlauf der Entwicklung sind u.a. zwei Klassenbibliotheken entstanden:
+				<ul>
+					<li>MultilayerNet.dll und</li>
+					<li>OCRPreProcessing.dll,</li>
+				</ul>
+		welche von uns zur nichtkommerziellen Nutzung freigegeben sind und mit jeder .NET-Sprache (C#, C++, J#, VB) genutzt werden können.
+			Diese Bibliotheken ermöglichen es eigene MLP-, OCR-Anwendungen zu erstellen oder natürlich auch nur einzelne Funktionalitäten
+			(Bildfilter, ...) zu nutzen. Bei der Implementierung wurde besonderer Wert auf eine einfache Erweiterbarkeit gelegt, indem
+			exzessiver Gebrauch von Interfaces und abstrakten Klassen gemacht wurde.
+		</div>
+		<br />
+		<div>
+			Neben den Bibliotheken ist eine Demoanwendung entstanden, welche u.a. diese Bibliotheken nutzt. Die Anwendung war anfangs als reine
+			OCR	Texterkennung konzipiert, somit als Frontend für die oben genannten	Bibliotheken. Während der Entwicklungsphase wurde diese
+			Anwendung aber zu einem	kleinen Simulationsprogramm für MLP Netze ausgebaut, mit der es möglich ist:
+			<ul>
+				<li>Netze anzulegen: Topologie, Aktivierungsfunktionen, speichern/laden in XML, ...</li>
+				<li>Muster erzeugen: OCR Trainingssätze generieren, Zeichen aus	Bildern extrahieren (inkl. Filterung &rarr;
+				Canny Algorithmus, ...), feature Extraktion oder manuell durch Eingabe</li>
+				<li>Netze trainieren: Backpropagation (batch, online), Genetischer Lernalgorithmus, &quot;live-Überwachung&quot; der 
+				Fehlerkurve, währenddessen verändern	der Netzparameter</li>
+			</ul>
+	</div>
+		<div class="small">Durch die Vielzahl der enorm aufwändigen Rechenoperationen
+		wird für die Ausführung des Programms ein Computer mit einer Taktfrequenz von 1 GHz und
+		256 MB Arbeitsspeicher empfohlen. Außerdem muss das für die Anwendung das .NET Framework in der Version 1.1.
+		installiert sein (Link im Downloadbereich).
+		</div>
+		<div class="lastChange">
+			<script type="text/javascript" language="javascript">
+			<!--
+				docChanged("Letzte Änderung<br />");
+			//-->
+			</script>
+		</div>
+	</body>
+</html>

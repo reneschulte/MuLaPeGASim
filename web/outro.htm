@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        <meta name="author" content="Rene Schulte, Torsten Bär" />
+        <meta name="copyright" content="Rene Schulte, Torsten Bär" />
+        <!--
+        Der Inhalt dieser Seite ist geistiges Eigentum der Autoren!
+        Dieser möchten nicht, dass der Quellcode ohne seine ausdrückliche Erlaubnis kopiert,
+        anderweitig verwendet oder weitergegeben wird.
+        Danke!
+        The content of this site is property of the authors!
+        They doesn´t want, that the source code is copied, used or published without their
+        explicid permission.
+        Thank you!
+        -->
+        <meta name="description" content="MuLaPeGASim Homepage, Simulation von MLP mit OCR Preprocessing" />
+        <meta name="keywords" content="Studium, Medieninformatik, HTW Dresden, Dresden, Künstliche Intelligenz, Neuronale Netze, Genetische Algorithmen, Backpropagation, OCR, Optische Zeichenerkennung, Bildfilter, Momentum, Flat Spot Elimination, Aktivierungsfunktion" lang="de" />
+        <meta name="keywords" content="studies, media informatics, university of applied sciences Dresden, Dresden, artifical intelligence, neural networks, genetic algorithms, backpropagation, ocr, optical character recongnition, imagefilter, momentum, Flat Spot Elimination, activation function" lang="en" />
+        <meta name="robots" content="index, follow" />
+        <meta name="revisit-after" content="30 days" />
+        <meta http-equiv="cache-control" content="public" />
+
+        <meta name="DC.Title" content="Zusammenfassung" />
+        <meta name="DC.Creator" content="Torsten Bär, Rene Schulte" />
+        <meta name="DC.Subject" content="MuLaPeGASim Homepage" />
+        <meta name="DC.Description" content="Homepage des MuLaPeGASim Projektes von Rene Schulte und Torsten Bär an der HTW Dresden" />
+        <meta name="DC.Publisher" content="Torsten Bär, Rene Schulte" />
+        <meta name="DC.Date" content="2004-11-10" />
+        <meta name="DC.Type" content="Text" />
+        <meta name="DC.Format" content="text/html" />
+        <meta name="DC.Source" content="MuLaPeGASim Homepage" />
+        <meta name="DC.Language" content="de" />
+        <meta name="DC.Coverage" content="Dresden" />
+        <meta name="DC.Rights" content="Alle Rechte liegen bei den Autoren" />
+
+        <link rel="stylesheet" type="text/css" href="style.css" />
+		<script type="text/javascript" language="javascript" src="scripts.js"></script>
+		<script type="text/javascript" language="javascript">
+		<!--
+			window.onLoad = checkTop(this);
+		//-->
+		</script>
+		<style type="text/css">
+			td {border-width:2px;
+			border-color:#CCCCCC;
+			border-style:groove;
+			padding: 2px;
+			text-align:center;
+			vertical-align:middle; }
+		</style>
+        <title>Zusammenfassung</title>
+	</head>
+	<body>
+		<div class="head">Schlussbemerkungen, Fazit</div>
+		<br />
+		<div>
+			<p>
+			Wie bereits in der Einführung erwähnt, wurde die anfänglich angestrebte OCR Applikation zu einem
+			MLP-"Simulationsprogramm" erweitert. Dieser Schritt wurde vollzogen um dem Nutzer der Anwendung die Möglichkeit
+			zu geben, eigene Netztopologien (Parameter, ...) auszuprobieren und so ein optimales  Netz zu finden. Da die Lösung eines
+			Problems mit Hilfe eines neuronalen Netzes sehr stark von der verwendeten Netztopologie und der Vorverarbeitung der Daten
+			abhängig ist, soll der Nutzer hier nicht durch restriktive Vorgaben eingeschränkt sein.
+			</p><p>
+			Außerdem musste festgestellt werden, dass MLP-Netze wahrscheinlich weniger gut zur Lösung von OCR-Problemen geeignet sind
+			und sich andere Netztypen evtl. besser eignen (z.B. Selbstorganisierende Karten).
+			</p><p>
+			Im Verlaufe der Entwicklungsarbeit und wärend der Testphase konnte an vielen Stellen die Überlegenheit des Genetischen
+			Algorithmus gegenüber Backpropagation ermittelt werden. Die bekannten Probleme von Gradientenverfahren (z.B. Backpropagation),
+			wie etwa das Oszillieren in steilen Schluchten der Fehlerkurve oder ein "festhängen" in lokalen Minima werden durch
+			den Genetischen Algorithmus weitgehend minimiert. Dies resultiert aus der Tatsache, dass der Genetische Algorithmus durch Mutierung
+			auch aus "Sackgassen" meistens einen Ausweg finden kann.
+			</p><p>
+			Weiterhin hat der Genetische Algorithmus in unseren Versuchen die Gewichte der Neuronen schneller anpassen können als
+			die Backpropagation Lernmethode. Diese positive Eigenschaft ist der globalen Suche des Optimums in der Fehlerhyperebene zu
+			verdanken.
+			</p><p>
+			Nachfolgend soll ein kurzer Vergleich von einem 2-3-3-2 Netz mit 20 Mustern durchgeführt werden, um die Überlegenheit
+			des Genetischen Algorithmus gegenüber Backpropagation (online) aufzuzeigen.
+			</p><p>
+			Das Netz wurde trainiert, bis ein globaler summierter Fehler &lt; 0,0009 erreicht wurde. Als Aktivierungsfunktion wurde die
+			logistische Funktion gewählt mit einem Steilheitsfaktor von 3,0. Die Gewichte und Schwellwerte wurden in einem Bereich von
+			0,25 bis 0,75 zufällig initialisiert.
+			</p><p>
+			Für Backpropagation (online) wurden folgende Parameter eingestellt:
+			</p><ul>
+				<li>Lernrate: 0,3</li>
+				<li>Momentumfaktor: 0,6</li>
+				<li>Flat-Spot-Faktor: 0</li>
+			</ul>
+			Für den Genetischen Algorithmus wurden folgende Parameter eingestellt:
+			<ul>
+				<li>Mutationsrate: 3 %</li>
+				<li>Populationsgröße (Anzahl der Individuen pro Generation): 50</li>
+				<li>Crossover Rate: 40 %</li>
+				<li>Elitismusrate: 1 %</li>
+			</ul>
+			<table class="result">
+				<tr>
+					<td style="text-align:right;">Versuch Nr.:</td>
+					<td>1</td><td>2</td><td>3</td><td>4</td><td>5</td>
+					<td>&Oslash;</td>
+				</tr>
+				<tr>
+					<td style="text-align:right;">Iterationen Backpropagation</td>
+					<td>541</td><td>948</td><td>866</td><td>477</td><td>512</td><td>668,8</td>
+				</tr>
+				<tr>
+					<td style="text-align:right;">Iterationen Gen. Algorithmus</td>
+					<td>27</td><td>29</td><td>22</td><td>19</td><td>20</td><td>23,4</td>
+				</tr>
+			</table>
+			<p>
+			Eine Steigerung des Backpropagation Lernverhaltens könnte erzielt werden, indem die Steilheit der logistischen
+			Aktivierungsfunktion am Ende des Lernens erhöht wird.
+			</p><p>
+			Abschließend lässt sich festhalten, dass der Genetische Algorithmus als Lernverfahren dem Standard Backpropagation
+			überlegen ist und somit als Trainingsalgorithmus für MLP zu favorisieren ist.
+			</p>
+		</div>
+		<div class="lastChange">
+			<script type="text/javascript" language="javascript">
+			<!--
+				docChanged("Letzte Änderung<br />");
+			//-->
+			</script>
+		</div>
+	</body>
+</html>

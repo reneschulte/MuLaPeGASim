@@ -1,0 +1,60 @@
+body { 	margin: 25pt;
+		background-image: url(images/background.jpg);
+		background-attachment:fixed; }
+
+div {	font-size:medium;
+		font-family:Times, serif;
+		font-style:normal; }
+		
+div.lastChange { 	position:relative;
+					margin-top:25pt;
+					font-size:smaller;
+					text-align:center; }
+
+.relative {	position:relative;
+					left:80pt;
+					/*width:550pt; */}
+
+table.result { 	position:relative;
+				left:80pt;
+				width:450pt; }
+				
+td.result {	border-width:2pt;
+			border-color:#AAAAAA;
+			border-style:groove;
+			padding: 2pt;
+			text-align:center;
+			vertical-align:middle; }
+
+td.spacing { padding:20pt; }
+
+td { 	text-align:center;
+		vertical-align:middle;}
+
+.head { font-size:24pt;
+		font-weight:bold;
+		font-style:italic;
+		font-family:Arial, Helvetica, sans-serif;
+		text-decoration:underline; }
+
+.subhead { 	font-size:20pt;
+/*			font-weight:bold;*/
+			font-style:italic;
+			font-family:Arial, Helvetica, sans-serif;
+			text-decoration:underline; }
+
+.small {font-size:smaller;
+		font-family:Arial, Helvetica, sans-serif;}
+	
+li {	padding:5pt; }
+
+.formula { 	font-family:"Courier New", Courier, mono;
+			font-size:small;
+			padding: 15pt 50pt; }
+
+.description { 	position:relative;
+				left:80pt;
+				width:250pt;
+				text-align:center;
+				font-size:12pt;
+				font-family:Arial, Helvetica, sans-serif; }

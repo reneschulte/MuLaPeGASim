@@ -1,0 +1,61 @@
+<html dir="LTR">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252" />
+    <meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5" />
+    <title>LearningAlgo.algoProps Property</title>
+    <xml>
+    </xml>
+    <link rel="stylesheet" type="text/css" href="MSDN.css" />
+  </head>
+  <body id="bodyID" class="dtBODY">
+    <div id="nsbanner">
+      <div id="bannerrow1">
+        <table class="bannerparthead" cellspacing="0">
+          <tr id="hdr">
+            <td class="runninghead">Multilayer Perzeptron and Learning Algorhims</td>
+            <td class="product">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="TitleRow">
+        <h1 class="dtH1">LearningAlgo.algoProps Property
+					</h1>
+      </div>
+    </div>
+    <div id="nstext">
+      <p> Contains the String(s) with the specific properties for the learning algorithm </p>
+      <div class="syntax">public abstract <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpref/html/frlrfSystemStringClassTopic.asp">string[]</a> algoProps {get;}</div>
+      <p>
+      </p>
+      <h4 class="dtH4">Example</h4>
+      <p> The Property must have the Name 'parameterProp' and the String in activationProps 'parameter', in order to use the FileManagers read methods properly. <p>Example for the Backpropagation learning algorithm: <pre class="code">public float learningRateProp { get{...} set{...} }
+public float momentumParamProp { get{...} set{...} }
+public float daFlatFactorProp { get{...} set{...} }
+public override string[] algoProps{ get {return new string[]{"learningRate", "momentumParam", "daFlatFactor"};} }
+</pre></p></p>
+      <h4 class="dtH4">See Also</h4>
+      <p>
+        <a href="MultilayerNet.LearningAlgo.html">LearningAlgo Class</a> | <a href="MultilayerNet.html">MultilayerNet Namespace</a></p>
+      <object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e" viewastext="true" style="display: none;">
+        <param name="Keyword" value="algoProps property">
+        </param>
+        <param name="Keyword" value="algoProps property, LearningAlgo class">
+        </param>
+        <param name="Keyword" value="LearningAlgo.algoProps property">
+        </param>
+      </object>
+      <hr />
+      <div id="footer">
+        <p>
+          <a href="mailto:mlp@rene-schulte.info?subject=Multilayer%20Perzeptron%20and%20Learning%20Algorhims%20Documentation%20Feedback:%20LearningAlgo.algoProps%20Property&#xD;&#xA;						">Send comments on this topic.</a>
+        </p>
+        <p>
+          <a>(c) 2004 Rene Schulte and Torsten Baer</a>
+        </p>
+        <p>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

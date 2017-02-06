@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        <meta name="author" content="Rene Schulte, Torsten Bär" />
+        <meta name="copyright" content="Rene Schulte, Torsten Bär" />
+        <!--
+        Der Inhalt dieser Seite ist geistiges Eigentum der Autoren!
+        Dieser möchten nicht, dass der Quellcode ohne seine ausdrückliche Erlaubnis kopiert,
+        anderweitig verwendet oder weitergegeben wird.
+        Danke!
+        The content of this site is property of the authors!
+        They doesn´t want, that the source code is copied, used or published without their
+        explicid permission.
+        Thank you!
+        -->
+        <meta name="description" content="MuLaPeGASim Homepage, Simulation von MLP mit OCR Preprocessing" />
+        <meta name="keywords" content="Studium, Medieninformatik, HTW Dresden, Dresden, Künstliche Intelligenz, Neuronale Netze, Genetische Algorithmen, Backpropagation, OCR, Optische Zeichenerkennung, Bildfilter, Momentum, Flat Spot Elimination, Aktivierungsfunktion" lang="de" />
+        <meta name="keywords" content="studies, media informatics, university of applied sciences Dresden, Dresden, artifical intelligence, neural networks, genetic algorithms, backpropagation, ocr, optical character recongnition, imagefilter, momentum, Flat Spot Elimination, activation function" lang="en" />
+        <meta name="robots" content="index, follow" />
+        <meta name="revisit-after" content="30 days" />
+        <meta http-equiv="cache-control" content="public" />
+
+        <meta name="DC.Title" content="Bildfilter" />
+        <meta name="DC.Creator" content="Torsten Bär, Rene Schulte" />
+        <meta name="DC.Subject" content="MuLaPeGASim Homepage" />
+        <meta name="DC.Description" content="Homepage des MuLaPeGASim Projektes von Rene Schulte und Torsten Bär an der HTW Dresden" />
+        <meta name="DC.Publisher" content="Torsten Bär, Rene Schulte" />
+        <meta name="DC.Date" content="2004-11-10" />
+        <meta name="DC.Type" content="Text" />
+        <meta name="DC.Format" content="text/html" />
+        <meta name="DC.Source" content="MuLaPeGASim Homepage" />
+        <meta name="DC.Language" content="de" />
+        <meta name="DC.Coverage" content="Dresden" />
+        <meta name="DC.Rights" content="Alle Rechte liegen bei den Autoren" />
+
+        <link rel="stylesheet" type="text/css" href="style.css" />
+		<script type="text/javascript" language="javascript" src="scripts.js"></script>
+		<script type="text/javascript" language="javascript">
+		<!--
+			window.onLoad = checkTop(this);
+		//-->
+		</script>
+        <title>Bildfilter</title>
+	</head>
+	<body>
+		<div class="head">Bildfilter, Zeichenextraktion aus Bildern</div>
+		<br />
+		<div>
+			Nachfolgend sollen kurz (Filter-)Algorithmen beschrieben werden, welche von uns implementiert und genutzt wurden um aus Bildern
+			Zeichen zu extrahieren. Auf eine detaillierte Beschreibung aller Algorithmen wird an dieser Stelle verzichtet, da sich in der
+			Literatur und im WWW zahlreiche Dokumentation zu Filteralgorithmen finden.
+		</div>
+		<br />
+			<div class="description">
+				<img width="170" height="170" src="images/filter_org.jpg" alt="Quellbild" /><br />
+				Abb. 1: Bildquelle
+			</div>
+		<br />
+		<div class="subhead">Graukonvertierung</div>
+		<div>
+			Dieser Algorithmus ist wohl einer der einfachsten Filteralgorithmen überhaupt. Ein RGB-Farbbild wird in ein Graustufenbild
+			konvertiert. Die vorherige Graukonvertierung verbessert die Filtereigenschaften der nachfolgenden Algorithmen.
+			<br />
+			Die Graukonvertierung erfolgt nach folgender Formel (PAL):
+			<br />
+			<div class="formula">
+				s(x, y) = s(x, y).r*0.33 + s(x, y).g*0.5 + s(x, y).b*0.17
+			</div>
+			Wobei:
+			<ul>
+				<li><span class="formula" style="padding:5px">s</span>die Menge der Farbinformation in dem Bild ist und</li>
+				<li><span class="formula" style="padding:5px">s(x, y)</span>somit die Farbe des Bildes an Position x, yy</li>
+				<li><span class="formula" style="padding:5px">s(x, y).r/s(x, y).g/s(x, y).b</span>die rote/grüne/blaue Farbkomponente an Pos. x, y</li>
+			</ul>
+			<div class="description">
+				<img width="170" height="170" src="images/filter_gray.jpg" alt="Graustufenbild" /><br />
+				Abb. 2: Graukonvertiertes Bild
+            </div>
+			<br />
+			<div class="subhead">Schwarz/Weiß-Konvertierung</div>
+			Wie der Name schon verrät, wird mittels der Schwarz/Weiß-Konvertierung ein Bild (farbig, grau) in ein
+			Schwarz/Weiß-Bild	konvertiert, welches nur noch schwarze und weiße Pixel enthält.
+			<br /><br />
+            Die Schwarz/Weiß-Konvertierung erfolgt nach folgender, einfacher Formel:
+			<table class="relative">
+				<colgroup>
+					<col valign="middle" align="right" />
+					<col align="left" />
+				</colgroup>
+				<tr>
+					<td rowspan="2" align="right">s(x, y) = {</td>
+					<td>1, wenn s(x, y) &gt; t</td>
+				</tr>
+				<tr>
+					<td>0, sonst</td>
+				</tr>
+			</table>
+			<br />
+			Wobei:
+			<ul>
+				<li>s ... die Menge der normierten Farbinformation in dem Bild ist und</li>
+				<li>s(x, y) ... somit die Farbe des Bildes an Position x, y</li>
+				<li>t ... ein Schwellwert, im Beispiel 0.5</li>
+			</ul>
+			<div class="description">
+				<img width="170" height="170" src="images/filter_sw.jpg" alt="Schwarz/Wei&szlig;-Bild" /><br />
+				Abb. 2: Schwarz/Weiß konvertiertes Bild<br />(Quelle aus Abb. 2)
+			</div>
+		</div>
+		<br />
+		<div class="subhead">Helligkeitsnormalisierung</div>
+		<div>
+			Die Helligkeitsverteilungen innerhalb eines Graustufenbild werden normalisiert. Dadurch wird eine bessere Verteilung der
+			Helligkeitswerte erreicht und evtl. zu helle oder zu dunkle Bereiche innerhalb eines Bild werden beseitigt.
+			<div class="description">
+				<img width="170" height="170" src="images/filter_brightnorm.jpg" alt="Helligkeitsnormalisierung" /><br />
+				Abb. 3: Helligkeitsnormalisiertes Bild<br />(Quelle aus Abb. 2)
+			</div>
+		</div>
+		<br />
+		<div class="subhead">Kontrasterhöhung</div>
+		<div>
+			Bei diesem Algorithmus wird der Kontrast innerhalb des Bildes erhöht. Man spricht auch von einem Histogrammausgleich, da das
+			Histogramm des Bildes auf den gesamten Bereich gestreckt wird. Die Spreizung erhöht den Kontrast innerhalb des Bildes und
+			verbessert die Wirkung der nachfolgenden Algorithmen.
+			<div class="description">
+				<img width="170" height="170" src="images/filter_contrast.jpg" alt="Kontrasbild"/><br />
+				Abb. 4: Kontrastgespreiztes Bild<br />(Quelle aus Abb. 2)
+			</div>
+			<br />
+			<table class="relative">
+                <tr>
+                    <td>
+						<img width="160" height="70" src="images/filter_hist_org.jpg" alt="Histogram Quelle" /><br />
+						Abb. 5: Histogramm Quellbild<br />(Abb.2)
+                    </td>
+					<td>&nbsp;</td>
+                    <td>
+						<img width="160" height="70" src="images/filter_hist_new.jpg" alt="gespreiztes Histogram" /><br />
+						Abb. 6: Gespreiztes Histogramm<br />(Abb.4)
+                    </td>
+                </tr>
+			</table>
+		</div>
+		<br />
+		<div class="subhead">Kantenextraktion</div>
+		<div>
+			Für eine Extraktion von Zeichen aus einem Bild ist es nötig, die Kanten der Bildelemente zu bestimmen, um
+			eventuelle Zeichen von Farbverläufen oder ähnlichen störenden Bildelementen zu separieren.
+			Hierfür wurde von uns der weit verbreitete Canny Algorithmus implementiert.
+			<br />
+			Der Canny Algorithmus ist recht komplex und besteht im einzelnen aus 6 Schritten:<br />
+			<ol>
+				<li>
+					Das Bild wird geglättet um evtl. Störungen (Kratzer, Rauschen) zu entfernen. Dies wird mittels einer
+					gaußschen Unschärfe durchgeführt, welche als eine sog. Konvolutionsmatrix auf das Bild angewendet
+					wird.
+					<br />
+					Jedes Pixel des Bildes wird mit dieser Konvolutionsmatrix (hier: 5x5) manipuliert, indem die umgebenden 2 Pixel
+					in allen 4 Richtungen (links, rechts, oben, unten) mit dem entsprechenden Wert in der Matrix multipliziert werden.
+					Die Summe dessen ergibt den neuen Wert des Pixels.
+
+					<br /><br />
+					<div class="description">
+						<img width="170" height="170" src="images/filter_gaus.jpg" alt="Gau&szlig;bild" /><br />
+						Abb. 7: Geglättetes Bild<br />(Quelle aus Abb. 4)
+					</div>
+				</li>
+				<li>
+					Die Kantenstärken werden ermittelt indem der Gradient des Bildes benutzt wird. Hierfür eignen sich
+					wieder Konvolutionsmatrizen (Prewitt, Cross, ...). Unser Canny Algorithmus nutzt den Sobel Operator, welcher
+					eine räumliche 2D Gradientenmessung durchfährt. Dazu werden 2 Konvolutionsmatrizen benötigt,
+					eine die den Gradienten in die x-Richtung (Gx) ermittelt und eine in die y-Richtung(Gy). Der absolute Gradient
+					wird dann durch das addieren der beiden absoluten Werte (G = |Gx| + |Gy|) berechnet.<br />
+					<br />
+					<div class="description">
+						<img width="170" height="170" src="images/filter_sobel.jpg" alt="Sobelbild" /><br />
+						Abb. 8: Bild nach der Anwendung des Sobel Operators<br />(Quelle aus Abb. 7)
+					</div>
+				</li>
+				<li>
+					Die Richtung der Kanten ist endscheident. Um die Richtung herauszufinden, wird der Arcus Tangens auf die
+					x-, y-Gradienten angewandt.<br />
+					<div class="formula">&Theta; = arctan(Gy/Gx)</div>
+					Im konkret implementierten Algorithmus müssen noch einige Sonderfälle beachtet werden (keine
+					Division durch 0). Und es kann nicht der inverse Tangens im 2. oder 4. Quadranten gebildet werden.
+				</li>
+				<li>
+					Innerhalb eines Bildes kann es nur 4 Richtungen geben, in der die Kante verlaufen kann. Man kann dies am besten
+					mit einem Halbkreis vergleichen, welcher in 5 Bereiche unterteilt wird. Deshalb müssen in diesem Schritt
+					die vorher berechneten Richtungen kategorisiert werden. Alles was kleiner 22.5&deg; oder größer 157.5&deg;
+					ist, verläuft horizontal und wird somit auf 0&deg; gesetzt.<br />
+					Alles was zwischen 22.5&deg; und 67.5&deg; liegt, verläuft entlang der positiven vertikalen Achse
+					&rarr; 45&deg; usw.
+				</li>
+				<li>
+					Nachdem die Richtung der Kante bekannt ist, müssen noch alle Pixel entlang der Kante eliminiert werden,
+					welche keine Kante sind. Es wird dadurch auch die Linienstärke verringert. Dies erfolgt indem die
+					umgebenden Pixel der Kante begutachtet werden.
+				</li>
+				<li>
+					Durch nicht eliminiertes Rauschen und Unterbrechungen der Kante kann es vorkommen, dass die Kante an bestimmten
+					Stellen abgebrochen wird oder Strichlinien entstehen. Um dieses Phõnomen zu vermeiden, benutzt die angewendte
+					Hysterese zwei Schwellwerte.<br />
+					Bei dem Verfolgen der Kante, beginnt der Algorithmus diese erst als eine Kante zu betrachten, wenn der Gradient
+					größer als der erste Schwellwert (hohe Schwelle) ist und stoppt nicht bevor der Gradient kleiner als der
+					zweite Schwellwert (niedrige Schwelle) ist.<br />
+					<br />
+					<div class="description">
+						<img width="170" height="170" src="images/filter_canny.jpg" alt="Canny Algorithmus Bild" /><br />
+						Abb. 9: Bild nach anwenden des Canny Algorithmus<br />(Quelle aus Abb. 4)
+					</div>
+				</li>
+			</ol>
+		</div>
+		<br />
+		<div class="subhead">Zeichenseparation</div>
+		<br />
+		<div>
+			Mittels dieses Algorithmus werden Zeichen aus einem gegebenen Schwarz/Weiß-Bild extrahiert.
+			<br />
+			Dazu analysiert der Algorithmus das Linien- und Spaltenhistogramm des Bildes. Die Trennung der einzelnen
+			Buchstaben bzw. Zeichen erfolgt, indem die Grenzen des Histogrammes mit einer einstellbaren Schwelle verglichen
+			werden. Werden mehr als eine Zeile entdeckt, wird der Bereich der Suche auf die gefundenen Grenzen beschränkt.
+		</div>
+		<br />
+		<table class="relative" cellspacing="3" cellpadding="0">
+			<tr>
+				<td>&nbsp;</td>
+				<td><img width="260" height="44" src="images/filter_col_hist_1.jpg" alt="Spaltenhistogramm der Zeile 1" /></td>
+			</tr>
+			<tr>
+				<td><img width="260" height="117" src="images/filter_line_hist.jpg" alt="Linienhistogramm des Bildes" /></td>
+				<td><img width="260" height="117" src="images/filter_sep_org.jpg" alt="Orginalbild" /></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><img width="260" height="44" src="images/filter_col_hist_2.jpg" alt="Spaltenhistogramm der Zeile 2" /></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><span style="font-family:Arial, Helvetica, sans-serif; font-size:12px; ">Abb. 10: Histogramm</span></td>
+			</tr>
+		</table>
+		<br /><br />
+		<div>
+			Zu Beginn des Algorithmus werden alle oberen und unteren Grenzen im Linienhistogramm ermittelt und gespeichert.
+			Danach wird eine Spaltenhistogrammanalyse innerhalb dieser Grenzen durchgef³hrt und versucht, einzelne Zeichen
+			voneinander zu trennen. Sollten innerhalb des Bildes keine Grenzen feststellbar sein, wird das gesamte Bild als
+			Zeile betrachtet. Die analysierten Grenzen werden der Einfachheit halber als Rechtecke zusammengefasst.
+		</div>
+		<br />
+		<div class="description">
+			<img width="260" height="117" src="images/filter_separated.jpg" alt="Buchstaben sind markiert" />
+			Abb. 11: Markierte Buchstaben
+		</div>
+		<br />
+		<div>
+			Die Separation in einzelne Bilder wird nun mittels der ermittelten Rechtecke durchgeführt.
+		</div>
+		<br />
+		<table class="relative" cellspacing="10">
+			<tr>
+				<td width="40" height="55"><img width="30" height="47" src="images/filter_filteredChar_1.jpg" alt="Gefiltertes Zeichen 1" /></td>
+				<td width="40" height="55"><img width="31" height="47" src="images/filter_filteredChar_2.jpg" alt="Gefiltertes Zeichen 1" /></td>
+				<td width="40" height="55"><img width="32" height="47" src="images/filter_filteredChar_3.jpg" alt="Gefiltertes Zeichen 1" /></td>
+				<td width="40" height="55"><img width="29" height="47" src="images/filter_filteredChar_4.jpg" alt="Gefiltertes Zeichen 1" /></td>
+				<td width="40" height="55"><img width="33" height="47" src="images/filter_filteredChar_5.jpg" alt="Gefiltertes Zeichen 1" /></td>
+				<td width="40" height="55"><img width="29" height="47" src="images/filter_filteredChar_6.jpg" alt="Gefiltertes Zeichen 1" /></td>
+			</tr>
+			<tr>
+				<td width="40" height="55"><img width="37" height="44" src="images/filter_filteredChar_A.jpg" alt="Gefiltertes Zeichen A" /></td>
+				<td width="40" height="55"><img width="33" height="44" src="images/filter_filteredChar_B.jpg" alt="Gefiltertes Zeichen B" /></td>
+				<td width="40" height="55"><img width="35" height="44" src="images/filter_filteredChar_C.jpg" alt="Gefiltertes Zeichen C" /></td>
+				<td width="40" height="55"><img width="33" height="44" src="images/filter_filteredChar_D.jpg" alt="Gefiltertes Zeichen D" /></td>
+				<td width="40" height="55"><img width="32" height="44" src="images/filter_filteredChar_E.jpg" alt="Gefiltertes Zeichen E" /></td>
+				<td width="40" height="55"><img width="27" height="44" src="images/filter_filteredChar_F.jpg" alt="Gefiltertes Zeichen F" /></td>
+			</tr><tr>
+				<td colspan="6"><span style="font-family:Arial, Helvetica, sans-serif; font-size:12px">Abb. 12: separierte Bilder</span></td>
+			</tr>
+		</table>
+		<div class="lastChange">
+			<script type="text/javascript" language="javascript">
+			<!--
+				docChanged("Letzte Änderung<br />");
+			//-->
+			</script>
+		</div>
+	</body>
+</html>

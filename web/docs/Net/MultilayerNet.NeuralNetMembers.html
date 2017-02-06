@@ -1,0 +1,102 @@
+<html dir="LTR">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252" />
+    <meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5" />
+    <title>NeuralNet Members</title>
+    <xml>
+    </xml>
+    <link rel="stylesheet" type="text/css" href="MSDN.css" />
+  </head>
+  <body id="bodyID" class="dtBODY">
+    <div id="nsbanner">
+      <div id="bannerrow1">
+        <table class="bannerparthead" cellspacing="0">
+          <tr id="hdr">
+            <td class="runninghead">Multilayer Perzeptron and Learning Algorhims</td>
+            <td class="product">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="TitleRow">
+        <h1 class="dtH1">NeuralNet Members
+					</h1>
+      </div>
+    </div>
+    <div id="nstext">
+      <p>
+        <a href="MultilayerNet.NeuralNet.html">NeuralNet overview</a>
+      </p>
+      <h4 class="dtH4">Public Instance Constructors</h4>
+      <div class="tablediv">
+        <table class="dtTABLE" cellspacing="0">
+          <tr VALIGN="top">
+            <td width="50%">
+              <img src="pubmethod.gif" />
+              <a href="MultilayerNet.NeuralNetConstructor.html">NeuralNet</a>
+            </td>
+            <td width="50%">Overloaded. Initializes a new instance of the NeuralNet class.</td>
+          </tr>
+        </table>
+      </div>
+      <h4 class="dtH4">Public Instance Properties</h4>
+      <div class="tablediv">
+        <table class="dtTABLE" cellspacing="0">
+<tr VALIGN="top"><td width="50%"><img src="pubproperty.gif"></img><a href="MultilayerNet.NeuralNet.actFuncForEachNeuronProp.html">actFuncForEachNeuronProp</a></td><td width="50%"> The activation function of each neuron actFuncForEachNeuronProp[layer][index neuron in layer, from left to right]</td></tr>
+<tr VALIGN="top"><td width="50%"><img src="pubproperty.gif"></img><a href="MultilayerNet.NeuralNet.inputProp.html">inputProp</a></td><td width="50%"> Sets/gets the input vector of the net == input vector of all neurons in the first layer </td></tr>
+<tr VALIGN="top"><td width="50%"><img src="pubproperty.gif"></img><a href="MultilayerNet.NeuralNet.layersProp.html">layersProp</a></td><td width="50%"> The layers in the Network </td></tr>
+<tr VALIGN="top"><td width="50%"><img src="pubproperty.gif"></img><a href="MultilayerNet.NeuralNet.learnAlgoProp.html">learnAlgoProp</a></td><td width="50%"> The learning algorithm which is used to train the Network </td></tr>
+<tr VALIGN="top"><td width="50%"><img src="pubproperty.gif"></img><a href="MultilayerNet.NeuralNet.netNameProp.html">netNameProp</a></td><td width="50%"> The name of the Network. Default -&gt; 'no net name yet ;)' </td></tr>
+<tr VALIGN="top"><td width="50%"><img src="pubproperty.gif"></img><a href="MultilayerNet.NeuralNet.outputLayerProp.html">outputLayerProp</a></td><td width="50%"> Returns the outputlayer of the Network </td></tr>
+<tr VALIGN="top"><td width="50%"><img src="pubproperty.gif"></img><a href="MultilayerNet.NeuralNet.outputProp.html">outputProp</a></td><td width="50%"> Just calls the propagate() method and returns the output vector of the net </td></tr>
+<tr VALIGN="top"><td width="50%"><img src="pubproperty.gif"></img><a href="MultilayerNet.NeuralNet.thresholdNetProp.html">thresholdNetProp</a></td><td width="50%"> The threshold matrix of the neurons in the whole network! thresholdNetProp[layer][index neuron in layer, from left to right]</td></tr>
+<tr VALIGN="top"><td width="50%"><img src="pubproperty.gif"></img><a href="MultilayerNet.NeuralNet.weightNetProp.html">weightNetProp</a></td><td width="50%"> The weight 3D-matrix of the neurons in the whole Network. weightNetProp[layer][index neuron in layer, from left to right][weight presynapt. neuron]; layer index=0 == input layer</td></tr></table>
+      </div>
+      <h4 class="dtH4">Public Instance Methods</h4>
+      <div class="tablediv">
+        <table class="dtTABLE" cellspacing="0">
+<tr VALIGN="top"><td width="50%"><img src="pubmethod.gif"></img><a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpref/html/frlrfSystemObjectClassEqualsTopic.asp">Equals</a> (inherited from <b>Object</b>)</td><td width="50%"> </td></tr>
+<tr VALIGN="top"><td width="50%"><img src="pubmethod.gif"></img><a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpref/html/frlrfSystemObjectClassGetHashCodeTopic.asp">GetHashCode</a> (inherited from <b>Object</b>)</td><td width="50%"> </td></tr>
+<tr VALIGN="top"><td width="50%"><img src="pubmethod.gif"></img><a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpref/html/frlrfSystemObjectClassGetTypeTopic.asp">GetType</a> (inherited from <b>Object</b>)</td><td width="50%"> </td></tr>
+<tr VALIGN="top"><td width="50%"><img src="pubmethod.gif"></img><a href="MultilayerNet.NeuralNet.propagate.html">propagate</a></td><td width="50%"> Computes the output of the network and returns the output vector </td></tr>
+<tr VALIGN="top"><td width="50%"><img src="pubmethod.gif"></img><a href="MultilayerNet.NeuralNet.randomizeWeights_overloads.html">randomizeWeights</a></td><td width="50%">Overloaded.  Randomize the weights and the threshold of the network </td></tr>
+<tr VALIGN="top"><td width="50%"><img src="pubmethod.gif"></img><a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpref/html/frlrfSystemObjectClassToStringTopic.asp">ToString</a> (inherited from <b>Object</b>)</td><td width="50%"> </td></tr></table>
+      </div>
+      <h4 class="dtH4">Protected Instance Fields</h4>
+      <div class="tablediv">
+        <table class="dtTABLE" cellspacing="0">
+<tr VALIGN="top"><td width="50%"><img src="protfield.gif"></img><a href="MultilayerNet.NeuralNet.layers.html">layers</a></td><td width="50%"> The layers in the Network </td></tr>
+<tr VALIGN="top"><td width="50%"><img src="protfield.gif"></img><a href="MultilayerNet.NeuralNet.learnAlgo.html">learnAlgo</a></td><td width="50%"> The learning algorithm which is used to train the Network </td></tr>
+<tr VALIGN="top"><td width="50%"><img src="protfield.gif"></img><a href="MultilayerNet.NeuralNet.netName.html">netName</a></td><td width="50%"> The name of the Network. Default -&gt; 'no net name yet ;)' </td></tr></table>
+      </div>
+      <h4 class="dtH4">Protected Instance Methods</h4>
+      <div class="tablediv">
+        <table class="dtTABLE" cellspacing="0">
+<tr VALIGN="top"><td width="50%"><img src="protmethod.gif"></img><a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpref/html/frlrfSystemObjectClassFinalizeTopic.asp">Finalize</a> (inherited from <b>Object</b>)</td><td width="50%"> </td></tr>
+<tr VALIGN="top"><td width="50%"><img src="protmethod.gif"></img><a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpref/html/frlrfSystemObjectClassMemberwiseCloneTopic.asp">MemberwiseClone</a> (inherited from <b>Object</b>)</td><td width="50%"> </td></tr></table>
+      </div>
+      <h4 class="dtH4">See Also</h4>
+      <p>
+        <a href="MultilayerNet.NeuralNet.html">NeuralNet Class</a> | <a href="MultilayerNet.html">MultilayerNet Namespace</a></p>
+      <object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e" viewastext="true" style="display: none;">
+        <param name="Keyword" value="NeuralNet class">
+        </param>
+        <param name="Keyword" value="MultilayerNet.NeuralNet class">
+        </param>
+        <param name="Keyword" value="NeuralNet class, all members">
+        </param>
+      </object>
+      <hr />
+      <div id="footer">
+        <p>
+          <a href="mailto:mlp@rene-schulte.info?subject=Multilayer%20Perzeptron%20and%20Learning%20Algorhims%20Documentation%20Feedback:%20NeuralNet%20Members&#xD;&#xA;						">Send comments on this topic.</a>
+        </p>
+        <p>
+          <a>(c) 2004 Rene Schulte and Torsten Baer</a>
+        </p>
+        <p>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

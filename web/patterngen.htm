@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        <meta name="author" content="Rene Schulte, Torsten Bär" />
+        <meta name="copyright" content="Rene Schulte, Torsten Bär" />
+        <!--
+        Der Inhalt dieser Seite ist geistiges Eigentum der Autoren!
+        Dieser möchten nicht, dass der Quellcode ohne seine ausdrückliche Erlaubnis kopiert,
+        anderweitig verwendet oder weitergegeben wird.
+        Danke!
+        The content of this site is property of the authors!
+        They doesn't want, that the source code is copied, used or published without their
+        explicid permission.
+        Thank you!
+        -->
+        <meta name="description" content="MuLaPeGASim Homepage, Simulation von MLP mit OCR Preprocessing" />
+        <meta name="keywords" content="Studium, Medieninformatik, HTW Dresden, Dresden, Künstliche Intelligenz, Neuronale Netze, Genetische Algorithmen, Backpropagation, OCR, Optische Zeichenerkennung, Bildfilter, Momentum, Flat Spot Elimination, Aktivierungsfunktion" lang="de" />
+        <meta name="keywords" content="studies, media informatics, university of applied sciences Dresden, Dresden, artifical intelligence, neural networks, genetic algorithms, backpropagation, ocr, optical character recongnition, imagefilter, momentum, Flat Spot Elimination, activation function" lang="en" />
+        <meta name="robots" content="index, follow" />
+        <meta name="revisit-after" content="30 days" />
+        <meta http-equiv="cache-control" content="public" />
+
+        <meta name="DC.Title" content="Bildfilter" />
+        <meta name="DC.Creator" content="Torsten Bär, Rene Schulte" />
+        <meta name="DC.Subject" content="MuLaPeGASim Homepage" />
+        <meta name="DC.Description" content="Homepage des MuLaPeGASim Projektes von Rene Schulte und Torsten Bär an der HTW Dresden" />
+        <meta name="DC.Publisher" content="Torsten Bär, Rene Schulte" />
+        <meta name="DC.Date" content="2004-11-10" />
+        <meta name="DC.Type" content="Text" />
+        <meta name="DC.Format" content="text/html" />
+        <meta name="DC.Source" content="MuLaPeGASim Homepage" />
+        <meta name="DC.Language" content="de" />
+        <meta name="DC.Coverage" content="Dresden" />
+        <meta name="DC.Rights" content="Alle Rechte liegen bei den Autoren" />
+
+        <link rel="stylesheet" type="text/css" href="style.css" />
+		<script type="text/javascript" language="javascript" src="scripts.js"></script>
+		<script type="text/javascript" language="javascript">
+		<!--
+			window.onLoad = checkTop(this);
+		//-->
+		</script>
+        <title>Bildfilter</title>
+	</head>
+	<body>
+		<div class="head">Generierung von Trainingseingabedaten</div>
+		<div>
+			<p>
+			Um ein MLP trainieren zu können, bedarf es entsprechender Trainingsdatensätze (Muster, engl. patterns). Da von uns eine optische
+			Zeichenerkennung angestrebt worden ist, handelt es sich bei den Mustern um Bilder in denen ein Schriftzeichen (Buchstabe, Ziffer, ...)
+			enthalten ist.
+			</p><p>
+			Um entsprechende Muster erzeugen zu können, haben wir eine Klasse geschrieben, die solche Bilder erzeugen kann. Es besteht
+			ebenfalls die Möglichkeit den Bildern rauschen hinzuzufügen, um eine bessere Generalisierungsfähigkeit zu erreichen.
+			</p>
+			<div class="description">
+				<img width="179" height="174" src="images/paterngen_pattern.jpg" alt="Pattern" /><br />
+				Abb. 1: generiertes Bild
+			</div>
+			<p>
+			Es bietet sich an, für das Alphabet von A-Z (Großbuchstaben, keine Umlaute), 26 Ausgabeneuronen zu nutzen. Dabei wird
+			jedem Buchstabe ein Ausgabeneuron zugeordnet: Für ein A ist das erste Neuron aktiv (1) und alle anderen Neuronen inaktiv (0, bzw.
+			-1). Für das B ist das Zweite aktiv, usw.
+			</p><p>
+			Diese Zuordnung und die Erzeugung einer passenden Netztopologie kann in dem Demoprogramm entsprechend der Anzahl der erzeugen
+			Trainingsdaten automatisch durchgeführt werden. Dabei wird die aktuell gewählte Aktivierungsfunktion für die Werte des
+			Soll-Ausgabevektors (teach output) beachtet &rarr; tanh inaktiv == -1.
+			</p>
+		</div>
+		<div class="lastChange">
+			<script type="text/javascript" language="javascript">
+			<!--
+				docChanged("Letzte Änderung<br />");
+			//-->
+			</script>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        <meta name="author" content="Rene Schulte, Torsten Bär" />
+        <meta name="copyright" content="Rene Schulte, Torsten Bär" />
+        <!--
+        Der Inhalt dieser Seite ist geistiges Eigentum der Autoren!
+        Dieser möchten nicht, dass der Quellcode ohne seine ausdrückliche Erlaubnis kopiert,
+        anderweitig verwendet oder weitergegeben wird.
+        Danke!
+        The content of this site is property of the authors!
+        They doesn´t want, that the source code is copied, used or published without their
+        explicid permission.
+        Thank you!
+        -->
+        <meta name="description" content="MuLaPeGASim Homepage, Simulation von MLP mit OCR Preprocessing" />
+        <meta name="keywords" content="Studium, Medieninformatik, HTW Dresden, Dresden, Künstliche Intelligenz, Neuronale Netze, Genetische Algorithmen, Backpropagation, OCR, Optische Zeichenerkennung, Bildfilter, Momentum, Flat Spot Elimination, Aktivierungsfunktion" lang="de" />
+        <meta name="keywords" content="studies, media informatics, university of applied sciences Dresden, Dresden, artifical intelligence, neural networks, genetic algorithms, backpropagation, ocr, optical character recongnition, imagefilter, momentum, Flat Spot Elimination, activation function" lang="en" />
+        <meta name="robots" content="index, follow" />
+        <meta name="revisit-after" content="30 days" />
+        <meta http-equiv="cache-control" content="public" />
+
+        <meta name="DC.Title" content="Eingabevorverarbeitung" />
+        <meta name="DC.Creator" content="Torsten Bär, Rene Schulte" />
+        <meta name="DC.Subject" content="MuLaPeGASim Homepage" />
+        <meta name="DC.Description" content="Homepage des MuLaPeGASim Projektes von Rene Schulte und Torsten Bär an der HTW Dresden" />
+        <meta name="DC.Publisher" content="Torsten Bär, Rene Schulte" />
+        <meta name="DC.Date" content="2004-11-10" />
+        <meta name="DC.Type" content="Text" />
+        <meta name="DC.Format" content="text/html" />
+        <meta name="DC.Source" content="MuLaPeGASim Homepage" />
+        <meta name="DC.Language" content="en" />
+        <meta name="DC.Coverage" content="Dresden" />
+        <meta name="DC.Rights" content="Alle Rechte liegen bei den Autoren" />
+
+        <link rel="stylesheet" type="text/css" href="style.css" />
+		<script type="text/javascript" language="javascript" src="scripts.js"></script>
+		<script type="text/javascript" language="javascript">
+		<!--
+			window.onLoad = checkTop(this);
+		//-->
+		</script>
+        <title>Manual</title>
+
+		<style type="text/css">
+			a:link { color:#0000FF; }
+			a:visited { color:#0000FF; }
+			a:hover { font-weight:bold; color:#FF0000; }
+			a:focus { color:#0000FF; }
+			div.ident { margin-left:30pt; }
+			span.item { text-decoration:underline; font-style:italic; }
+		</style>
+	</head>
+	<body>
+		<div style="text-align:center;">
+			<div style='font-size:36pt; font-family:Arial'>MuLaPeGASim User Manual</div>
+			<br />
+			<div style='font-size:18pt;font-family:Arial'>&divide; Multilayer Perceptron Genetic Algorithm Simulator &divide;</div>
+			<br />
+			<img width="405" height="322" src="images/logo.jpg" alt="logo" />
+		</div>
+		<div>
+			<div class="head">Overview</div>
+			<ul>
+				<li><a href="#_Introduction">Introduction</a></li>
+				<li><a href="#_The_menu">The menu</a></li>
+				<li><a href="#_Net_Designer">Net Designer</a></li>
+				<li><a href="#_Pattern_Builder">Pattern Builder</a></li>
+				<ul>
+					<li><a href="#_PatterBuilder_Manual_input">Manual Input Mode</a></li>
+					<li><a href="#_OCR_pre-processing_mode">OCR Pre-processing Mode</a></li>
+				</ul>
+
+				<li><a href="#_Net_Trainer">Net Trainer</a></li>
+			</ul>
+			<div class="head"><a name="_Introduction"></a>1. Introduction</div>
+			<div>
+				<p>
+				MuLaPeGASim is a small Multilayer Perceptron neural network simulator with some special features for Optical Character
+				Recognition (OCR) problems.
+				</p><p>
+				You have the possibility to design a Multilayer Feed-Forward network, create training patterns and train it with the
+				Backpropagation learning algorithm (on-/offline) or with a Genetic learning algorithm. The patterns could be entered manually
+				or created automatically for an OCR network. It is also possible to extract characters from an image.
+				</p><p>
+				The Application itself is divided into 3 main parts. In this manual these parts are described in a logical using order.
+				</p>
+				<div class="head"><a name="_The_menu"></a>2. The Menu</div>
+				<br />
+				<div class="subhead">2.1. The file menu</div>
+				<br />
+				<div class="relative">
+					<img width="290" height="205" src="images/manual_menu_file.jpg" alt="Filemenu" />
+				</div>
+				<div class="ident">
+					<p>
+					<span class="item" >&quot;Load default neural network&quot;:</span><br />
+					Load the default 2-3-3-2 network with all its properties and patterns.
+					</p><p>
+					<span class="item" >&quot;Load neural network...&quot;:</span><br />
+					Load a *.net file. You will find some examples in the program directory at the folder examples/net.
+					</p><p>
+					<span class="item" >&quot;Save neural network as...&quot;:</span><br />
+					Save the current network with all its properties and patterns into a .net file.
+					</p><p>
+					<span class="item" >quot;Load patterns...&quot;:</span><br />
+					Load a *.pat file which contains patterns for a neural network. The patterns have to fit the current network. You
+					will find some examples in the folder examples/pat at the programs directory.
+					</p><p>
+					<span class="item" >&quot;Save patterns as...&quot;:</span><br />
+					Save the current patterns as a .pat file.
+					</p><p>
+					<span class="item" >&quot;Load image...&quot;:</span><br />
+					Load an image for extracting characters at the Pattern Builders &quot;OCR pre-processing&quot; mode. You will find
+					some examples in the folder examples/pics at the programs directory.
+					</p><p>
+					<span class="item" >&quot;Exit&quot;:</span><br />
+					Exit the application.
+				</p></div>
+				<br />
+				<div class="subhead">2.2. The Network menu</div>
+				<br />
+				<div class="relative">
+					<img width="206" height="93" src="images/manual_menu_network.jpg" alt="Network menu" />
+				</div>
+				<br />
+				<div class="ident" >
+					<span class="item" >&quot;Randomize weight&quot;:</span><br />
+					Randomize the weights and thresholds of the network using the selected randomize options (see
+					<a href="#_Designer_Area_1">Net Designer</a>).
+					<p>
+					<span class="item" >&quot;Start/stop training&quot;:</span><br />
+					Start the training of the network or stop the current training (see <a href="#_Net_Trainer">Net Trainer</a>).
+					</p>
+				</div>
+				<br />
+				<div class="subhead">2.3. The info (&quot;?&quot;) menu</div>
+				<br />
+				<div class="relative">
+					<img width="176" height="93" src="images/manual_menu_info.jpg" alt="The info menu" />
+				</div>
+				<br />
+				<div class="ident" >
+					<span class="item" >&quot;Help&quot;:</span><br />
+					Open this fabulous <img src="images/smile.gif" alt="smile" /> user manual.
+					<p>
+					<span class="item" >&quot;About&quot;:</span><br />
+					Open a new window with some information about the system and version numbers of the used libraries. You will also find
+					two scary <img src="images/wink.gif" alt="smile" /> pictures of the authors and their email address.
+					</p>
+				</div>
+				<br />
+				<div class="head"><a name="_Net_Designer"></a>3. Net Designer</div>
+				<p>
+				Like the name &quot;Net Designer&quot; implies, this is the place to design the topology of the neural network &rarr; set the
+				activation function of the neurons and the options for randomizing.
+				</p>
+				<img width="1000" height="750" src="images/manual_designer.jpg" alt="designer" />
+				<br />
+				<div class="subhead">
+					<a name="_Designer_Area_1">3.1. Area 1</a>
+				</div>
+				<p>
+				Here you could set the global network options:
+				</p><div class="ident">
+					<p>
+					<span class="item">&quot;Net name&quot;:</span><br />
+					Insert a name for the network. This name will be stored in the *.net file.
+					</p><p>
+					<span class="item">&quot;Activation function&quot;:</span><br />
+					Select an activation function for the neurons. All neurons will have the same type of activation function.
+					</p><p>
+					<span class="item">&quot;Randomize options&quot;:</span><br />
+					Set the options for pseudo randomizing:
+					</p><ul>
+						<li>
+							enter the seed which will be used for randomizing or select &quot;Use time&quot; to use the system time as<br />
+							seed &rarr; complete new values each time you randomize the weights and thresholds
+						</li>
+						<li>
+							enter the range for randomized values &rarr; values are greater than &quot;Min&quot; and lower than &quot;Max&quot;
+							or select &quot;Use optimal&quot; to use an optimal range for the current activation function type
+						</li>
+						<li>
+							press the &quot;Default&quot; button to reset the values of the &quot;Randomize options&quot; controls
+						</li>
+					</ul>
+				</div>
+				<div class="subhead">
+					<a name="_Designer_Area_2">3.2. Area 2</a>
+				</div>
+				<br />
+				Here you could examine the current values of the network in the tree view or change/edit the network topology.<br />
+				The changes are just done if you press the &quot;Generate neural net&quot; button.
+				<div class="ident">
+					<p>
+					<span class="item">&quot;Expand / Collapse all nodes&quot;:</span><br />
+					Expand or collapse all nodes of the network topology tree view.
+					</p><p>
+					<span class="item">&quot;Number of neurons in the layer&quot;:</span><br />
+					Insert the number of neurons you want to have in the new layer.
+					</p><p>
+					<span class="item">&quot;Insert before / after&quot;:</span><br />
+					Insert a new layer before / after the current selected layer in the tree view. The current net is not changed
+					&quot;physically&quot; until you click the &quot;Generate neural net&quot; button in <a href="#_Designer_Area_3">Area 3</a>.
+					</p><p>
+					<span class="item">&quot;Delete layer&quot;:</span><br />
+					Delete the selected layer. The current net is not changed &quot;physically&quot; until you click the
+					&quot;Generate neural net&quot; button in <a href="#_Designer_Area_3">Area 3</a>.
+					</p>
+				</div>
+				<div class="subhead">
+					<a name="_Designer_Area_3"></a>3.3. Area 3
+				</div>
+				<br />
+				In this area the network topology is visualized.
+				<div class="ident">
+					<p>
+					<span class="item">&quot;Clear view&quot;:</span><br />
+					Clear the tree view and the network visualization.
+					</p><p>
+					<span class="item">&quot;Show current net&quot;:</span><br />
+					Show the current network in the tree view and visualize it. Most time this action is done automatically.
+					</p><p>
+					<span class="item">&quot;Generate neural net&quot;:</span><br />
+					Generates the network. Only when you press this button the changes will be made for the real network. The patterns,
+					values of the weights and thresholds for the current network will be discarded! A name for the network is also
+					generated and inserted in the &quot;Net name&quot; Textbox. The name represents the current network topology, e.g. a
+					network with 2 input neurons, one hidden layer with 5 neurons and 1 output neuron is named &quot;2-5-1&quot;.
+					</p>
+				</div>
+				<br />
+				<div class="head"><a name="_Pattern_Builder"></a>4. Pattern Builder</div>
+				<p>
+				In this tab are two different panels, one for the manual editing / creating of patterns, propagating of the network for a
+				pattern and one for OCR specific pattern generating / extracting.
+				</p><p>
+				You can change the current panel by clicking on of the &quot;Mode&quot; radio buttons.
+				</p>
+				<div class="relative">
+					<img width="248" height="38" src="images/manual_designer_switch.jpg" alt="Mode select" />
+				</div>
+				<br />
+				<div class="subhead">
+					<a name="_PatterBuilder_Manual_input"></a>4.1. Manual input mode
+				</div>
+				<p>
+				The &quot;Manual input&quot; mode is needed to change the values of patterns manual. You can also check the current output
+				of the network for a selected pattern &rarr; propagate
+				</p>
+				<img width="896" height="682" src="images/manual_builder_manualMode.jpg" alt="Manual mode" />
+				<br />
+				<div class="subhead">4.1.1. Area 1</div>
+				<p>
+				In this area an overview of all current patterns is presented. When you select one pattern in the tree view, the properties
+				of this pattern are presented in area 2 and area 3.
+				</p>
+				<div class="ident">
+					<p>
+					<span class="item">&quot;Show current patterns&quot;:</span><br />
+					Show the current patterns, which are associated with the network, in the tree view. Most time this action is done
+					automatically.
+					</p><p>
+					<span class="item">&quot;Delete current patterns&quot;:</span><br />
+					Delete all patterns for the network.
+					</p><p>
+					<span class="item">&quot;Create new pattern&quot;:</span><br />
+					Create a new pattern and add it to the current network. The number of teach outputs corresponds to number of output neurons
+					for the network. Also the number of inputs corresponds to the current input layer. All values are initialized with 0.
+					</p><p>
+					<span class="item">&quot;Delete selected pattern&quot;:</span><br />
+					Delete the selected pattern.
+					</p><p>
+					<span class="item">&quot;Expand / Collapse all nodes&quot;:</span><br />
+					Expand or collapse all nodes of the &quot;Patterns overview&quot; tree view.
+					</p><p>
+					<span class="item">&quot;Clear view&quot;:</span><br />
+					Clear the patterns tree view, the input and output table.
+				</p></div>
+				<br />
+				<div class="subhead">4.1.2. Area 2</div>
+				<p>
+				Here you could examine the current values of the network for the selected pattern. The current real output of each output
+				neuron for the selected pattern, is presented in the right table (&quot;Output&quot;) in the &quot;Real&quot; column. The
+				corresponding teach output is shown in the &quot;Teach&quot; column. Each time the selected pattern is changed, the network
+				is propagated. &rarr; Use this feature to <span style="font-style:italic; font-weight:bold;">propagate</span> the network
+				for a pattern.
+				</p><p>
+				It is also possible to manually change the values of a pattern element.
+				</p>
+				<div class="ident">
+					<p>
+					<span class="item">&quot;Change&quot;:</span><br />
+					Change the value for the selected neuron. In the &quot;Output&quot; table this value represents the teach output.
+					</p>
+				</div>
+				<div class="subhead">4.1.3. Area 3</div>
+				<p>
+				This area is used to visualize the output of the responding neurons (max. 10) for the current pattern. The output of
+				each neuron is associated with one progress bar.
+				</p>
+				<div class="ident">
+					<p>
+					<span class="item">&quot;Associate neurons with letters&quot;:</span><br />
+					This feature is actually only needed for OCR problems. If this box is checked, the output neurons are associated with
+					letters. So it is possible to see what pattern number symbolizes a letter and what neurons are responding for that
+					letter. Of course this feature only makes sense and works correct for letters from A-Z.
+					</p>
+				</div>
+				<br />
+				<div class="subhead">
+					<a name="_OCR_pre-processing_mode"></a>4.2. OCR pre-processing mode
+				</div>
+				<p>
+				The &quot;OCR pre-processing&quot; mode is especially designed for OCR pattern building. You have the possibility to generate
+				images with letters and extract the features of them to train a neural network. It is also possible to filter an image, extract
+				a section of characters from the image, extract the features and use this as an input for the network.
+				</p>
+				<img width="896" height="682" src="images/manual_builder_ocrMode.jpg" alt="OCR Mode" />
+				<br />
+				<div class="subhead">4.2.1. Area 1</div>
+				<p>
+				In this area you could choose a font and generate training images for an OCR neural network.
+				</p>
+				<div class="ident">
+					<p>
+					<span class="item">&quot;Character range&quot;:</span><br />
+					Use the arrows beside the boxes to select the range of characters you would like to generate.
+					</p><p>
+					<span class="item">&quot;Noise in image&quot;:</span><br />
+					Adjust the amount of noise in percent you would like to have in each image.
+					</p><p>
+					<span class="item">&quot;Images for each character&quot;:</span><br />
+					Change the number of pictures for each letter, e.g. 2 means, 2 pictures with an &lsquo;A&rsquo;, 2 pictures with a
+					&lsquo;B&rsquo; and so on. This feature is intended for noised images.
+					</p><p>
+					<span class="item">&quot;Select font&quot;:</span><br />
+					Select a font (size,...) for the image generation.
+					</p>
+				</div>
+				<div class="subhead">4.2.2. Area 2</div>
+				<p>
+				This area is used to filter images and extract character regions and separate the characters in it to propagate a network.<br />
+				Of course you have to load an image first &rarr; [Ctrl+I].
+				</p>
+				<div class="ident">
+					<p>
+					<span class="item">&quot;Characters region&quot;:</span><br />
+					Select the region in the original image which contains a section of characters. You can see your selected region as a
+					red rectangle in the original image.
+					</p>
+				</div>
+				<p>
+				Filter sequence:<br />
+					The numbers beside the checkboxes indicate the position in the filter sequence. This means for example, if
+					1. is checked and 2. is also checked, then the 2. filter uses the output from the 1. as his input.
+				</p>
+				<div class="ident">
+					<p>
+					<span class="item">&quot;1. Gray conversion&quot;:</span><br />
+					Check this box if you want to convert the original image to a gray scaled image.
+					</p><p>
+					<span class="item">&quot;2. Brightness normalization&quot;:</span><br />
+					Check this box if you want to normalize the brightness of the input image.
+					</p><p>
+					<span class="item">&quot;3. Histogram equalization&quot;:</span><br />
+					Check this box if you want to increase the contrast of the input image.
+					</p><p>
+					<span class="item">&quot;4. Binary conversion&quot;:</span><br />
+					Check this box if you want to convert the input image to a black/white-image image.<br />
+					You can also adjust the <b>&quot;threshold&quot;</b> &rarr; if the brightness of the pixel is greater than the threshold
+					its colour is set to white; else its colour is set to black.
+					</p><p>
+					<span class="item">&quot;5. Smoothing&quot;:</span><br />
+					Check this box if you want to smooth the input image with a Gaussian convolution matrix. Adjust the amount of the
+					smoothing with the <b>&quot;Sigma&quot;</b>parameter of the Gaussian function.
+					</p><p>
+					<span class="item">&quot;6. Canny&quot;:</span><br />
+					Check this box if you want to detect the edges of the input image with the Canny algorithm. You can adjust the
+					<b>&quot;Low threshold&quot;</b> and <b>&quot;High threshold&quot;</b> &rarr; a potential edge is made to an edge if
+					the value of the pixel is greater than the high threshold and its not stopped along the edge, till the value is lower
+					than the low threshold.
+					</p>
+				</div>
+				<br />
+
+		<div class="subhead">4.2.3. Area 3</div>
+
+    <p> The controls in this area are actually used by Area 1 and Area 2. That's
+      why this area is placed between these two areas.</p>
+
+    <div class="ident">
+      <p> <span class="item">&quot;7. Character separator properties&quot;:</span><br />
+        Adjust here the <b>thresholds</b> for the histogram character separation
+        for the line and column histogram &rarr; if the value of the histogram
+        is lower or equal the threshold than the line/column is separated.<br />
+        First the lines are separated, then the column histogram of each line
+        is computed and the characters are separated.<br />
+        For the training image generation, this feature is used to crop a character
+        image to the minimal size and eliminate the unnecessary white space.<br />
+        You can see the found regions for the single characters in the &quot;Filtered
+        image&quot; picture box as red rectangles, if you filtered an image.
+      </p><p>
+	  <br />
+    </p></div>
+
+    <div class="subhead">4.2.3. Area 4</div>
+				<p>
+				In this area you could change the region of extraction for the single character and you can start the generating or filtering.
+				Beside Area 1 and Area 2 are two radio buttons docked. By changing the state of the radio button you can change the input of
+				this Area 3.
+				</p>
+				<div class="ident">
+					<p>
+					<span class="item">&quot;Start/Abort&quot;:</span><br />
+					Start / abort the generating or filtering of the images, depending on your selection (see above).
+					</p><p>
+					<span class="item">&quot;Pic No.&quot;:</span><br />
+					If you click on the arrows beside the box you can change the displayed image in the picture box above.
+					</p><p>
+					<span class="item">&quot;Delete image&quot;:</span><br />
+					If you have chosen to filter and separate a given image it could happen that some wrong pictures are detected. With this
+					button you can delete these pictures.
+					</p><p>
+					<span class="item">&quot;Extraction window&quot;:</span><br />
+					Select the region in the single character images which should be extracted by the feature extractor. You can see your
+					selected extraction window as a red rectangle in the picture box.
+					</p><p>
+					<span class="item">&quot;Scale images to&quot;:</span><br />
+					If you had different sized images for training than for propagation you could scale them to a uniform size.
+					</p><p>
+					<span class="item">&quot;Add to old patterns&quot;:</span><br />
+					When this box is checked, than the new generated patterns are added to the set of the previous patterns. If it is not checked, than the previous patterns will be discarded if you generate new patterns.
+					</p><p>
+					<span class="item">&quot;Also generate corresponding net&quot;:</span><br />
+					If you have chosen to generate a set of training images it is also possible to generate the corresponding neural network.
+					So you don't have to worry about the input layer or output layer size.<br />
+					But don't forget to set the number of hidden layers and the size of them before generating training patterns (see
+					<a href="#_Designer_Area_3">Generate neural net</a>)
+					</p>
+				</div>
+
+    <div class="subhead">4.2.4. Area 5</div>
+				<p>
+				Here you can change the method and their parameters for the neural network feature extraction.<br />
+				This is place where the pixel colour is transformed to neural network useable data.
+				</p>
+				<div class="ident">
+					<p>
+					<span class="item">&quot;Start/Abort&quot;:</span><br />
+					Start / abort the feature extraction.
+					</p><p>
+					<span class="item">&quot;Feature extraction method&quot;:</span><br />
+					Select a method for feature extraction and for some methods you can also adjust their parameters. For example, the dy/dx
+					jumps mean that every dx. column and dy. row is only extracted.
+					</p>
+				</div>
+				<br />
+				<div class="head"><a name="_Net_Trainer"></a>5. Net Trainer</div>
+				<p>
+				In the &quot;Net Trainer&quot; page you could change the used learning algorithm, adjust the properties / parameters of the
+				learning algorithm and trace the training process. The steepness of the Tanh or logistic activation function could also be
+				changed.
+				</p><p>
+				The parameters of the learning algorithm / activation function could be changed live during the training, you don't have to
+				stop the training to do this!
+				</p>
+				<img width="896" height="682" src="images/manual_trainer.jpg" alt="Network treiner" /><br />
+				<div class="subhead"><a name="_Trainer_Area_1"></a>Area 1</div>
+				<p>
+				The table on the left shows the error for each cycle of the training. So it is possible to trace the error for each cycle.
+				The graph on the right draws the course of the global summed error. If you move the mouse over the graph on the right, a
+				tooltip with the cycle and the error for the cycle is shown under your mouse cursor.
+				</p>
+				<div class="ident">
+					<p>
+					<span class="item">&quot;Max error&quot;:</span><br />
+					Insert the value for the tolerable error. The training stops if the current global summed error is lower or equal than
+					this value.
+					</p><p>
+					<span class="item">&quot;Fast mode (no live visualization)&quot;:</span><br />
+					When this box is checked, the error value is not inserted live in the table, the error graph is not drawn and the
+					progress of the training is not shown in the status bar. This speeds up the training for small network, whose weight
+					correction is calculated really fast and the most time is wasted with drawing of the error graph and inserting the
+					current error into the table.
+					</p>
+				</div>
+				<div class="subhead">5.2. Area 2</div>
+				<p>
+				In this area some common training algorithm properties could be set.
+				</p>
+				<div class="ident">
+					<p>
+					<span class="item">&quot;Choose a learning algorithm&quot;:</span><br />
+					You could select one of the learning algorithms from the dropdown list.
+					</p><p>
+					<span class="item">&quot;Slow-motion&quot;:</span><br />
+					Adjust the &quot;sleep time&quot; in milliseconds using the slider. The training will be paused for the adjusted time
+					after each cycle.
+					</p><p>
+					<span class="item">&quot;Max cycles&quot;:</span><br />
+					Type in the maximum number of cycles for the training. The training stops if this value has been reached or the error
+					is below or equal the &quot;Max error&quot; (<a href="#_Trainer_Area_1">Area 1</a>).
+					</p><p>
+					<span class="item">&quot;Start training&quot;:</span><br />
+					Start the training of the network using the selected learning algorithm and the adjusted parameters.
+					</p><p>
+					<span class="item">&quot;Stop training&quot;:</span><br />
+					Stop the execution of the training.
+					</p>
+				</div>
+				<div class="subhead">5.3. Area 3</div>
+				<p>
+				Here you could adjust some learning algorithm specific properties / parameters.<br />
+				If the type of the neurons activation function is the Tanh or the Logistic activation function, you could also adjust the
+				steepness of the function.
+				</p>
+				<div style="text-align:right">
+					&copy;2004 Rene Schulte, Torsten Bär
+				</div>
+			</div>
+		</div>
+		<div class="lastChange">
+			<script type="text/javascript" language="javascript">
+			<!--
+				docChanged("last change:<br />");
+			//-->
+			</script>
+		</div>
+	</body>
+</html>

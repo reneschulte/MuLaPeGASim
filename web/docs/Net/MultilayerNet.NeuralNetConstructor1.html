@@ -1,0 +1,111 @@
+<html dir="LTR">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252" />
+    <meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5" />
+    <title>NeuralNet Constructor (Single[], Int32[], Int32, LearningAlgo)</title>
+    <xml>
+    </xml>
+    <link rel="stylesheet" type="text/css" href="MSDN.css" />
+  </head>
+  <body id="bodyID" class="dtBODY">
+    <div id="nsbanner">
+      <div id="bannerrow1">
+        <table class="bannerparthead" cellspacing="0">
+          <tr id="hdr">
+            <td class="runninghead">Multilayer Perzeptron and Learning Algorhims</td>
+            <td class="product">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="TitleRow">
+        <h1 class="dtH1">NeuralNet Constructor (Single[], Int32[], Int32, LearningAlgo)</h1>
+      </div>
+    </div>
+    <div id="nstext">
+      <p> Constructor, init. the weights randomly -&gt; with an example !!!! <seealso cref="T:MultilayerNet.FileManager"></seealso><seealso cref="T:MultilayerNet.LearningAlgo"></seealso><seealso cref="T:MultilayerNet.GeneticLearningAlgorithm"></seealso></p>
+      <div class="syntax">public NeuralNet(<br />   <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpref/html/frlrfSystemSingleClassTopic.asp">float[]</a> <i>input</i>,<br />   <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpref/html/frlrfSystemInt32ClassTopic.asp">int[]</a> <i>hiddenLayers</i>,<br />   <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpref/html/frlrfSystemInt32ClassTopic.asp">int</a> <i>nOutputs</i>,<br />   <a href="MultilayerNet.LearningAlgo.html">LearningAlgo</a> <i>la</i><br />);</div>
+      <h4 class="dtH4">Parameters</h4>
+      <dl>
+        <dt>
+          <i>input</i>
+        </dt>
+        <dd>the input of the Network</dd>
+        <dt>
+          <i>hiddenLayers</i>
+        </dt>
+        <dd>describes how many hidden layers are created and how many neurons are in each layer</dd>
+        <dt>
+          <i>nOutputs</i>
+        </dt>
+        <dd>number of output neurons</dd>
+        <dt>
+          <i>la</i>
+        </dt>
+        <dd>the learning algorithm for the net</dd>
+      </dl>
+      <h4 class="dtH4">Example</h4>
+      <p> A simple example for a 2-3-3-2 network with input and teach output patterns, and the usage of the FileManager and trainig algorithm. <pre class="code">float[][] input = new float[][]{    new float[] {0.05f, 0.02f},
+                                    new float[] {0.09f, 0.11f},
+                                    new float[] {0.12f, 0.20f},
+                                    new float[] {0.15f, 0.22f},
+                                    new float[] {0.20f, 0.25f},
+                                    new float[] {0.75f, 0.75f},
+                                    new float[] {0.80f, 0.83f},
+                                    new float[] {0.82f, 0.80f},
+                                    new float[] {0.90f, 0.89f},
+                                    new float[] {0.95f, 0.89f}};
+
+float[][] teach = new float[][]{    new float[] {1.0f, 0.0f},
+                                    new float[] {1.0f, 0.0f},
+                                    new float[] {1.0f, 0.0f},
+                                    new float[] {1.0f, 0.0f},
+                                    new float[] {1.0f, 0.0f},
+                                    new float[] {0.0f, 1.0f},
+                                    new float[] {0.0f, 1.0f},
+                                    new float[] {0.0f, 1.0f},
+                                    new float[] {0.0f, 1.0f},
+                                    new float[] {0.0f, 1.0f}};
+
+// Create the 2-3-3-2 network with the genetic learning algorithm:
+NeuralNet nn = new NeuralNet(input[0], new int[]{3, 3}, teach[0].Length, new GeneticLearningAlgorithm());
+(nn.learnAlgoProp as GeneticLearningAlgorithm).nIndividualsProp = 200;
+// Mutation-Rate in percent !!
+(nn.learnAlgoProp as GeneticLearningAlgorithm).mutationRateProp = 5f;
+// Append an eventhandler:
+nn.learnAlgoProp.onErrorCalculated += new MultilayerNet.errorHandler(writeGSEToFile);
+
+nn.learnAlgoProp.inputProp = input;
+nn.learnAlgoProp.teachOutputProp = teach;
+
+FileManager.getInstance().writeNetworkToXml("2-3-3-2_before_learning.net", nn, "SuperNet untrained");
+Console.WriteLine("-------- LEARNING --------\n");
+nn.learnAlgoProp.learnPatterns();
+Console.WriteLine("--- LEARNING FINISHED AFTER {0} Generations ----", nn.learnAlgoProp.iterationProp);
+FileManager.getInstance().writeNetworkToXml("2-3-3-2_after_learning.net", nn, "SuperNet trained");
+
+// The eventhandler method wich is used above:
+
+public void writeGSEToFile(float error)
+{
+    FileManager.getInstance().writeFloatToTextFile("error.txt", error);
+}
+
+</pre></p>
+      <h4 class="dtH4">See Also</h4>
+      <p>
+        <a href="MultilayerNet.NeuralNet.html">NeuralNet Class</a> | <a href="MultilayerNet.html">MultilayerNet Namespace</a> | <a href="MultilayerNet.NeuralNetConstructor.html">NeuralNet Constructor Overload List</a> | <a href="MultilayerNet.FileManager.html">FileManager</a> | <a href="MultilayerNet.LearningAlgo.html">LearningAlgo</a> | <a href="MultilayerNet.GeneticLearningAlgorithm.html">GeneticLearningAlgorithm</a></p>
+      <hr />
+      <div id="footer">
+        <p>
+          <a href="mailto:mlp@rene-schulte.info?subject=Multilayer%20Perzeptron%20and%20Learning%20Algorhims%20Documentation%20Feedback:%20NeuralNet Constructor (Single[],%20Int32[],%20Int32,%20LearningAlgo)">Send comments on this topic.</a>
+        </p>
+        <p>
+          <a>(c) 2004 Rene Schulte and Torsten Baer</a>
+        </p>
+        <p>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
