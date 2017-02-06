@@ -1,0 +1,738 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OCRPreProcessing</name>
+    </assembly>
+    <members>
+        <member name="T:OCRPreProcessing.progressHandler">
+            <summary>
+            Delegate for the progress of the image filter computing
+            </summary>
+        </member>
+        <member name="T:OCRPreProcessing.IImageFilter">
+            <summary>
+            Description: The interface of an Image Filter
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-24-2004</para>
+            </summary>
+        </member>
+        <member name="E:OCRPreProcessing.IImageFilter.onComputing">
+            <summary>
+            The event which is thrown to indicate the progress of computing
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.IImageFilter.compute(System.Drawing.Bitmap)">
+            <summary>
+            Compute the filtering
+            </summary>
+            <param name="srcBmp">the source image for filtering</param>
+            <returns>the filtered image</returns>
+        </member>
+        <member name="T:OCRPreProcessing.GrayFilter">
+            <summary>
+            Description: Converts a RGB color image into a gray image
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-24-2004</para>
+            </summary>
+        </member>
+        <member name="E:OCRPreProcessing.GrayFilter.onComputing">
+            <summary>
+            The event which is thrown to indicate the progress of computing
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.GrayFilter.#ctor">
+            <summary>
+            Defaultconstructor, does nothin'
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.GrayFilter.compute(System.Drawing.Bitmap)">
+            <summary>
+            Converts a RGB color image into a gray image
+            </summary>
+            <param name="srcBmp">the source image for filtering</param>
+            <returns>the filtered image</returns>
+        </member>
+        <member name="T:OCRPreProcessing.BinarizeFilter">
+            <summary>
+            Description: Converts an image into a binary black/white image
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 11-04-2004</para>
+            </summary>
+        </member>
+        <member name="E:OCRPreProcessing.BinarizeFilter.onComputing">
+            <summary>
+            The event which is thrown to indicate the progress of computing
+            </summary>
+        </member>
+        <member name="P:OCRPreProcessing.BinarizeFilter.thresholdProp">
+            <summary>
+            The threshold for converting values between 0 and 1 make sense ;-) -> default: 0.5 
+            if(pixel.brightness > threshold) then pixel.newcolor=white else pixel.newcolor=black
+            </summary>
+        </member>
+        <member name="F:OCRPreProcessing.BinarizeFilter.threshold">
+            <summary>
+            The threshold for converting values between 0 and 1 make sense ;-) -> default: 0.5 
+            if(pixel.brightness > threshold) then pixel.newcolor=white else pixel.newcolor=black
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.BinarizeFilter.#ctor">
+            <summary>
+            Defaultconstructor, does nothin'
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.BinarizeFilter.compute(System.Drawing.Bitmap)">
+            <summary>
+            Converts an image into a binary black/white image. 
+            The pixel will be made black if the brightness of the pixel is lower than the threshold.
+            </summary>
+            <param name="srcBmp">the source image for filtering</param>
+            <returns>the filtered image</returns>
+        </member>
+        <member name="T:OCRPreProcessing.BrightnNormalizer">
+            <summary>
+            Description: Normalizes the brightness of a image using a best fit linear filter
+            <para>Author: Rene Schulte</para>/// <para>Version: 1.0</para>
+            <para>Last recent Update: 10-24-2004</para>
+            </summary>
+        </member>
+        <member name="E:OCRPreProcessing.BrightnNormalizer.onComputing">
+            <summary>
+            The event which is thrown to indicate the progress of computing
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.BrightnNormalizer.#ctor">
+            <summary>
+            Defaultconstructor, does nothin'
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.BrightnNormalizer.compute(System.Drawing.Bitmap)">
+            <summary>
+             Normalizes the brightness of a image using a best fit linear filter
+            </summary>
+            <param name="srcBmp">the source image for filtering</param>
+            <returns>the filtered image</returns>
+        </member>
+        <member name="T:OCRPreProcessing.HistEqualizer">
+            <summary>
+            Description: Equalizes the histogram of an image
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-24-2004</para>
+            </summary>
+        </member>
+        <member name="E:OCRPreProcessing.HistEqualizer.onComputing">
+            <summary>
+            The event which is thrown to indicate the progress of computing
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.HistEqualizer.#ctor">
+            <summary>
+            Defaultconstructor, does nothin'
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.HistEqualizer.compute(System.Drawing.Bitmap)">
+            <summary>
+            Equalizes the histogram of an image
+            </summary>
+            <param name="srcBmp">the source image for filtering</param>
+            <returns>the filtered image</returns>
+        </member>
+        <member name="T:OCRPreProcessing.GaussFilter">
+            <summary>
+            Description: Smooths the image using a gaussian 5x5 convolution matrix
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-24-2004</para>
+            </summary>
+        </member>
+        <member name="E:OCRPreProcessing.GaussFilter.onComputing">
+            <summary>
+            The event which is thrown to indicate the progress of computing
+            </summary>
+        </member>
+        <member name="P:OCRPreProcessing.GaussFilter.sigmaProp">
+            <summary>
+            The Sigma paramter for the gaussian smoothing. Higher values increase the 'smoothness' -> default: 1.6
+            </summary>
+        </member>
+        <member name="F:OCRPreProcessing.GaussFilter.sigma">
+            <summary>
+            The Sigma paramter for the gaussian smoothing. Higher values increase the 'smoothness' -> default: 1.6
+            </summary>
+        </member>
+        <member name="P:OCRPreProcessing.GaussFilter.gaussMaskProp">
+            <summary>
+            The gauss mask -> default: sigma = 1.6
+            </summary>
+        </member>
+        <member name="F:OCRPreProcessing.GaussFilter.gaussMask">
+            <summary>
+            The gauss mask -> default: sigma = 1.6
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.GaussFilter.#ctor">
+            <summary>
+            Defaultconstructor, initializes the gauss mask
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.GaussFilter.compute(System.Drawing.Bitmap)">
+            <summary>
+             Smooths the image using a gaussian 5x5 convolution matrix
+            </summary>
+            <param name="srcBmp">the source image for filtering</param>
+            <returns>the filtered image</returns>
+        </member>
+        <member name="M:OCRPreProcessing.GaussFilter.computeGaussMask">
+            <summary>
+            Computes the convolution matrix for the gaussian smoothing, using the value of the sigma member
+            </summary>
+        </member>
+        <member name="T:OCRPreProcessing.SobelFilter">
+            <summary>
+            Description: Filters the image for edge detection using the Sobel operator (two 3x3 convolution matrix)
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-24-2004</para>
+            </summary>
+        </member>
+        <member name="E:OCRPreProcessing.SobelFilter.onComputing">
+            <summary>
+            The event which is thrown to indicate the progress of computing
+            </summary>
+        </member>
+        <member name="F:OCRPreProcessing.SobelFilter.sobelMaskX">
+            <summary>
+            The Sobel mask for x
+            </summary>
+        </member>
+        <member name="F:OCRPreProcessing.SobelFilter.sobelMaskY">
+            <summary>
+            The Sobel mask for y
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.SobelFilter.#ctor">
+            <summary>
+            Defaultconstructor, initialize the Sobel convolution mask
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.SobelFilter.compute(System.Drawing.Bitmap)">
+            <summary>
+            Filters the image for edge detection using the Sobel operator (two 3x3 convolution matrix)
+            </summary>
+            <param name="srcBmp">the source image for filtering</param>
+            <returns>the filtered image</returns>
+        </member>
+        <member name="T:OCRPreProcessing.CannyFilter">
+            <summary>
+            Description: Detects the edges of an image using the Canny-Algorithm
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-24-2004</para>
+            </summary>
+        </member>
+        <member name="E:OCRPreProcessing.CannyFilter.onComputing">
+            <summary>
+            The event which is thrown to indicate the progress of computing
+            </summary>
+        </member>
+        <member name="P:OCRPreProcessing.CannyFilter.sigmaProp">
+            <summary>
+            The Sigma paramter for the gaussian smoothing higher values increase the 'smoothness' -> default: 1.6
+            </summary>
+        </member>
+        <member name="F:OCRPreProcessing.CannyFilter.sigma">
+            <summary>
+            The Sigma paramter for the gaussian smoothing higher values increase the 'smoothness' -> default: 1.6
+            </summary>
+        </member>
+        <member name="P:OCRPreProcessing.CannyFilter.lowThresholdProp">
+            <summary>
+            The low threshold for the hysteresis computing of the Canny algorithm -> default: 10
+            </summary>
+        </member>
+        <member name="F:OCRPreProcessing.CannyFilter.lowThreshold">
+            <summary>
+            The low threshold for the hysteresis computing of the Canny algorithm -> default: 10
+            </summary>
+        </member>
+        <member name="P:OCRPreProcessing.CannyFilter.highThresholdProp">
+            <summary>
+            The high threshold for the hysteresis computing of the Canny algorithm -> default: 200
+            </summary>
+        </member>
+        <member name="F:OCRPreProcessing.CannyFilter.highThreshold">
+            <summary>
+            The high threshold for the hysteresis computing of the canny algorithm -> default: 200
+            </summary>
+        </member>
+        <member name="P:OCRPreProcessing.CannyFilter.doSmoothingProp">
+            <summary>
+            If doSmoothing == true, the image will be smoothed using the gaussian smoothing,
+            before the Canny algo is computed -> default: true
+            </summary>
+        </member>
+        <member name="F:OCRPreProcessing.CannyFilter.doSmoothing">
+            <summary>
+            If doSmoothing == true, the image will be smoothed using the gaussian smoothing,
+            before the Canny algo is computed -> default: true
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.CannyFilter.#ctor">
+            <summary>
+            Defaultconstructor, just calls the Superconstructor
+            <seealso cref="T:OCRPreProcessing.SobelFilter"/>
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.CannyFilter.compute(System.Drawing.Bitmap)">
+            <summary>
+            Detects the edges of an image using the Canny-Algorithm
+            </summary>
+            <param name="srcBmp">the source image for filtering</param>
+            <returns>the filtered image</returns>
+        </member>
+        <member name="T:OCRPreProcessing.IImageSeparator">
+            <summary>
+            Description: The interface for an Image Segmenter/Separator
+            <para>Author: Torsten Baer</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 11-03-2004</para>
+            </summary>
+        </member>
+        <member name="E:OCRPreProcessing.IImageSeparator.onComputing">
+            <summary>
+            The event which is thrown to indicate the progress of computing
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.IImageSeparator.separateToBitmaps(System.Drawing.Bitmap)">
+            <summary>
+            Separates the given image into n new images which contains the found letters
+            </summary>
+            <param name="bmp">The image which should be separated</param>
+            <returns>The found letters as a Bitmap array</returns>
+        </member>
+        <member name="T:OCRPreProcessing.HistogramSeparator">
+            <summary>
+            Description: Separates an image into n images using the horizontal and vertical 
+            histograms of a Bitmap
+            <para>Author: Torsten Baer</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-27-2004</para>
+            </summary>
+        </member>
+        <member name="E:OCRPreProcessing.HistogramSeparator.onComputing">
+            <summary>
+            The event which is thrown to indicate the progress of computing
+            </summary>
+        </member>
+        <member name="F:OCRPreProcessing.HistogramSeparator.colThreshold">
+            <summary>
+            The thresholdfactor for the columns
+            </summary>
+        </member>
+        <member name="F:OCRPreProcessing.HistogramSeparator.lineThreshold">
+            <summary>
+            The thresholdfactor for the lines
+            </summary>
+        </member>
+        <member name="F:OCRPreProcessing.HistogramSeparator.rects">
+            <summary>
+            The Rectangles for separation
+            </summary>
+        </member>
+        <member name="P:OCRPreProcessing.HistogramSeparator.ColumnThreshold">
+            <summary>
+            Property to set the thresholdfactor for columns. 
+            The factor will be multiplicated with the average of the column histogram
+            </summary>
+        </member>
+        <member name="P:OCRPreProcessing.HistogramSeparator.LineThreshold">
+            <summary>
+            Property to set the threshold factor for the lines. 
+            The factor will be multiplicated with the avarage of the line histogram
+            </summary>
+        </member>
+        <member name="P:OCRPreProcessing.HistogramSeparator.Rectangles">
+            <summary>
+            The rectangles for separation
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.HistogramSeparator.#ctor">
+            <summary>
+            Defaultconstructor, initializes members
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.HistogramSeparator.getRectangles(System.Drawing.Bitmap)">
+            <summary>
+            This method separates the given Bitmap and returns the areas, where letters where found
+            </summary>
+            <param name="bmp">The image which should be separated</param>
+            <returns>An array of rectangles</returns>
+        </member>
+        <member name="M:OCRPreProcessing.HistogramSeparator.separateToBitmaps(System.Drawing.Bitmap)">
+            <summary>
+            Separates an image into n images using histograms
+            </summary>
+            <param name="bmp">the image which should be separated</param>
+            <returns>the separated images</returns>
+        </member>
+        <member name="M:OCRPreProcessing.HistogramSeparator.computeLineOrientedHistogram(System.Drawing.Bitmap,System.Single@)">
+            <summary>
+            Builds the vertical histogram of a given image
+            </summary>
+            <param name="bmp">The Image, which should be separated</param>
+            <param name="maxValue">The max Value of the determined histogram</param>
+            <returns>The histogram, represented by a float array</returns>
+        </member>
+        <member name="M:OCRPreProcessing.HistogramSeparator.computeColumnOrientedHistogram(System.Drawing.Bitmap,System.Int32,System.Int32,System.Single@)">
+            <summary>
+            Builds the horizontal histogram of a given image
+            </summary>
+            <param name="bmp">The Image, which should be separated</param>
+            <param name="upper">Marks the upper edge for the Calculation</param>
+            <param name="lower">Marks the lower edge for the Calculation</param>
+            <param name="maxValue">The max Value of the determined histogram</param>
+            <returns>The histogram, represented by a float array</returns>
+        </member>
+        <member name="T:OCRPreProcessing.OCRImageCreator">
+            <summary>
+            Description: Class for creating an image which contains a character
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-24-2004</para>
+            </summary>
+        </member>
+        <member name="P:OCRPreProcessing.OCRImageCreator.bmpProp">
+            <summary>
+            The bitmap containing the character
+            </summary>		
+        </member>
+        <member name="F:OCRPreProcessing.OCRImageCreator.bmp">
+            <summary>
+            The bitmap containing the character
+            </summary>	
+        </member>
+        <member name="P:OCRPreProcessing.OCRImageCreator.characterProp">
+            <summary>
+            The char character corresponding to the image -> default: 'W'
+            </summary>
+        </member>
+        <member name="F:OCRPreProcessing.OCRImageCreator.character">
+            <summary>
+            The char character corresponding to the image -> default: 'W'
+            </summary>
+        </member>
+        <member name="P:OCRPreProcessing.OCRImageCreator.fontProp">
+            <summary>
+            The Font which will be used for drawing the image -> default: sans serif with size 6.5
+            </summary>
+        </member>
+        <member name="F:OCRPreProcessing.OCRImageCreator.font">
+            <summary>
+            The Font which will be used for drawing the image -> default: sans serif with size 6.5
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.OCRImageCreator.#ctor">
+            <summary>
+            The Defaultconstructor creates an image with the character W in the size 
+            of 6.5f and the sans serif font
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.OCRImageCreator.#ctor(System.Char)">
+            <summary>
+            Constructor creates an image in the size of 6.5f and the sans serif font
+            </summary>
+            <param name="c">the character for drawing the image</param>
+        </member>
+        <member name="M:OCRPreProcessing.OCRImageCreator.#ctor(System.Char,System.Drawing.Font)">
+            <summary>
+            Constructor for all parameters
+            </summary>
+            <param name="c">the character for drawing the image</param>
+            <param name="font">the font used for drawing the character in the image</param>
+        </member>
+        <member name="M:OCRPreProcessing.OCRImageCreator.createCharBmp(System.Char,System.Drawing.Font)">
+            <summary>
+            Creates an image with a character
+            </summary>
+            <param name="c">the character for drawing the image</param>
+            <param name="font">the font used for drawing the character in the image</param>
+            <returns>the bitmap containing the drawn character</returns>
+        </member>
+        <member name="M:OCRPreProcessing.OCRImageCreator.addNoiseToImg(System.Single)">
+            <summary>
+            Add randomly black and white pixels to the image
+            </summary>
+            <param name="percent">how much percent of the pixels should be noised</param>
+        </member>
+        <member name="T:OCRPreProcessing.OCRImageExtractor">
+            <summary>
+            Description: Abstract class for various algorithms to extract the necessary features for a Neural Network, 
+            from an image containing a character 
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-30-2004</para>
+            </summary>
+        </member>
+        <member name="P:OCRPreProcessing.OCRImageExtractor.thresholdProp">
+            <summary>
+            The threshold for extracting bitmap values b/w. Default 0.5 
+            <para>if(pixel.brightness > threshold) pat = 1; else pat = 0</para>
+            </summary>
+        </member>
+        <member name="F:OCRPreProcessing.OCRImageExtractor.threshold">
+            <summary>
+            The threshold for extracting bitmap values b/w. Default 0.5 
+            <para>if(pixel.brightness > threshold) pat = 1; else pat = 0</para>
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.OCRImageExtractor.#ctor">
+            <summary>
+            Defaultconstructor, does nothin'
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.OCRImageExtractor.computePatternVec(System.Drawing.Bitmap)">
+            <summary>
+            Computes the pattern vector
+            </summary>
+            <param name="srcBmp">the source image which should be extracted</param>
+            <returns>the pattern vector</returns>
+        </member>
+        <member name="M:OCRPreProcessing.OCRImageExtractor.computePatternVec(System.Drawing.Bitmap,System.Drawing.Rectangle)">
+            <summary>
+            Computes the pattern vector
+            </summary>
+            <param name="srcBmp">the source image which should be extracted</param>
+            <param name="window">the window which should be extracted</param>
+            <returns>the pattern vector</returns>
+        </member>
+        <member name="M:OCRPreProcessing.OCRImageExtractor.computeFeatureVec(System.Drawing.Bitmap)">
+            <summary>
+            Computes the feature vector
+            </summary>
+            <param name="srcBmp">the source image which should be extracted</param>
+            <returns>the feature vector</returns>
+        </member>
+        <member name="M:OCRPreProcessing.OCRImageExtractor.computeFeatureVec(System.Drawing.Bitmap,System.Drawing.Rectangle)">
+            <summary>
+            Computes the feature vector
+            </summary>
+            <param name="srcBmp">the source image which should be extracted</param>
+            <param name="window">the window which should be extracted</param>
+            <returns>the feature vector</returns>
+        </member>
+        <member name="T:OCRPreProcessing.RawExtractor">
+            <summary>
+            Description: Just the raw negative brightness data.featureVector == patternVector, 
+            each element of the vector is the negative brightness of one pixel
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-30-2004</para>
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.RawExtractor.#ctor">
+            <summary>
+            The Defaultconstructor, does nothin'
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.RawExtractor.computeFeatureVec(System.Drawing.Bitmap)">
+            <summary>
+            Computes the feature vector: featureVector == patternVector, 
+            each element of the vector is the negative brightness of one pixel
+            </summary>
+            <param name="srcBmp">the source image which should be extracted</param>
+            <returns>the feature vector</returns>
+        </member>
+        <member name="M:OCRPreProcessing.RawExtractor.computeFeatureVec(System.Drawing.Bitmap,System.Drawing.Rectangle)">
+            <summary>
+            Computes the feature vector: featureVector == patternVector, 
+            each element of the vector is the negative brightness of one pixel
+            </summary>
+            <param name="srcBmp">the source image which should be extracted</param>
+            <param name="window">the window which should be extracted</param>
+            <returns>the feature vector</returns>
+        </member>
+        <member name="T:OCRPreProcessing.OCRImgExtCounter">
+            <summary>
+            Description: abstract class for various counting methods
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-30-2004</para>
+            </summary>
+        </member>
+        <member name="P:OCRPreProcessing.OCRImgExtCounter.dxProp">
+            <summary>
+            Describes how often a column should be extracted. Default == 1 => every column. 
+            A value of 2 means that every 2nd column would be used for extraction
+            </summary>
+        </member>
+        <member name="F:OCRPreProcessing.OCRImgExtCounter.dx">
+            <summary>
+            Describes how often a column should be extracted. Default == 1 => every column. 
+            A value of 2 means that every 2nd column would be used for extraction
+            </summary>
+        </member>
+        <member name="P:OCRPreProcessing.OCRImgExtCounter.dyProp">
+            <summary>
+            Describes how often a row should be extracted. Default == 1 => every row.
+            A value of 2 means that every 2nd row would be used for extraction
+            </summary>
+        </member>
+        <member name="F:OCRPreProcessing.OCRImgExtCounter.dy">
+            <summary>
+            Describes how often a row should be extracted. Default == 1 => every row.
+            A value of 2 means that every 2nd row would be used for extraction
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.OCRImgExtCounter.#ctor">
+            <summary>
+            The Defaultconstructor, does nothin'
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.OCRImgExtCounter.init(System.Drawing.Rectangle)">
+            <summary>
+            Initialize the size of the feature vector
+            </summary>
+            <param name="window">the window for extracting</param>
+            <returns>the feature vector</returns>
+        </member>
+        <member name="T:OCRPreProcessing.BlackPxCounter">
+            <summary>
+            Description: Counts the black pixel in each row and each column to compute the feature vector
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-30-2004</para>
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.BlackPxCounter.#ctor">
+            <summary>
+            The Defaultconstructor, does nothin'
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.BlackPxCounter.computeFeatureVec(System.Drawing.Bitmap)">
+            <summary>
+            Counts the black pixel in each row and each column to compute the feature vector
+            </summary>
+            <param name="srcBmp">the source image which should be extracted</param>
+            <returns>the feature vector</returns>
+        </member>
+        <member name="M:OCRPreProcessing.BlackPxCounter.computeFeatureVec(System.Drawing.Bitmap,System.Drawing.Rectangle)">
+            <summary>
+            Counts the black pixel in each row and each column to compute the feature vector
+            </summary>
+            <param name="srcBmp">the source image which should be extracted</param>
+            <param name="window">the window which should be extracted</param>
+            <returns>the feature vector</returns>
+        </member>
+        <member name="T:OCRPreProcessing.BlackPxAddRowAndColCounter">
+            <summary>
+            Description: Counts the black pixel in each row and each column and adds them to compute the feature vector
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-30-2004</para>
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.BlackPxAddRowAndColCounter.#ctor">
+            <summary>
+            The Defaultconstructor, does nothin'
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.BlackPxAddRowAndColCounter.init(System.Drawing.Rectangle)">
+            <summary>
+            Initialize the size of the feature vector
+            </summary>
+            <param name="window">the window for extracting</param>
+            <returns>the feature vector</returns>
+        </member>
+        <member name="M:OCRPreProcessing.BlackPxAddRowAndColCounter.computeFeatureVec(System.Drawing.Bitmap)">
+            <summary>
+            Counts the black pixel in each row and each column and adds them to compute the feature vector
+            </summary>
+            <param name="srcBmp">the source image which should be extracted</param>
+            <returns>the feature vector</returns>
+        </member>
+        <member name="M:OCRPreProcessing.BlackPxAddRowAndColCounter.computeFeatureVec(System.Drawing.Bitmap,System.Drawing.Rectangle)">
+            <summary>
+            Counts the black pixel in each row and each column and adds them to compute the feature vector
+            </summary>
+            <param name="srcBmp">the source image which should be extracted</param>
+            <param name="window">the window which should be extracted</param>
+            <returns>the feature vector</returns>
+        </member>
+        <member name="T:OCRPreProcessing.BlackPxWhitePxChangesCounter">
+            <summary>
+            Description: Counts the black and white pixel changes in each row and each column
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-30-2004</para>
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.BlackPxWhitePxChangesCounter.#ctor">
+            <summary>
+            The Defaultconstructor, does nothin'
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.BlackPxWhitePxChangesCounter.computeFeatureVec(System.Drawing.Bitmap)">
+            <summary>
+            Counts the black and white pixel changes in each row and each column
+            </summary>
+            <param name="srcBmp">the source image which should be extracted</param>
+            <returns>the feature vector</returns>
+        </member>
+        <member name="M:OCRPreProcessing.BlackPxWhitePxChangesCounter.computeFeatureVec(System.Drawing.Bitmap,System.Drawing.Rectangle)">
+            <summary>
+            Counts the black and white pixel changes in each row and each column
+            </summary>
+            <param name="srcBmp">the source image which should be extracted</param>
+            <param name="window">the window which should be extracted</param>
+            <returns>the feature vector</returns>
+        </member>
+        <member name="T:OCRPreProcessing.ImgSegmenter">
+            <summary>
+            Description: Segments the image in nSegments rows and nSegments columns. 
+            Counts the black pixels in each segment, the sum of each segment is normalized. 
+            One item of the the feature vector == normalized sum of black pixels in a segement
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-30-2004</para>
+            </summary>
+        </member>
+        <member name="P:OCRPreProcessing.ImgSegmenter.nSegmentsProp">
+            <summary>
+            The image would be segmented in nSegments rows and nSegments columns; default -> 4
+            </summary>
+        </member>
+        <member name="F:OCRPreProcessing.ImgSegmenter.nSegments">
+            <summary>
+            The image would be segmented in nSegments rows and nSegments columns; default -> 4
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.ImgSegmenter.#ctor">
+            <summary>
+            The Defaultconstructor, does nothin'
+            </summary>
+        </member>
+        <member name="M:OCRPreProcessing.ImgSegmenter.computeFeatureVec(System.Drawing.Bitmap)">
+            <summary>
+            Segments the image in nSegments rows and nSegments columns. 
+            Counts the black pixels in each segment, the sum of each segment is normalized. 
+            One item of the the feature vector == normalized sum of black pixels in a segement
+            </summary>
+            <param name="srcBmp">the source image which should be extracted</param>
+            <returns>the feature vector</returns>
+        </member>
+        <member name="M:OCRPreProcessing.ImgSegmenter.computeFeatureVec(System.Drawing.Bitmap,System.Drawing.Rectangle)">
+            <summary>
+            Segments the image in nSegments rows and nSegments columns. 
+            Counts the black pixels in each segment, the sum of each segment is normalized. 
+            One item of the the feature vector == normalized sum of black pixels in a segement
+            </summary>
+            <param name="srcBmp">the source image which should be extracted</param>
+            <param name="window">the window which should be extracted</param>
+            <returns>the feature vector</returns>
+        </member>
+    </members>
+</doc>

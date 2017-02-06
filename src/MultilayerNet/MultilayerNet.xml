@@ -1,0 +1,1550 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MultilayerNet</name>
+    </assembly>
+    <members>
+        <member name="T:MultilayerNet.IActivationFunction">
+            <summary>
+            Description: Interface for an activation function
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-24-2004</para>
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.IActivationFunction.Name">
+            <summary>
+            Returns the human readable name of the activation function
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.IActivationFunction.outputProp">
+            <summary>
+            Returns the output of the activation function; calculated just in time
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.IActivationFunction.derivOutputProp">
+            <summary>
+            Returns the first derivation output of the activation function; calculated just in time
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.IActivationFunction.neuronProp">
+            <summary>
+            The reference to the neuron which belongs to this activation function
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.IActivationFunction.minProp">
+            <summary>
+            Returns the minimum value for the activation function
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.IActivationFunction.maxProp">
+            <summary>
+            Returns the maximum value for the activation function
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.IActivationFunction.activationProps">
+            <summary>
+            Contains the String(s) with the specific properties for the activation function
+            </summary>
+            <example>
+            The Property must have the Name 'parameterProp' and the String in activationProps 'parameter',
+            in order to use the FileManagers read methods properly.
+            <para>Example for the Sigmoid activation function:
+            <code>
+            public float steepnessProp{ get{...} set{...} }
+            public string[] activationProps{ get{return new string[]{"steepness"};} }
+            </code>
+            </para>
+            </example>
+        </member>
+        <member name="T:MultilayerNet.SigmoidActFunc">
+            <summary>
+            Description: Abstract class for extending Sigmoid activation functions.
+            The parameter steepness stands for the steepness of the function.
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-24-2004</para>
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.SigmoidActFunc.Name">
+            <summary>
+            Returns the name of the Sigmoid Activation Function
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.SigmoidActFunc.steepnessProp">
+            <summary>
+            The steepness of the Sigmoid function; default 1.0f
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.SigmoidActFunc.steepness">
+            <summary>
+            The steepness of the Sigmoid function; default 1.0f
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.SigmoidActFunc.steepnessMinProp">
+            <summary>
+            Returns the minimum value which could be used to set the minimum for adjusting the steepness
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.SigmoidActFunc.steepnessMaxProp">
+            <summary>
+            Returns the maximum value which could be used to set the maximum for adjusting the steepness
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.SigmoidActFunc.steepnessStepProp">
+            <summary>
+            Returns the step range which could be used to set the step for adjusting the steepness values
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.SigmoidActFunc.neuronProp">
+            <summary>
+            The reference to the neuron which belongs to this Sigmoid activation function
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.SigmoidActFunc.neuron">
+            <summary>
+            The reference to the neuron which belongs to this Sigmoid activation function
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.SigmoidActFunc.outputProp">
+            <summary>
+            Returns the output of the Sigmoid activation function; calculated just in time
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.SigmoidActFunc.derivOutputProp">
+            <summary>
+            Returns the first derivation output of the Sigmoid activation function; calculated just in time
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.SigmoidActFunc.minProp">
+            <summary>
+            Returns the minimum value for the Sigmoid activation function
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.SigmoidActFunc.maxProp">
+            <summary>
+            Returns the maximum value for the Sigmoid activation function
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.SigmoidActFunc.activationProps">
+            <summary>
+            Contains the String(s) with the specific properties for the Sigmoid activation function.
+            <see cref="P:MultilayerNet.IActivationFunction.activationProps"/> for an example
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.SigmoidActFunc.#ctor(MultilayerNet.Neuron,System.Single)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="n">the associated neuron</param>
+            <param name="steepness">the steepness of the Sigmoid function</param>
+        </member>
+        <member name="M:MultilayerNet.SigmoidActFunc.#ctor(MultilayerNet.Neuron)">
+            <summary>
+            Constructor, steepness default = 1.0f
+            </summary>
+            <param name="n">the associated neuron</param>
+        </member>
+        <member name="M:MultilayerNet.SigmoidActFunc.#ctor">
+            <summary>
+            The Defaultconstructor, inits the belonging neuron with null
+            </summary>
+        </member>
+        <member name="T:MultilayerNet.LogisticActFunc">
+            <summary>
+            Description: The Logistic activation function. (min=0; max=1)
+            The parameter steepness stands for the steepness of the function.
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-24-2004</para>
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.LogisticActFunc.Name">
+            <summary>
+            Returns the name of the Logistic activation function
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.LogisticActFunc.outputProp">
+            <summary>
+            Returns the output of the Logistic activation function, returns: 1/(1 + Exp(-steepness * net))
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.LogisticActFunc.derivOutputProp">
+            <summary>
+            Returns the first derivation output of the Logistic activation function, returns: (steepness * outputProp * (1 - outputProp))
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.LogisticActFunc.minProp">
+            <summary>
+            Returns the minimum value for the Logistic activation function
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.LogisticActFunc.maxProp">
+            <summary>
+            Returns the maximum value for the Logistic activation function
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.LogisticActFunc.#ctor(MultilayerNet.Neuron,System.Single)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="n">the associated neuron</param>
+            <param name="steepness">the steepness of the Sigmoid function</param>
+        </member>
+        <member name="M:MultilayerNet.LogisticActFunc.#ctor(MultilayerNet.Neuron)">
+            <summary>
+            Constructor, steepness default = 1.0f
+            </summary>
+            <param name="n">the associated neuron</param>
+        </member>
+        <member name="M:MultilayerNet.LogisticActFunc.#ctor">
+            <summary>
+            The Defaultconstructor, inits the belonging neuron with null
+            </summary>
+        </member>
+        <member name="T:MultilayerNet.TanhActFunc">
+            <summary>
+            Description: The Tangens Hyperbolicus activation function. (min=-1; max=1)
+            The parameter steepness stands for the steepness of the function.
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-24-2004</para>
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.TanhActFunc.Name">
+            <summary>
+            Returns the name of the Tangens Hyperbolicus activation function
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.TanhActFunc.outputProp">
+            <summary>
+            Returns the output of the Tangens Hyperbolicus activation function, returns: tanh(steepness * net)
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.TanhActFunc.derivOutputProp">
+            <summary>
+            Returns the first derivation output of the Tangens Hyperbolicus activation function, returns: (1 - output^2)*steepness
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.TanhActFunc.minProp">
+            <summary>
+            Returns the minimum value for the Tangens Hyperbolicus activation function
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.TanhActFunc.maxProp">
+            <summary>
+            Returns the maximum value for the Tangens Hyperbolicus activation function
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.TanhActFunc.#ctor(MultilayerNet.Neuron,System.Single)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="n">the associated neuron</param>
+            <param name="steepness">the steepness of the Sigmoid function</param>
+        </member>
+        <member name="M:MultilayerNet.TanhActFunc.#ctor(MultilayerNet.Neuron)">
+            <summary>
+            Constructor, steepness default = 1.0f
+            </summary>
+            <param name="n">the associated neuron</param>
+        </member>
+        <member name="M:MultilayerNet.TanhActFunc.#ctor">
+            <summary>
+            The Defaultconstructor, inits the belonging neuron with null
+            </summary>
+        </member>
+        <member name="T:MultilayerNet.StepActFunc">
+            <summary>
+            Description: The Linear Step activation function. Also called Binary Threshold function
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-24-2004</para>
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.StepActFunc.Name">
+            <summary>
+            Returns the name of the Linear Step activation function
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.StepActFunc.neuronProp">
+            <summary>
+            The reference to the neuron which belongs to this Linear Step activation function
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.StepActFunc.neuron">
+            <summary>
+            The reference to the neuron which belongs to this Linear Step activation function
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.StepActFunc.outputProp">
+            <summary>
+            Returns the output of the Linear Step activation function; if(net>threshold) return 1; else return 0;
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.StepActFunc.derivOutputProp">
+            <summary>
+            Returns the first derivation output of the Linear Step activation function; if(0.0001>Abs(net)) float.MaxValue; else return 0;
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.StepActFunc.minProp">
+            <summary>
+            Returns the minimum value for the Linear Step activation function
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.StepActFunc.maxProp">
+            <summary>
+            Returns the maximum value for the Linear Step activation function
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.StepActFunc.activationProps">
+            <summary>
+            Contains the String(s) with the specific properties for the Linear Step activation function.
+            <see cref="P:MultilayerNet.IActivationFunction.activationProps"/> for an example
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.StepActFunc.#ctor(MultilayerNet.Neuron)">
+            <summary>
+            Constructor, init the belonging neuron
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.StepActFunc.#ctor">
+            <summary>
+            The Defaultconstructor, inits the belonging neuron with null
+            </summary>
+        </member>
+        <member name="T:MultilayerNet.Backpropagation">
+            <summary>
+            Description: Backpropagation Multilayer Perceptron learning algorithm. 
+            Using the Momentum method, Flat Spot Elimination and offline (batch) or online training.
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-24-2004</para>
+            </summary>
+        </member>
+        <member name="E:MultilayerNet.Backpropagation.onErrorCalculated">
+            <summary>
+            The event which is thrown, after the summed global error was calculated
+            </summary>
+        </member>
+        <member name="E:MultilayerNet.Backpropagation.onOutCalculated">
+            <summary>
+            The event which is thrown, after the output was calculated
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.Backpropagation.learningRateProp">
+            <summary>
+            The learning rate for the network, default = 0.1
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.Backpropagation.learningRate">
+            <summary>
+            The learning rate for the network, default = 0.1
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.Backpropagation.learningRateMinProp">
+            <summary>
+            Returns the minimum value which could be used to set the minimum for adjusting the learning rate
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.Backpropagation.learningRateMaxProp">
+            <summary>
+            Returns the maximum value which could be used to set the minimum for adjusting the learning rate
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.Backpropagation.learningRateStepProp">
+            <summary>
+            Returns the step range which could be used to set the step for adjusting the learning rate value
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.Backpropagation.momentumParamProp">
+            <summary>
+            The Momentum factor:
+            <para>The inertia rate for the network, default = 0.2.
+            Values for the momentumParam must be between 0.0f and 1.0f</para>
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.Backpropagation.momentumParam">
+            <summary>
+            The Momentum factor:
+            <para>The inertia rate for the network, default = 0.2.
+            Values for the momentumParam must be between 0.0f and 1.0f</para>
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.Backpropagation.momentumParamMinProp">
+            <summary>
+            Returns the minimum value which could be used to set the minimum for adjusting the Momentum factor
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.Backpropagation.momentumParamMaxProp">
+            <summary>
+            Returns the maximum value which could be used to set the minimum for adjusting the Momentum factor
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.Backpropagation.momentumParamStepProp">
+            <summary>
+            Returns the step range which could be used to set the step for adjusting the Momentum factor value
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.Backpropagation.daFlatFactorProp">
+            <summary>
+            The factor for Flat Spot Elimination:
+            <para>added to the derivation of the activation function -> default = 0.
+            Values must be between 0 and 1</para>
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.Backpropagation.daFlatFactor">
+            <summary>
+            The factor for Flat Spot Elimination:
+            <para>added to the derivation of the activation function -> default = 0.
+            Values must be between 0 and 1</para>
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.Backpropagation.daFlatFactorMinProp">
+            <summary>
+            Returns the minimum value which could be used to set the minimum for adjusting the Flat Spot factor
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.Backpropagation.daFlatFactorMaxProp">
+            <summary>
+            Returns the maximum value which could be used to set the minimum for adjusting the Flat Spot factor
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.Backpropagation.daFlatFactorStepProp">
+            <summary>
+            Returns the step range which could be used to set the step for adjusting the Flat Spot factor value
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.Backpropagation.dwOld">
+            <summary>
+            The weight change of the pattern before(t-1) the current pattern(t). Needed for momentum method
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.Backpropagation.weightChange">
+            <summary>
+            The weight change of the pattern
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.Backpropagation.algoProps">
+            <summary>
+            Contains the String(s) with the specific properties for the Backpropagation algorithm
+            <see cref="P:MultilayerNet.LearningAlgo.algoProps"/> for an example
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.Backpropagation.algoPropsDescription">
+            <summary>
+            Contains the String(s) with the description(s) for the specific properties of the Backpropagation algorithm
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.Backpropagation.#ctor">
+            <summary>
+            Defaultconstructor -> init the nn with null
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.Backpropagation.#ctor(MultilayerNet.NeuralNet)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="nn">the MultilayerNet.NeuralNet which should be trained</param>
+        </member>
+        <member name="M:MultilayerNet.Backpropagation.#ctor(MultilayerNet.NeuralNet,System.Single)">
+            <summary>
+            Constructor for 1 of 3 specific algorithm parameters
+            </summary>
+            <param name="nn">the MultilayerNet.NeuralNet which should be trained</param>
+            <param name="learningRate">the learning rate for Backpropagation</param>
+        </member>
+        <member name="M:MultilayerNet.Backpropagation.#ctor(MultilayerNet.NeuralNet,System.Single,System.Single)">
+            <summary>
+            Constructor for 2 of 3 specific algorithm parameters
+            </summary>
+            <param name="nn">the MultilayerNet.NeuralNet which should be trained</param>
+            <param name="learningRate">the learning rate for Backpropagation</param>
+            <param name="momentumParam">the Momentum factor for the Momentum Backprop. method</param>
+        </member>
+        <member name="M:MultilayerNet.Backpropagation.#ctor(MultilayerNet.NeuralNet,System.Single,System.Single,System.Single)">
+            <summary>
+            Constructor for 3 of 3 specific algorithm parameters
+            </summary>
+            <param name="nn">the MultilayerNet.NeuralNet which should be trained</param>
+            <param name="learningRate">the learning rate for Backpropagation</param>
+            <param name="momentumParam">the Momentum factor for the Momentum Backprop. method</param>
+            <param name="flatSpotParam">factor for Backprop. Flat Spot Elimination method</param>
+        </member>
+        <member name="M:MultilayerNet.Backpropagation.learnOnePattern(System.Single[])">
+            <summary>
+            Train one pattern
+            </summary>
+            <param name="teachOut">the requested output for the current input of the net (NeuralNet.inputProp)</param>
+            <returns>the trained Network which learned one iteration</returns>
+        </member>
+        <member name="M:MultilayerNet.Backpropagation.learnPatterns">
+            <summary>
+            Train the Network with patterns that where already init. before, using the online method
+            </summary>
+            <returns>the trained Network</returns>
+        </member>
+        <member name="M:MultilayerNet.Backpropagation.learnPatterns(System.Single[][],System.Single[][])">
+            <summary>
+            Train the Network with the patterns (teachOutputProp, inputProp), using the online method
+            </summary>
+            <param name="teachOuts">the requested output</param>
+            <param name="inputs">the input patterns for the net</param>
+            <returns>the trained Network</returns>
+        </member>
+        <member name="M:MultilayerNet.Backpropagation.mixPatternSet">
+            <summary>
+            Mix the set of patterns randomly for learning
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.Backpropagation.learnPatternsBatch">
+            <summary>
+            Train the Network with patterns that where already init. before, using the batch/offline method
+            </summary>
+            <returns>the trained Network</returns>
+        </member>
+        <member name="M:MultilayerNet.Backpropagation.learnPatternsBatch(System.Single[][],System.Single[][])">
+            <summary>
+            Train the Network with the patterns (teachOutputProp, inputProp), using the batch/offline method
+            </summary>
+            <param name="teachOuts">the requested output</param>
+            <param name="inputs">the input patterns for the net</param>
+            <returns>the trained Network</returns>
+        </member>
+        <member name="T:MultilayerNet.FileManager">
+            <summary>
+            Description: The singleton class with methods to read and write xml containing a NeuralNet, patterns or txt files. 
+            Errorlogging could also be done.
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-24-2004</para>
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.FileManager.instance">
+            <summary>
+            The only static instance of this class
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.FileManager.#ctor">
+            <summary>
+            The hidden Defaultconstructor
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.FileManager.getInstance">
+            <summary>
+            Get the only static instance
+            </summary>
+            <returns>the only instance of this class</returns>
+        </member>
+        <member name="M:MultilayerNet.FileManager.write3DMatrixToTextFile(System.String,System.Single[][][])">
+            <summary>
+            Writes a float 3D Matrix into a formated text file. 
+            Usually used for writing the network weight to a file.
+            </summary>
+            <param name="filename">the file name where to store</param>
+            <param name="matrix">the matrix to write</param>
+        </member>
+        <member name="M:MultilayerNet.FileManager.writeFloatToTextFile(System.String,System.Single)">
+            <summary>
+            Appends a float value to a text file.
+            <seealso cref="T:MultilayerNet.NeuralNet"/>
+            </summary>
+            <param name="filename">the file name where to store</param>
+            <param name="val">the value to write</param>
+        </member>
+        <member name="P:MultilayerNet.FileManager.LOGFILE_NAME_PROP">
+            <summary>
+            The filename in which the logging information is written -> default: error.log
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.FileManager.LOGFILE_NAME">
+            <summary>
+            The filename in which the logging information is written -> default: error.log
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.FileManager.writeStringToErrorLogFile(System.String)">
+            <summary>
+            Writes a string to the logging file specified by LOGFILE_NAME
+            </summary>
+            <param name="msg">the message which should be written</param>
+        </member>
+        <member name="M:MultilayerNet.FileManager.writeExceptionToErrorLogFile(System.Exception)">
+            <summary>
+            Writes the properties of the Exception to the logging file specified by LOGFILE_NAME
+            </summary>
+            <param name="exc">the Exception which should be written</param>
+        </member>
+        <member name="M:MultilayerNet.FileManager.writeSystemInfosToErrorLogFile">
+            <summary>
+            Writes some system informations, .Net-, Assembly Version, ... to the logging file specified by LOGFILE_NAME
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.FileManager.getContentOfDir(System.String)">
+            <summary>
+            Reads recursive the content of a directory
+            </summary>
+            <param name="dir">the directory which content should be read</param>
+            <returns>the content of the directory and subfolders -> formated</returns>
+        </member>
+        <member name="M:MultilayerNet.FileManager.getContentOfDir(System.String,System.String)">
+            <summary>
+            Reads recursive the content of a directory
+            </summary>
+            <param name="dir">the directory which content should be read</param>
+            <param name="whitespace">the whitespace for formating the directory tree</param>
+            <returns>the content of the directory and subfolders -> formated</returns>
+        </member>
+        <member name="M:MultilayerNet.FileManager.readErrorLogFile">
+            <summary>
+            Reads the content of the error log file specified by LOGFILE_NAME
+            </summary>
+            <returns>the content of the log file</returns>
+        </member>
+        <member name="M:MultilayerNet.FileManager.deleteErrorLogFile">
+            <summary>
+            Deletes the logfile specified by LOGFILE_NAME
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.FileManager.writeNetworkToXml(System.String,MultilayerNet.NeuralNet)">
+            <summary>
+            Writes the whole network to Xml file
+            <seealso cref="T:MultilayerNet.NeuralNet"/>
+            </summary>
+            <param name="fileName">the relative path</param>
+            <param name="net">the MultilayerNet.NeuralNet instance</param>
+        </member>
+        <member name="M:MultilayerNet.FileManager.writeNetworkToXml(System.String,MultilayerNet.NeuralNet,System.String)">
+            <summary>
+            Writes the whole network to Xml file
+            <seealso cref="T:MultilayerNet.NeuralNet"/>
+            </summary>
+            <param name="fileName">the relative path</param>
+            <param name="net">the MultilayerNet.NeuralNet instance</param>
+            <param name="netName">the name for the net</param>
+        </member>
+        <member name="F:MultilayerNet.FileManager.MULITLAYERNET_ASMNAME">
+            <summary>
+            The name of the MultilayerNet Assembly. Needed for reflections
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.FileManager.readNetworkFromXml(System.String)">
+            <summary>
+            Reads a networks from a .net file
+            </summary>
+            <param name="fileName">the name of the file</param>
+            <returns>the neural net</returns>
+        </member>
+        <member name="M:MultilayerNet.FileManager.readNetWeightFromXml(System.String)">
+            <summary>
+            Reads only the weight from a .net file
+            </summary>
+            <param name="fileName">the name of the .net file</param>
+            <returns>the network weights as a 3D float matrix</returns>
+        </member>
+        <member name="M:MultilayerNet.FileManager.writePatternsToXml(System.String,MultilayerNet.Patterns)">
+            <summary>
+            Writes a set of patterns to a xml file
+            </summary>
+            <param name="fileName">the relative path</param>
+            <param name="patterns">a set of input/teachOut patterns</param>
+        </member>
+        <member name="M:MultilayerNet.FileManager.writePatternsToXml(System.String,System.Single[][],System.Single[][])">
+            <summary>
+            Writes a set of patterns to a xml file
+            </summary>
+            <param name="fileName">the relative path</param>
+            <param name="inputs">the input set</param>
+            <param name="teachOutputs">the corresponding teach output set for the input</param>
+        </member>
+        <member name="M:MultilayerNet.FileManager.readPatternsFromXml(System.String)">
+            <summary>
+            Reads a set of patterns from a xml file
+            </summary>
+            <param name="fileName">the name of the file</param>
+            <returns>the patterns(input, teachOutput)</returns>
+        </member>
+        <member name="T:MultilayerNet.GeneticLearningAlgorithm">
+            <summary>
+            Description: Genetic Learning algorithm for neural network training, 
+            uses the Real-Number-Crossover- and Mutation-Theory from the lecture script 
+            of Prof. Dr. Heino Iwe ;-)
+            <para>Author: Torsten Baer</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-27-2004</para>
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.GeneticLearningAlgorithm.rand">
+            <summary>
+            The random generator
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.GeneticLearningAlgorithm.mutationRate">
+            <summary>
+            The Mutation-Rate in percent for the Genetic Mutation Operator
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.mutationRateProp">
+            <summary>
+            The Mutation-Rate in percent for the Genetic Mutation Operator
+            <seealso cref="T:MultilayerNet.NeuralNet" />
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.mutationRateMinProp">
+            <summary>
+            Returns the minimum value in percent which could be used to set the minimum for adjusting the Mutation-Rate
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.mutationRateMaxProp">
+            <summary>
+            Returns the maximum in percent value which could be used to set the minimum for adjusting the Mutation-Rate
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.mutationRateStepProp">
+            <summary>
+            Returns the step range in percent which could be used to set the step for adjusting the Mutation-Rate
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.GeneticLearningAlgorithm.generationCount">
+            <summary>
+            The number of the current generation
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.gernerationCountProp">
+            <summary>
+            Returns the number of the current generation
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.GeneticLearningAlgorithm.nIndividualsForCalculation">
+            <summary>
+            Saves the number of individuals in each generation for one calculation cycle. 
+            The number of individuals can be changed by nIndividualsProp
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.GeneticLearningAlgorithm.nIndividuals">
+            <summary>
+            The Number of individuals in each generation, only even values are allowed
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.nIndividualsProp">
+            <summary>
+            The Number of individuals in each generation, only even values are allowed
+            <seealso cref="T:MultilayerNet.NeuralNet"/>
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.nIndividualsMinProp">
+            <summary>
+            Returns the minimum value which could be used to set the minimum for adjusting the individuals
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.nIndividualsMaxProp">
+            <summary>
+            Returns the maximum value which could be used to set the minimum for adjusting the individuals
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.nIndividualsStepProp">
+            <summary>
+            Returns the step range which could be used to set the step for adjusting the individuals
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.nIndividualsFloatProp">
+            <summary>
+            The Number of individuals in each generation as a float value, only even values are allowed
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.nIndividualsFloatMinProp">
+            <summary>
+            Returns the minimum value as a float which could be used to set the minimum for adjusting the individuals
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.nIndividualsFloatMaxProp">
+            <summary>
+            Returns the maximum value as a float which could be used to set the minimum for adjusting the individuals
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.nIndividualsFloatStepProp">
+            <summary>
+            Returns the step range as a float which could be used to set the step for adjusting the individuals
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.GeneticLearningAlgorithm.crossOverRateForCalculation">
+            <summary>
+            The Crossoverrate describes how many percent of the individuals will marry in each generation. 
+            This variable is only used for internal calculation
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.GeneticLearningAlgorithm.crossOverRate">
+            <summary>
+            The Crossoverrate describes how many percent of the individuals will marry in each generation
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.crossOverRateProp">
+            <summary>
+            The Crossoverrate describes how many percent of the individuals will marry in each generation
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.crossOverRateMinProp">
+            <summary>
+            Returns the minimum value which could be used to set the minimum for adjusting the Crossoverrate
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.crossOverRateMaxProp">
+            <summary>
+            Returns the maximum value which could be used to set the minimum for adjusting the Crossoverrate
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.crossOverRateStepProp">
+            <summary>
+            Returns the step range which could be used to set the step for adjusting the Crossoverrate
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.GeneticLearningAlgorithm.elitismRate">
+            <summary>
+            The elitism rate, which will control the possibility of mutation for the individuals by marriage and elitism
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.elitismRateProp">
+            <summary>
+            The elitism rate, which will control the possibility of mutation for the individuals by marriage and elitism
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.elitismRateMinProp">
+            <summary>
+            Returns the minimum value which could be used to set the minimum for adjusting the elitism rate
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.elitismRateMaxProp">
+            <summary>
+            Returns the maximum value which could be used to set the minimum for adjusting the elitism rate
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.elitismRateStepProp">
+            <summary>
+            Returns the step range which could be used to set the step for adjusting the elitism rate
+            </summary>
+        </member>
+        <member name="E:MultilayerNet.GeneticLearningAlgorithm.onErrorCalculated">
+            <summary>
+            The event which is thrown, after the summed global error was calculated
+            </summary>
+        </member>
+        <member name="E:MultilayerNet.GeneticLearningAlgorithm.onOutCalculated">
+            <summary>
+            The event which is thrown, after the output was calculated
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.algoProps">
+            <summary>
+            Contains the String(s) with the specific properties for the Genetic learning algorithm
+            <see cref="P:MultilayerNet.LearningAlgo.algoProps"/> for an example
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.algoPropsDescription">
+            <summary>
+            Contains the String(s) with the description(s) for the specific properties of the Genetic learning algorithm
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.GeneticLearningAlgorithm.#ctor">
+            <summary>
+            Defaultconstructor, init the Network with null and use 50 individuals
+            <seealso cref="T:MultilayerNet.NeuralNet"/>
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.GeneticLearningAlgorithm.#ctor(MultilayerNet.NeuralNet)">
+            <summary>
+            Constructor -> use 50 individuals
+            </summary>
+            <param name="nn">
+            The Network that should be optimized
+            </param>
+        </member>
+        <member name="M:MultilayerNet.GeneticLearningAlgorithm.#ctor(MultilayerNet.NeuralNet,System.Int32)">
+            <summary>
+            Constructor with all parameters
+            </summary>
+            <param name="nn">The Network that should be optimized</param>
+            <param name="nIndividuals">The number of individuals for each generation, has to be > than 10</param>
+        </member>
+        <member name="M:MultilayerNet.GeneticLearningAlgorithm.learnOnePattern(System.Single[])">
+            <summary>
+            Train one pattern
+            </summary>
+            <param name="teachOutput">the requested output for the current input of the net (NeuralNet.inputProp)</param>
+            <returns>the trained Network which learned one iteration</returns>
+        </member>
+        <member name="M:MultilayerNet.GeneticLearningAlgorithm.learnPatterns">
+            <summary>
+            Train the Network with patterns that where already init. before
+            <seealso cref="T:MultilayerNet.NeuralNet"/>
+            </summary>
+            <returns>the trained Network</returns>
+        </member>
+        <member name="M:MultilayerNet.GeneticLearningAlgorithm.learnPatterns(System.Single[][],System.Single[][])">
+            <summary>
+            Train the Network with the patterns (teachOutputProp, inputProp)
+            </summary>
+            <param name="teachOutputs">the requested output</param>
+            <param name="inputs">the input patterns for the net</param>
+            <returns>the trained Network</returns>
+        </member>
+        <member name="M:MultilayerNet.GeneticLearningAlgorithm.initializeGenerations(System.Collections.ArrayList[]@,System.Collections.ArrayList@)">
+            <summary>
+            Initializes the genetic Algotithm-Generations
+            </summary>
+            <param name="generations">a Reference on an Array of ArrayLists, which should hold the initialized generations</param>
+            <param name="currentGeneration">a Reference on the current generation</param>
+        </member>
+        <member name="M:MultilayerNet.GeneticLearningAlgorithm.rankBasedSelection(System.Collections.ArrayList)">
+            <summary>
+            Select the individuals for marriage rank based
+            </summary>
+            <param name="generation">the generation with the individuals</param>
+            <returns>the marriage candidates</returns>
+        </member>
+        <member name="M:MultilayerNet.GeneticLearningAlgorithm.mutateIndividual(MultilayerNet.GeneticLearningAlgorithm.Individual)">
+            <summary>
+            Mutates the given individual
+            </summary>
+            <param name="p">the individual</param>
+            <returns>a maybe mutated individual</returns>
+        </member>
+        <member name="M:MultilayerNet.GeneticLearningAlgorithm.marryIndividuals(MultilayerNet.GeneticLearningAlgorithm.Individual,MultilayerNet.GeneticLearningAlgorithm.Individual)">
+            <summary>
+            Calculates the child individuals for the given parents
+            </summary>
+            <param name="mom">the 'Mother'</param>
+            <param name="dad">the 'Father'</param>
+            <returns>a vector with the childs</returns>
+        </member>
+        <member name="T:MultilayerNet.GeneticLearningAlgorithm.Individual">
+            <summary>
+            Individual for the Genetic algorithm
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.GeneticLearningAlgorithm.Individual.parameter">
+            <summary>
+            Represents the 3-dimensional weight matrix of an neural network
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.GeneticLearningAlgorithm.Individual.fitness">
+            <summary>
+            Represents the fitness of the individual based on the error. 
+            The fitness will be calculated during the propagation of the generations
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.GeneticLearningAlgorithm.Individual.error">
+            <summary>
+            Saves the error of the represented neural network
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.GeneticLearningAlgorithm.Individual.rand">
+            <summary>
+            The static random generator
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.GeneticLearningAlgorithm.Individual.xmin">
+            <summary>
+            Defines the minimal value of one weight at the initialization
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.GeneticLearningAlgorithm.Individual.xmax">
+            <summary>
+             Defines the maximal value of one weight at the initialization
+             </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.Individual.Fitness">
+            <summary>
+            Represents the fitness of the individual based on the error. 
+            The error is calculated during the test in the phenotype area
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.Individual.Error">
+            <summary>
+            Saves the error of the represented neural network
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.Individual.Parameter">
+            <summary>
+            Access the whole parameter vector
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.Individual.Item(System.Int32)">
+            <summary>
+            Indexer to access the first dimension of the 3-dimensional Parameter-vector directly
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.Individual.Item(System.Int32,System.Int32)">
+            <summary>
+            Indexer to access the second dimension of the 3-dimensional Parameter-vector directly
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.Individual.Item(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Indexer to access the third dimension of the 3-dimensional Parameter-vector directly
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.GeneticLearningAlgorithm.Individual.Dimensions">
+            <summary>
+            Returns the dimensions of the Parameter-matrix
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.GeneticLearningAlgorithm.Individual.#ctor(System.Int32[][])">
+            <summary>
+            Constructs an individual with a parameter matrix, which will be defined by the dimensions 
+            and values of the given two dimensional integer array
+            </summary>
+            <param name="dimensions">The dimensions of the parameter matrix</param>
+        </member>
+        <member name="M:MultilayerNet.GeneticLearningAlgorithm.Individual.#ctor(System.Single[][][])">
+            <summary>
+            Contrucs an individual with the given parameter matrix
+            </summary>
+            <param name="parameter">The weight matrix of a neural network</param>
+        </member>
+        <member name="M:MultilayerNet.GeneticLearningAlgorithm.Individual.#cctor">
+            <summary>
+            Static constructor for initializing the random generator
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.GeneticLearningAlgorithm.Individual.CompareTo(System.Object)">
+            <summary>
+            Implementing the IComparer Interface to sort the individuals by the fitness of each -> 
+            the best will be on top
+            </summary>
+            <param name="x">the Individual to which this Individual will be compared</param>
+            <returns>
+            1>	if this.Fitness > x.Fitness 
+            0	if this.Fitness = x.Fitness 
+            >1	if	  x.Fitness > this.Fitness
+            </returns>
+        </member>
+        <member name="T:MultilayerNet.Layer">
+            <summary>
+            Description: A layer in a neural net. The layers are connected with the variable prevLayer -> linked list
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-30-2004</para>
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.Layer.neuronsProp">
+            <summary>
+            The array of neurons in the layer
+            </summary>	
+        </member>
+        <member name="F:MultilayerNet.Layer.neuronsInLayer">
+            <summary>
+            The array of neurons in the layer
+            </summary>	
+        </member>
+        <member name="P:MultilayerNet.Layer.prevLayerProp">
+            <summary>
+            The previous layer of the current layer (this)
+            </summary>	
+        </member>
+        <member name="F:MultilayerNet.Layer.prevLayer">
+            <summary>
+            The previous layer of the current layer (this)
+            </summary>	
+        </member>
+        <member name="P:MultilayerNet.Layer.Length">
+            <summary>
+            Returns the number of neurons in the layer
+            </summary>	
+        </member>
+        <member name="P:MultilayerNet.Layer.weightLayerProp">
+            <summary>
+            The weight matrix of the neurons in the layer (gets incl. the bias)
+            <para>weightLayerProp[index neuron in layer, from left to right][weight presynapt. neuron]</para>
+            </summary>		
+        </member>
+        <member name="P:MultilayerNet.Layer.thresholdLayerProp">
+            <summary>
+            The threshold vector of the neurons in the layer;
+            <para>thresholdLayerProp[index neuron in layer, from left to right]</para>
+            </summary>		
+        </member>
+        <member name="P:MultilayerNet.Layer.outputProp">
+            <summary>
+            The output of the layer, which is calculated just in time.
+            </summary>		
+        </member>
+        <member name="P:MultilayerNet.Layer.inputProp">
+            <summary>
+            The input of the layer, which is calculated just in time.
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.Layer.#ctor(System.Int32)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="nNeurons">creates nNeurons neurons in the layer</param>
+        </member>
+        <member name="M:MultilayerNet.Layer.#ctor">
+            <summary>
+            Defaultconstructor -> creates 3 neurons in the layer
+            </summary>
+        </member>
+        <member name="T:MultilayerNet.errorHandler">
+            <summary>
+            The delegate for the event when the error is calculated
+            </summary>
+        </member>
+        <member name="T:MultilayerNet.outputHandler">
+            <summary>
+            The delegate for handling the output
+            </summary>
+        </member>
+        <member name="T:MultilayerNet.LearningAlgo">
+            <summary>
+            Description: The abstract class for various child class Multilayer Perceptron learning algorithms.
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-24-2004</para>
+            </summary>
+        </member>
+        <member name="E:MultilayerNet.LearningAlgo.onErrorCalculated">
+            <summary>
+            The event which is thrown, after the summed global error was calculated
+            </summary>
+        </member>
+        <member name="E:MultilayerNet.LearningAlgo.onOutCalculated">
+            <summary>
+            The event which is thrown, after the output was calculated
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.LearningAlgo.nnProp">
+            <summary>
+            The NeuralNet reference which should be trained
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.LearningAlgo.nn">
+            <summary>
+            The NeuralNet reference which should be trained
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.LearningAlgo.iterationProp">
+            <summary>
+            Returns the current iteration of the algorithm
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.LearningAlgo.iter">
+            <summary>
+            The current iteration of the algorithm
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.LearningAlgo.errorProp">
+            <summary>
+            Returns the current global summed error of the Network
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.LearningAlgo.error">
+            <summary>
+            The current global summed error of the Network
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.LearningAlgo.minTolerableErrorProp">
+            <summary>
+            The smallest tolerable global summed error. The learning stops if(minTolerableError >= error) -> default 0.000
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.LearningAlgo.minTolerableError">
+            <summary>
+            The smallest tolerable global summed error. The learning stops if(minTolerableError >= error) -> default 0.000
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.LearningAlgo.maxIterationProp">
+            <summary>
+            The maximum iterations which will be done by the algorithm. Values must be greater than 0 -> default 1000
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.LearningAlgo.maxIter">
+            <summary>
+            The maximum iterations which will be done by the algorithm. Values must be greater than 0 -> default 1000
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.LearningAlgo.teachOutputProp">
+            <summary>
+            The Requested output patterns (teach output) for the input
+            <seealso cref="T:MultilayerNet.NeuralNet"/>
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.LearningAlgo.teachOutput">
+            <summary>
+            The Requested output patterns (teach output) for the input
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.LearningAlgo.inputProp">
+            <summary>
+            The input patterns corresponding to the teachOutput
+            <seealso cref="T:MultilayerNet.NeuralNet"/>
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.LearningAlgo.input">
+            <summary>
+            The input patterns corresponding to the teachOutput
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.LearningAlgo.algoProps">
+            <summary>
+            Contains the String(s) with the specific properties for the learning algorithm
+            </summary>
+            <example>
+            The Property must have the Name 'parameterProp' and the String in activationProps 'parameter',
+            in order to use the FileManagers read methods properly.
+            <para>Example for the Backpropagation learning algorithm:
+            <code>
+            public float learningRateProp { get{...} set{...} }
+            public float momentumParamProp { get{...} set{...} }
+            public float daFlatFactorProp { get{...} set{...} }
+            public override string[] algoProps{ get {return new string[]{"learningRate", "momentumParam", "daFlatFactor"};} }
+            </code>
+            </para>
+            </example>
+        </member>
+        <member name="P:MultilayerNet.LearningAlgo.algoPropsDescription">
+            <summary>
+            Contains the String(s) with the description(s) for the specific properties for the extended algorithms
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.LearningAlgo.#ctor">
+            <summary>
+            Defaultconstructor -> init the Network with null
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.LearningAlgo.#ctor(MultilayerNet.NeuralNet)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="nn">the MultilayerNet.NeuralNet which should be trained</param>
+        </member>
+        <member name="M:MultilayerNet.LearningAlgo.learnOnePattern(System.Single[])">
+            <summary>
+            Train one pattern
+            </summary>
+            <param name="teachOutput">the requested output for the current input of the net (NeuralNet.inputProp)</param>
+            <returns>the trained Network which learned one iteration</returns>
+        </member>
+        <member name="M:MultilayerNet.LearningAlgo.learnPatterns(System.Single[][],System.Single[][])">
+            <summary>
+            Train the Network with the patterns (teachOutputProp, inputProp)
+            <seealso cref="T:MultilayerNet.NeuralNet"/>
+            </summary>
+            <param name="teachOutputs">the requested output</param>
+            <param name="inputs">the input patterns for the net</param>
+            <returns>the trained Network</returns>
+        </member>
+        <member name="M:MultilayerNet.LearningAlgo.learnPatterns">
+            <summary>
+            Train the Network with patterns that where already init. before
+            <seealso cref="T:MultilayerNet.NeuralNet"/>
+            </summary>
+            <returns>the trained Network</returns>
+        </member>
+        <member name="T:MultilayerNet.NeuralNet">
+            <summary>
+            Description: The Multilayer Perceptron Neural Network
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-30-2004</para>
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.NeuralNet.netNameProp">
+            <summary>
+            The name of the Network. Default -> 'no net name yet ;)'
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.NeuralNet.netName">
+            <summary>
+            The name of the Network. Default -> 'no net name yet ;)'
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.NeuralNet.learnAlgoProp">
+            <summary>
+            The learning algorithm which is used to train the Network
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.NeuralNet.learnAlgo">
+            <summary>
+            The learning algorithm which is used to train the Network
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.NeuralNet.layersProp">
+            <summary>
+            The layers in the Network
+            </summary>
+        </member>
+        <member name="F:MultilayerNet.NeuralNet.layers">
+            <summary>
+            The layers in the Network
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.NeuralNet.outputLayerProp">
+            <summary>
+            Returns the outputlayer of the Network
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.NeuralNet.weightNetProp">
+            <summary>
+            The weight 3D-matrix of the neurons in the whole Network.
+            <para>weightNetProp[layer][index neuron in layer, from left to right][weight presynapt. neuron]; 
+            layer index=0  == input layer</para>
+            </summary>		
+        </member>
+        <member name="P:MultilayerNet.NeuralNet.thresholdNetProp">
+            <summary>
+            The threshold matrix of the neurons in the whole network!
+            <para>thresholdNetProp[layer][index neuron in layer, from left to right]</para>
+            </summary>		
+        </member>
+        <member name="P:MultilayerNet.NeuralNet.actFuncForEachNeuronProp">
+            <summary>
+            The activation function of each neuron
+            <para>actFuncForEachNeuronProp[layer][index neuron in layer, from left to right]</para>
+            </summary>		
+        </member>
+        <member name="P:MultilayerNet.NeuralNet.outputProp">
+            <summary>
+            Just calls the propagate() method and returns the output vector of the net
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.NeuralNet.inputProp">
+            <summary>
+            Sets/gets the input vector of the net == input vector of all neurons in the first layer
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.NeuralNet.#ctor(System.Single[],System.Int32[],System.Int32,MultilayerNet.LearningAlgo)">
+             <summary>
+             Constructor, init. the weights randomly -> with an example !!!!
+             <seealso cref="T:MultilayerNet.FileManager"/>
+             <seealso cref="T:MultilayerNet.LearningAlgo"/>
+             <seealso cref="T:MultilayerNet.GeneticLearningAlgorithm"/>
+             </summary>
+             <example>
+             A simple example for a 2-3-3-2 network with input and teach output patterns, 
+             and the usage of the FileManager and trainig algorithm.
+             <code>
+             float[][] input = new float[][]{	new float[] {0.05f, 0.02f},
+            										new float[] {0.09f, 0.11f},
+            										new float[] {0.12f, 0.20f},
+            										new float[] {0.15f, 0.22f},
+            										new float[] {0.20f, 0.25f},
+            										new float[] {0.75f, 0.75f},
+            										new float[] {0.80f, 0.83f},
+            										new float[] {0.82f, 0.80f},
+            										new float[] {0.90f, 0.89f},
+            										new float[] {0.95f, 0.89f}};
+            
+            	float[][] teach = new float[][]{	new float[] {1.0f, 0.0f},
+            										new float[] {1.0f, 0.0f},
+            										new float[] {1.0f, 0.0f},
+            										new float[] {1.0f, 0.0f},
+            										new float[] {1.0f, 0.0f},
+            										new float[] {0.0f, 1.0f},
+            										new float[] {0.0f, 1.0f},
+            										new float[] {0.0f, 1.0f},
+            										new float[] {0.0f, 1.0f},
+            										new float[] {0.0f, 1.0f}};
+            
+            	// Create the 2-3-3-2 network with the genetic learning algorithm:
+            	NeuralNet nn = new NeuralNet(input[0], new int[]{3, 3}, teach[0].Length, new GeneticLearningAlgorithm());
+            	(nn.learnAlgoProp as GeneticLearningAlgorithm).nIndividualsProp = 200;
+            	// Mutation-Rate in percent !!
+            	(nn.learnAlgoProp as GeneticLearningAlgorithm).mutationRateProp = 5f;
+            	// Append an eventhandler:
+            	nn.learnAlgoProp.onErrorCalculated += new MultilayerNet.errorHandler(writeGSEToFile);
+            
+            	nn.learnAlgoProp.inputProp = input;
+            	nn.learnAlgoProp.teachOutputProp = teach;
+            
+            	FileManager.getInstance().writeNetworkToXml(&quot;2-3-3-2_before_learning.net&quot;, nn, &quot;SuperNet untrained&quot;);
+            	Console.WriteLine(&quot;-------- LEARNING --------\n&quot;);
+            	nn.learnAlgoProp.learnPatterns();
+            	Console.WriteLine(&quot;--- LEARNING FINISHED AFTER {0} Generations ----&quot;, nn.learnAlgoProp.iterationProp);
+            	FileManager.getInstance().writeNetworkToXml(&quot;2-3-3-2_after_learning.net&quot;, nn, &quot;SuperNet trained&quot;);
+            	
+            	// The eventhandler method wich is used above:
+            	
+             public void writeGSEToFile(float error)
+            	{
+            		FileManager.getInstance().writeFloatToTextFile(&quot;error.txt&quot;, error);
+            	}
+            	
+             </code>
+             </example>
+             <param name="input">the input of the Network</param>
+             <param name="hiddenLayers">describes how many hidden layers are created and how many neurons are in each layer</param>
+             <param name="nOutputs">number of output neurons</param>
+             <param name="la">the learning algorithm for the net</param>
+        </member>
+        <member name="M:MultilayerNet.NeuralNet.#ctor(System.Single[],System.Int32[],System.Int32)">
+            <summary>
+            Constructor for the default Backpropagation learn algo., init. the weights randomly 
+            </summary>
+            <param name="input">the input of the Network</param>
+            <param name="hiddenLayers">describes how many hidden layers are created and how many neurons are in each layer</param>
+            <param name="nOutputs">number of output neurons</param>
+        </member>
+        <member name="M:MultilayerNet.NeuralNet.#ctor">
+            <summary>
+            The Defaultconstructor, creates a simple Singlelayer Perceptron. Init input with 1, 1, 1. 
+            No hidden layer and 3 outputs, learnAlgo = Backpropagation, init. the weights randomly 
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.NeuralNet.propagate">
+            <summary>
+            Computes the output of the network and returns the output vector
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.NeuralNet.randomizeWeights(System.Single,System.Single,System.Int32)">
+            <summary>
+            Randomize the weights and the threshold of the network
+            </summary>
+            <param name="min">the minimum for the random init.</param>
+            <param name="max">the maximum for the random init.</param>
+            <param name="seed">the init. Seed for the random generator</param>
+        </member>
+        <member name="M:MultilayerNet.NeuralNet.randomizeWeights(System.Single,System.Single)">
+            <summary>
+            Randomize the weights and the threshold of the network using the Systemtime as Seed
+            </summary>
+            <param name="min">the minimum for the random init.</param>
+            <param name="max">the maximum for the random init.</param>
+        </member>
+        <member name="M:MultilayerNet.NeuralNet.randomizeWeights(System.Int32)">
+            <summary>
+            Randomize the weights and the threshold in an optimal range 
+            for the activation function of the first neuron in the first layer
+            </summary>
+            <param name="seed">the init. Seed for the random generator</param>
+        </member>
+        <member name="M:MultilayerNet.NeuralNet.randomizeWeights">
+            <summary>
+            Randomize the weights and the threshold in an optimal range using the Systemtime as Seed 
+            for the activation function of the first neuron in the first layer
+            </summary>
+        </member>
+        <member name="T:MultilayerNet.Neuron">
+            <summary>
+            Description: The artificial neuron
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-30-2004</para>
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.Neuron.outputProp">
+            <summary>
+            Returns the output of the neuron, which depends on the current activation function
+            </summary>	
+        </member>
+        <member name="P:MultilayerNet.Neuron.inputProp">
+            <summary>
+            Returns the input without the bias on-state,
+            sets the input without overwriting the bias on-state
+            </summary>	
+        </member>
+        <member name="F:MultilayerNet.Neuron.input">
+            <summary>
+            The input of the neuron, with the bias on-state (last value in the vector)
+            </summary>	
+        </member>
+        <member name="P:MultilayerNet.Neuron.inputWithBiasProp">
+            <summary>
+            Returns the input with the bias and 
+            sets the input including the bias on-state (last value in the vector)
+            </summary>	
+        </member>
+        <member name="P:MultilayerNet.Neuron.weightProp">
+            <summary>
+            Returns the weight without the bias and 
+            sets the weight without overwriting the bias
+            </summary>	
+        </member>
+        <member name="F:MultilayerNet.Neuron.weight">
+            <summary>
+            The weight of the neuron including the bias (last value in the vector)
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.Neuron.weightWithBiasProp">
+            <summary>
+            Returns the weight with the bias and 
+            sets the weight including the bias (last value in the vector)
+            </summary>	
+        </member>
+        <member name="P:MultilayerNet.Neuron.thresholdProp">
+            <summary>
+            The threshold of the neuron. The negative of the last value in the vector 
+            -> -weightWithBiasProp[weightWithBiasProp.Length-1]
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.Neuron.netProp">
+            <summary>
+            Returns the net output of the neuron. 
+            </summary>	
+        </member>
+        <member name="P:MultilayerNet.Neuron.actFuncProp">
+            <summary>
+            The activation function of the neuron
+            </summary>	
+        </member>
+        <member name="F:MultilayerNet.Neuron.actFunc">
+            <summary>
+            The activation function of the neuron
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.Neuron.#ctor">
+            <summary>
+            The Defaultconstructor, actFunc = LogisticActFunc. 
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.Neuron.#ctor(MultilayerNet.IActivationFunction)">
+            <summary>
+            The constructor for activationFunc as parameter;
+            </summary>
+            <param name="actF">the activation function for this neuron</param>
+        </member>
+        <member name="T:MultilayerNet.Patterns">
+            <summary>
+            Description: A simple class containing the input and the depending teach output for a set of patterns
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-24-2004</para>
+            </summary>
+        </member>
+        <member name="P:MultilayerNet.Patterns.teachOutputsProp">
+            <summary>
+            The requested output (teach output) patterns corresponding to the input set
+            </summary>		
+        </member>
+        <member name="F:MultilayerNet.Patterns.teachOutputs">
+            <summary>
+            The requested output (teach output) set corresponding to the input set
+            </summary>	
+        </member>
+        <member name="P:MultilayerNet.Patterns.inputsProp">
+            <summary>
+            The input patterns corresponding to the teachOutput
+            </summary>		
+        </member>
+        <member name="F:MultilayerNet.Patterns.inputs">
+            <summary>
+            The input patterns corresponding to the teachOutput
+            </summary>	
+        </member>
+        <member name="P:MultilayerNet.Patterns.Length">
+            <summary>
+            The number of input / teach output patterns, which this object contains
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.Patterns.#ctor">
+            <summary>
+            Defaultconstructor -> does nothing
+            </summary>
+        </member>
+        <member name="M:MultilayerNet.Patterns.#ctor(System.Single[][],System.Single[][])">
+            <summary>
+            Constructor
+            </summary>
+            <param name="inputs">the input set</param>
+            <param name="teachOutputs">the corresponding teach output set</param>
+        </member>
+    </members>
+</doc>

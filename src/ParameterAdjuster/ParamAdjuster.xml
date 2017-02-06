@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ParamAdjuster</name>
+    </assembly>
+    <members>
+        <member name="T:ParamAdjuster.valueHandler">
+            <summary>
+            The delegate for the event when the slider has changed
+            </summary>
+        </member>
+        <member name="T:ParamAdjuster.ParamAdjuster">
+            <summary>
+            Description: A set of control elements. Used for simulating an adjusting unit for float variables.
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-24-2004</para>
+            </summary>
+        </member>
+        <member name="E:ParamAdjuster.ParamAdjuster.onNewValue">
+            <summary>
+            The event which is thrown when the scrollbar value has been changed
+            </summary>
+        </member>
+        <member name="P:ParamAdjuster.ParamAdjuster.stepProp">
+            <summary>
+            The step in which the Adjuster could be adjusted -> default: 0.1
+            </summary>
+        </member>
+        <member name="F:ParamAdjuster.ParamAdjuster.step">
+            <summary>
+            The step in which the Adjuster could be adjusted -> default: 0.1
+            </summary>
+        </member>
+        <member name="P:ParamAdjuster.ParamAdjuster.minProp">
+            <summary>
+            The minimum value for the adjuster -> default: 0.0
+            </summary>
+        </member>
+        <member name="F:ParamAdjuster.ParamAdjuster.valueMin">
+            <summary>
+            The minimum value for the adjuster -> default: 0.0
+            </summary>
+        </member>
+        <member name="P:ParamAdjuster.ParamAdjuster.maxProp">
+            <summary>
+            The maximum value for the adjuster -> default: 1.0
+            </summary>
+        </member>
+        <member name="F:ParamAdjuster.ParamAdjuster.valueMax">
+            <summary>
+            The maximum value for the adjuster -> default: 1.0
+            </summary>
+        </member>
+        <member name="P:ParamAdjuster.ParamAdjuster.valueProp">
+            <summary>
+            The current value of the adjuster
+            </summary>
+        </member>
+        <member name="P:ParamAdjuster.ParamAdjuster.paramNameProp">
+            <summary>
+            The name of the parameter which the adjuster represents -> default: "Paramter"
+            </summary>
+        </member>
+        <member name="F:ParamAdjuster.ParamAdjuster.paramName">
+            <summary>
+            The name of the parameter which the adjuster represents -> default: "Paramter"
+            </summary>
+        </member>
+        <member name="P:ParamAdjuster.ParamAdjuster.roundingProp">
+            <summary>
+            The number of digits the value is rounded -> default: 4
+            </summary>
+        </member>
+        <member name="F:ParamAdjuster.ParamAdjuster.rounding">
+            <summary>
+            The number of digits the value is rounded -> default: 4
+            </summary>
+        </member>
+        <member name="F:ParamAdjuster.ParamAdjuster.paramLabel">
+            <summary>
+            The Label :o)
+            </summary>
+        </member>
+        <member name="F:ParamAdjuster.ParamAdjuster.paramScrollBar">
+            <summary>
+            The Scrollbar :o)
+            </summary>
+        </member>
+        <member name="F:ParamAdjuster.ParamAdjuster.components">
+            <summary>
+            Needed Visual Studio Designervariable
+            </summary>
+        </member>
+        <member name="M:ParamAdjuster.ParamAdjuster.#ctor">
+            <summary>
+            Defaultconstructor
+            </summary>
+        </member>
+        <member name="M:ParamAdjuster.ParamAdjuster.#ctor(System.Single,System.Single,System.Single,System.Single,System.String)">
+            <summary>
+            Constructor init. the Adjuster with the values
+            </summary>
+            <param name="val">the init. value</param>
+            <param name="valMin">the minimum value for the adjuster</param>
+            <param name="valMax">the maximum value for the adjuster</param>
+            <param name="valStep">the step for the adjuster</param>
+            <param name="paramName">the name of the parameter which the adjuster represents</param>
+        </member>
+        <member name="M:ParamAdjuster.ParamAdjuster.setParamAndCtrls(System.Single,System.Single,System.Single,System.Single,System.String)">
+            <summary>
+            Sets the values of the controls
+            </summary>
+            <param name="val">the init. value</param>
+            <param name="valMin">the minimum value for the adjuster</param>
+            <param name="valMax">the maximum value for the adjuster</param>
+            <param name="valStep">the step for the adjuster</param>
+            <param name="paramName">the name of the parameter which the adjuster represents</param>
+        </member>
+        <member name="M:ParamAdjuster.ParamAdjuster.Dispose(System.Boolean)">
+            <summary>
+            Clear everything
+            </summary>
+        </member>
+        <member name="M:ParamAdjuster.ParamAdjuster.InitializeComponent">
+            <summary>
+            needed Visual Studio method to init. the controls / components
+            don't change the method stub !!!
+            </summary>
+        </member>
+        <member name="M:ParamAdjuster.ParamAdjuster.paramScrollBar_Scroll(System.Object,System.Windows.Forms.ScrollEventArgs)">
+            <summary>
+            Handles changes of the scrollbar and fires a onNewValue event
+            </summary>
+        </member>
+    </members>
+</doc>

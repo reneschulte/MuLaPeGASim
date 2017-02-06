@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SineScroller</name>
+    </assembly>
+    <members>
+        <member name="T:SineScroller.SineScroller">
+            <summary>
+            Description: A Usercontrol which represents a sine curve Scrolltext. 
+            Uses double buffering and a xy-Value-Table, which is calculated before scrolling. 
+            The scrollling could be paused if a mousebutton is pressed over the Scrolltext.
+            <para>Author: Rene Schulte</para>
+            <para>Version: 1.0</para>
+            <para>Last recent Update: 10-24-2004</para>
+            </summary>
+        </member>
+        <member name="P:SineScroller.SineScroller.textProp">
+            <summary>
+            The text which should be scrolled; default -> "Hello World!"
+            </summary>
+        </member>
+        <member name="F:SineScroller.SineScroller.text">
+            <summary>
+            The text which should be scrolled; default -> "Hello World!"
+            </summary>
+        </member>
+        <member name="F:SineScroller.SineScroller.chars">
+            <summary>
+            The string Array for the text -> faster drawing of each character
+            </summary>
+        </member>
+        <member name="F:SineScroller.SineScroller.textwidth">
+            <summary>
+            The Width of the whole text in px; textwidth = font.Size * text.Length
+            </summary>
+        </member>
+        <member name="P:SineScroller.SineScroller.Font">
+            <summary>
+            The Font for drawing; default -> Sans serif, Size 10
+            </summary>
+        </member>
+        <member name="F:SineScroller.SineScroller.fontWidth">
+            <summary>
+            The space between two characters of the current font; fontWidth = font.Size + charSpaceOffset; default -> 3.5
+            </summary>
+        </member>
+        <member name="P:SineScroller.SineScroller.charSpaceOffsetProp">
+            <summary>
+            The offset for the space between two characters of the current font; fontWidth = font.Size + charSpaceOffset; default -> 3.5
+            </summary>
+        </member>
+        <member name="F:SineScroller.SineScroller.charSpaceOffset">
+            <summary>
+            The offset for the space between two characters of the current font; default -> fontWidth = font.Size + charSpaceOffset;
+            </summary>
+        </member>
+        <member name="P:SineScroller.SineScroller.brushProp">
+            <summary>
+            The Brush for drawing; default -> SolidBrush(Color.Black);
+            this property could only be set programmatically
+            </summary>
+        </member>
+        <member name="F:SineScroller.SineScroller.brush">
+            <summary>
+            The Brush for drawing; default -> SolidBrush(Color.Black);
+            this property could only be set programmatically
+            </summary>
+        </member>
+        <member name="P:SineScroller.SineScroller.ForeColor">
+            <summary>
+            The Color of the current brush;
+            if the brush is an instance of a LinearGradientBrush: LinearGradientBrush.LinearColors = new Color[]{value, value};
+            if the brush is an instance of a PathGradientBrush: PathGradientBrush.CenterColor = value
+            </summary>
+        </member>
+        <member name="P:SineScroller.SineScroller.dxProp">
+            <summary>
+            The distance between the computed points; 
+            How many pixels the text will be moved to the left each tick; default -> 5; 
+            dx have to be >= 0 
+            </summary>
+        </member>
+        <member name="F:SineScroller.SineScroller.dx">
+            <summary>
+            How many pixels the text will be moved to the left each tick; default -> 5;
+            dx have to be >= 0
+            </summary>
+        </member>
+        <member name="P:SineScroller.SineScroller.frequencyProp">
+            <summary>
+            The frequency of the sine curve; default -> 0.5;
+            </summary>
+        </member>
+        <member name="F:SineScroller.SineScroller.freq">
+            <summary>
+            The frequency of the sine curve; default -> 0.5;
+            </summary>
+        </member>
+        <member name="P:SineScroller.SineScroller.amplitudeProp">
+            <summary>
+            The amplitude of the sine curve; default -> 4.5;
+            </summary>
+        </member>
+        <member name="F:SineScroller.SineScroller.amp">
+            <summary>
+            The amplitude of the sine curve; default -> 4.5;
+            </summary>
+        </member>
+        <member name="P:SineScroller.SineScroller.yOffsetProp">
+            <summary>
+            The offset for the y-Values of the sine curve; default -> 0;
+            </summary>
+        </member>
+        <member name="F:SineScroller.SineScroller.yOff">
+            <summary>
+            The offset for the y-Values of the sine curve; default -> 0;
+            </summary>
+        </member>
+        <member name="F:SineScroller.SineScroller.scrollTab">
+            <summary>
+            The vector containing the absolute x and y values for the sine curve
+            </summary>
+        </member>
+        <member name="F:SineScroller.SineScroller.ticks">
+            <summary>
+            Used as a Index for the Scrolltable -> Incremented each time the timer_Tick Event is fired;
+            set to 0 if the text is completly outside the scrollarea => start again
+            </summary>
+        </member>
+        <member name="F:SineScroller.SineScroller.oldTick">
+            <summary>
+            Stores the the value of the ticks variable if a mousebutton is pressed over the scroller
+            </summary>
+        </member>
+        <member name="P:SineScroller.SineScroller.pauseScrollingProp">
+            <summary>
+            If true, the scrolling is paused, if false the scroller is scrolling :o)
+            </summary>
+        </member>
+        <member name="F:SineScroller.SineScroller.pauseScrolling">
+            <summary>
+            Set to true if the user pressed a mousebutton down, set to false if the button was released
+            </summary>
+        </member>
+        <member name="F:SineScroller.SineScroller.timer">
+            <summary>
+            The Timerevent for drawing the text
+            </summary>
+        </member>
+        <member name="P:SineScroller.SineScroller.intervalProp">
+            <summary>
+            The interval for the Timer in ms; default -> 40 ms == 25fps
+            </summary>
+        </member>
+        <member name="F:SineScroller.SineScroller.components">
+            <summary>
+            needed Visual Studio Designervariable
+            </summary>
+        </member>
+        <member name="M:SineScroller.SineScroller.#ctor">
+            <summary>
+            Defaultconstructor: Init. the variables with the default values and starts the Timer
+            </summary>
+        </member>
+        <member name="M:SineScroller.SineScroller.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            The Paint-method does the Drawing
+            </summary>
+            <param name="pea">the PaintEventArgs ;-)</param>
+        </member>
+        <member name="M:SineScroller.SineScroller.Dispose(System.Boolean)">
+            <summary>
+            clear everything
+            </summary>
+        </member>
+        <member name="M:SineScroller.SineScroller.InitializeComponent">
+            <summary>
+            Erforderliche Methode für die Designerunterstützung.
+            Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
+            </summary>
+        </member>
+        <member name="M:SineScroller.SineScroller.timer_Tick(System.Object,System.EventArgs)">
+            <summary>
+            The Tick event handler method calls the paint method
+            </summary>
+            <param name="sender">Sender ;-)</param>
+            <param name="e">EventArgs ;-)</param>
+        </member>
+        <member name="M:SineScroller.SineScroller.computeScrollTable">
+            <summary>
+            Computes the PointF-vector for the scrolling with the absolutes x,y-Values
+            </summary>
+        </member>
+        <member name="M:SineScroller.SineScroller.SineScroller_Resize(System.Object,System.EventArgs)">
+            <summary>
+            If the size has been changed, the ScrollTable is computed with the new values
+            </summary>
+            <param name="sender">Sender ;-)</param>
+            <param name="e">EventArgs ;-)</param>
+        </member>
+        <member name="M:SineScroller.SineScroller.SineScroller_MouseDown(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Pause the scrolling
+            </summary>
+            <param name="sender">Sender ;-)</param>
+            <param name="e">EventArgs ;-)</param>
+        </member>
+        <member name="M:SineScroller.SineScroller.SineScroller_MouseUp(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Resume the scrolling
+            </summary>
+            <param name="sender">Sender ;-)</param>
+            <param name="e">EventArgs ;-)</param>
+        </member>
+    </members>
+</doc>
